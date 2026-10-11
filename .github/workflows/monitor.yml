@@ -1,0 +1,250 @@
+# Бот лише готує пропозицію: план на найближчу сесію + публікація результатів.
+#
+# GitHub виконує розклад у UTC і з затримкою (зазвичай 3–20 хв), тому тут чотири
+# вікна на добу, а рішення «працювати чи ні» ухвалює tools/gha_gate.py за часом
+# біржі (America/New_York), з урахуванням свят NYSE:
+#
+#   EDST (квіт–лист): 12:10 і 12:40 UTC = 08:10 і 08:40 за Нью-Йорком
+#   EST  (лист–бер):  13:10 і 13:40 UTC = 08:10 і 08:40 за Нью-Йорком
+#
+# У кожному сезоні у вікно [07:50, 09:05] ET потрапляє лише одне з чотирьох
+# вікон; решта відсіюються. Другий прогін того ж дня не дублює повідомлення
+# в Telegram (є перевірка «план щойно побудовано»).
+name: Пропозиції — за годину до відкриття US-ринку
+
+on:
+  schedule:
+    - cron: "10 12 * * 1-5"
+    - cron: "40 12 * * 1-5"
+    - cron: "10 13 * * 1-5"
+    - cron: "40 13 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Примусово перерахувати план (ігнорувати вікно часу й свіжість)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pre-open-plan
+  cancel-in-progress: false
+
+env:
+  PYTHON_VERSION: "3.12"
+  # Класти звіт у теку results/ репозиторію (окрім артефактів і сторінки).
+  # Навіщо: (1) історія планів не зникає разом з артефактами й кешем;
+  # (2) GitHub вимикає розклад у репозиторії без активності 60 днів, а щоденний
+  # коміт утримує його живим. Вимкніть ("false"), якщо не хочете комітів від бота.
+  COMMIT_RESULTS: "true"
+
+jobs:
+  propose:
+    name: План на найближчу сесію
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # потрібно для кроку «Зберегти звіт у репозиторії»
+      pages: write
+      id-token: write
+    outputs:
+      run: ${{ steps.gate.outputs.run }}
+      reason: ${{ steps.gate.outputs.reason }}
+      session: ${{ steps.gate.outputs.session }}
+      minutes_to_open: ${{ steps.gate.outputs.minutes_to_open }}
+      pages: ${{ steps.pages.outputs.available }}
+    env:
+      # Усе необов'язкове. Порожній секрет = просто не використовується.
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      BOOK_JSON: ${{ secrets.BOOK_JSON }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+      ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+    steps:
+      - name: Код
+        uses: actions/checkout@v7
+
+      - name: Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Перевірка комплекту файлів
+        run: |
+          missing=""
+          for f in run.py config.yaml requirements.txt tools/gha_gate.py tools/make_site.py \
+                   app/market.py app/proposal.py app/pipeline.py; do
+            [ -e "$f" ] || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            {
+              echo "### ❌ У репозиторії немає потрібних файлів:$missing"
+              echo ""
+              echo "Схоже, проєкт завантажено не повністю. Завантажте повний архів"
+              echo "(папки \`app/\`, \`tools/\`, файл \`run.py\`) — див. GITHUB.md, розділ 15."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          grep -q us_market_holidays app/market.py || {
+            echo "app/market.py — стара версія (немає календаря свят NYSE). Завантажте свіжий архів." >&2
+            exit 1
+          }
+          echo "комплект на місці — можна працювати"
+
+      - name: Залежності
+        run: pip install -r requirements.txt
+
+      - name: Відновити журнал і кеш котирувань
+        uses: actions/cache@v6
+        with:
+          path: |
+            data/assistant.db
+            data/cache
+          key: assistant-data-${{ github.run_id }}
+          restore-keys: assistant-data-
+
+      - name: "Ворота: чи запускати саме зараз"
+        id: gate
+        run: |
+          FORCE=""
+          if [ "${{ inputs.force }}" = "true" ]; then FORCE="--force"; fi
+          python3 tools/gha_gate.py $FORCE
+
+      - name: Портфель (необов'язковий секрет BOOK_JSON)
+        if: steps.gate.outputs.run == 'yes'
+        run: |
+          if [ -n "$BOOK_JSON" ]; then
+            printf '%s' "$BOOK_JSON" > data/book.json
+            echo "портфель узято із секрету BOOK_JSON"
+          else
+            echo "секрет BOOK_JSON не задано — капітал береться з config.yaml (блок portfolio)"
+          fi
+
+      - name: Пропозиції на найближчу сесію
+        if: steps.gate.outputs.run == 'yes'
+        run: python3 run.py --propose --force
+
+      - name: Що пішло в Telegram
+        if: steps.gate.outputs.run == 'yes'
+        run: tail -60 data/outbox.log || true
+
+      - name: Статичний сайт результатів
+        if: steps.gate.outputs.run == 'yes'
+        run: |
+          python3 tools/make_site.py --out site --sessions 10 \
+            --repo-url "${{ github.server_url }}/${{ github.repository }}" \
+            --title "Пропозиції на ${{ steps.gate.outputs.session }}" --summary
+
+      - name: Чи доступні GitHub Pages?
+        id: pages
+        if: steps.gate.outputs.run == 'yes'
+        continue-on-error: true
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" || echo "000")
+          if [ "$code" = "200" ] || [ "${{ vars.PAGES_ENABLED }}" = "true" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "Pages доступні (HTTP $code) — сторінка результатів буде опублікована"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            {
+              echo ""
+              echo "### ℹ️ Сторінка результатів не публікується"
+              echo "GitHub Pages недоступні (HTTP $code): у приватному репозиторії на безкоштовному"
+              echo "тарифі Pages вимкнено. Результати все одно є — підсумок вище, артефакти запуску"
+              echo "і тека results/ у репозиторії."
+              echo ""
+              echo "Хочете сторінку: зробіть репозиторій публічним (Settings → General → Danger Zone)"
+              echo "або увімкніть Pages і додайте змінну репозиторію PAGES_ENABLED=true"
+              echo "(Settings → Secrets and variables → Actions → Variables)."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Налаштувати GitHub Pages
+        if: steps.gate.outputs.run == 'yes' && steps.pages.outputs.available == 'true'
+        uses: actions/configure-pages@v6
+        with:
+          enablement: true
+
+      - name: Артефакт для сторінки результатів
+        if: steps.gate.outputs.run == 'yes' && steps.pages.outputs.available == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+          include-hidden-files: true
+
+      - name: Зберегти звіт у репозиторії (results/)
+        if: steps.gate.outputs.run == 'yes'
+        env:
+          SESSION: ${{ steps.gate.outputs.session }}
+        run: |
+          if [ "$COMMIT_RESULTS" != "true" ]; then
+            echo "COMMIT_RESULTS=$COMMIT_RESULTS — коміт пропущено"
+            exit 0
+          fi
+          mkdir -p results/history
+          cp site/results.md results/latest.md
+          cp site/results.json results/latest.json
+          cp site/results.md "results/history/${SESSION}.md"
+          git config user.name "trading-assistant[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add results
+          if git diff --cached --quiet; then
+            echo "змін немає — план на цю сесію вже збережено"
+          else
+            git commit -m "План на ${SESSION} — за годину до відкриття US-ринку"
+            git pull --rebase --autostash origin "${{ github.ref_name }}" || true
+            git push
+          fi
+
+      - name: Артефакт зі звітом (markdown/json + журнал)
+        if: steps.gate.outputs.run == 'yes'
+        uses: actions/upload-artifact@v7
+        with:
+          name: proposals-${{ steps.gate.outputs.session }}
+          path: |
+            site/results.md
+            site/results.json
+            data/outbox.log
+          if-no-files-found: warn
+
+      - name: Підсумок запуску
+        run: |
+          if [ "${{ steps.gate.outputs.run }}" = "yes" ]; then
+            echo "### ✅ План підготовлено" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ⏭️ Прогін пропущено" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          {
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Сесія | ${{ steps.gate.outputs.session }} |"
+            echo "| Хвилин до відкриття | ${{ steps.gate.outputs.minutes_to_open }} |"
+            echo "| Час біржі | ${{ steps.gate.outputs.et }} |"
+            echo "| Причина | ${{ steps.gate.outputs.reason }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    name: Публікація результатів на GitHub Pages
+    needs: propose
+    if: needs.propose.outputs.run == 'yes' && needs.propose.outputs.pages == 'true'
+    continue-on-error: true      # якщо Pages усе ж не спрацюють — план уже є в Summary і артефактах
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Опублікувати
+        id: deployment
+        uses: actions/deploy-pages@v5
