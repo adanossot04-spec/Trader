@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-11T18:19:16+00:00",
+  "generated_at": "2026-10-11T18:28:35+00:00",
   "session": "2026-10-12",
   "schedule": "За годину до відкриття US-ринку: cron «30 8 * * 1-5» (America/New_York)",
   "sessions": [
     {
       "session": "2026-10-12",
-      "total": 24,
-      "buy": 9,
-      "wait": 15,
-      "approved": 6,
-      "last_at": "11.10.2026 21:19 Kyiv"
+      "total": 44,
+      "buy": 15,
+      "wait": 29,
+      "approved": 9,
+      "last_at": "11.10.2026 21:28 Kyiv"
     }
   ],
   "proposals": [
     {
-      "id": 5,
+      "id": 25,
       "ticker": "AAPL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -46,11 +46,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:13+00:00",
-      "page": "proposal-5.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-25.html"
     },
     {
-      "id": 6,
+      "id": 26,
       "ticker": "AMD",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -82,11 +82,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:13+00:00",
-      "page": "proposal-6.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-26.html"
     },
     {
-      "id": 7,
+      "id": 27,
       "ticker": "AMZN",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -118,11 +118,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:13+00:00",
-      "page": "proposal-7.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-27.html"
     },
     {
-      "id": 8,
+      "id": 28,
       "ticker": "AVGO",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -154,11 +154,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:13+00:00",
-      "page": "proposal-8.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-28.html"
     },
     {
-      "id": 9,
+      "id": 29,
       "ticker": "COST",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -190,11 +190,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:13+00:00",
-      "page": "proposal-9.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-29.html"
     },
     {
-      "id": 10,
+      "id": 30,
       "ticker": "CRM",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -226,11 +226,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:13+00:00",
-      "page": "proposal-10.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-30.html"
     },
     {
-      "id": 11,
+      "id": 31,
       "ticker": "GOOGL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -262,11 +262,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-11.html"
+      "created_at": "2026-10-11T18:28:31+00:00",
+      "page": "proposal-31.html"
     },
     {
-      "id": 12,
+      "id": 32,
       "ticker": "JPM",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -298,11 +298,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-12.html"
+      "created_at": "2026-10-11T18:28:32+00:00",
+      "page": "proposal-32.html"
     },
     {
-      "id": 13,
+      "id": 33,
       "ticker": "LLY",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -334,11 +334,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-13.html"
+      "created_at": "2026-10-11T18:28:32+00:00",
+      "page": "proposal-33.html"
     },
     {
-      "id": 14,
+      "id": 34,
       "ticker": "META",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -370,11 +370,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-14.html"
+      "created_at": "2026-10-11T18:28:32+00:00",
+      "page": "proposal-34.html"
     },
     {
-      "id": 15,
+      "id": 35,
       "ticker": "MSFT",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -411,11 +411,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-15.html"
+      "created_at": "2026-10-11T18:28:32+00:00",
+      "page": "proposal-35.html"
     },
     {
-      "id": 16,
+      "id": 36,
       "ticker": "NFLX",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -447,11 +447,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-16.html"
+      "created_at": "2026-10-11T18:28:32+00:00",
+      "page": "proposal-36.html"
     },
     {
-      "id": 17,
+      "id": 37,
       "ticker": "NVDA",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -487,11 +487,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:14+00:00",
-      "page": "proposal-17.html"
+      "created_at": "2026-10-11T18:28:33+00:00",
+      "page": "proposal-37.html"
     },
     {
-      "id": 18,
+      "id": 38,
       "ticker": "ORCL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -523,11 +523,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:15+00:00",
-      "page": "proposal-18.html"
+      "created_at": "2026-10-11T18:28:33+00:00",
+      "page": "proposal-38.html"
     },
     {
-      "id": 19,
+      "id": 39,
       "ticker": "QQQ",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -563,11 +563,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:15+00:00",
-      "page": "proposal-19.html"
+      "created_at": "2026-10-11T18:28:33+00:00",
+      "page": "proposal-39.html"
     },
     {
-      "id": 20,
+      "id": 40,
       "ticker": "SPY",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -604,11 +604,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:15+00:00",
-      "page": "proposal-20.html"
+      "created_at": "2026-10-11T18:28:33+00:00",
+      "page": "proposal-40.html"
     },
     {
-      "id": 21,
+      "id": 41,
       "ticker": "TSLA",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -643,11 +643,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:15+00:00",
-      "page": "proposal-21.html"
+      "created_at": "2026-10-11T18:28:33+00:00",
+      "page": "proposal-41.html"
     },
     {
-      "id": 22,
+      "id": 42,
       "ticker": "UNH",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -679,11 +679,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:15+00:00",
-      "page": "proposal-22.html"
+      "created_at": "2026-10-11T18:28:34+00:00",
+      "page": "proposal-42.html"
     },
     {
-      "id": 23,
+      "id": 43,
       "ticker": "V",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -715,11 +715,11 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:15+00:00",
-      "page": "proposal-23.html"
+      "created_at": "2026-10-11T18:28:34+00:00",
+      "page": "proposal-43.html"
     },
     {
-      "id": 24,
+      "id": 44,
       "ticker": "XOM",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -756,8 +756,8 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-11T18:19:16+00:00",
-      "page": "proposal-24.html"
+      "created_at": "2026-10-11T18:28:34+00:00",
+      "page": "proposal-44.html"
     }
   ],
   "runs": [],
