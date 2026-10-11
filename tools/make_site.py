@@ -362,6 +362,7 @@ def build_site(
     settings,
     out_dir: Path,
     sessions: int = 5,
+    pages_for_sessions: int = 1,
     repo_url: str | None = None,
     source_note: str = "GitHub Actions",
     generated_at: datetime | None = None,
@@ -374,9 +375,13 @@ def build_site(
     proposals = store.proposals_for_session(latest) if latest else []
     results = [p for p in proposals if p.bias == "BUY"]
 
-    # сторінки розбору — для всіх пропозицій останніх сесій
+    # Сторінки розбору — лише для останніх pages_for_sessions сесій.
+    # Сайт щодня комітиться в репозиторій, тому 20 сторінок × 10 сесій означали б
+    # десятки мегабайтів історії на місяць; сторінка потрібна свіжа, а решта
+    # сесій лишається видимою в таблиці журналу.
     pages = 0
-    for session in [s["session"] for s in _sessions(store, sessions)]:
+    recent = max(1, pages_for_sessions)
+    for session in [s["session"] for s in _sessions(store, recent)]:
         for p in store.proposals_for_session(session):
             if not p.id:
                 continue
@@ -526,7 +531,9 @@ def _results_md(payload: dict) -> str:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Статичний сайт результатів для GitHub Pages")
     parser.add_argument("--out", default="site", help="тека для HTML (типово site/)")
-    parser.add_argument("--sessions", type=int, default=5, help="скільки останніх сесій показати")
+    parser.add_argument("--sessions", type=int, default=5, help="скільки останніх сесій показати в журналі")
+    parser.add_argument("--pages-for-sessions", type=int, default=1,
+                        help="для скількох останніх сесій робити сторінки розбору (типово 1)")
     parser.add_argument("--repo-url", default=os.environ.get("REPO_URL", ""), help="посилання на код")
     parser.add_argument("--title", default="", help="заголовок у звіті CI (не обов'язково)")
     parser.add_argument("--summary", action="store_true",
@@ -538,6 +545,7 @@ def main(argv: list[str] | None = None) -> int:
         settings=settings,
         out_dir=Path(args.out),
         sessions=args.sessions,
+        pages_for_sessions=args.pages_for_sessions,
         repo_url=args.repo_url or None,
     )
     print(f"сайт у {result['out_dir']}: сесія {result['session']}, "
