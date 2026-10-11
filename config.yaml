@@ -77,11 +77,30 @@ engine:
   output_language: Ukrainian
   temperature: 0.2
 
+# Список для щоденного аналізу. Бот будує план по КОЖНОМУ тікеру, а скільки з них
+# схвалить ризик-гейт — залежить від лімітів у блоці risk (типово 3 входи на добу).
+# Додати/прибрати можна тут або на сторінці /settings у дашборді.
 watchlist:
-  - NVDA
-  - AAPL
-  - MSFT
-  - SPY
+  - AAPL    # Apple
+  - AMD     # Advanced Micro Devices
+  - AMZN    # Amazon
+  - AVGO    # Broadcom
+  - COST    # Costco
+  - CRM     # Salesforce
+  - GOOGL   # Alphabet
+  - JPM     # JPMorgan Chase
+  - LLY     # Eli Lilly
+  - META    # Meta Platforms
+  - MSFT    # Microsoft
+  - NFLX    # Netflix
+  - NVDA    # NVIDIA
+  - ORCL    # Oracle
+  - QQQ     # ETF: Nasdaq-100
+  - SPY     # ETF: S&P 500
+  - TSLA    # Tesla
+  - UNH     # UnitedHealth
+  - V       # Visa
+  - XOM     # Exxon Mobil
 
 portfolio:
   currency: USD

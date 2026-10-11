@@ -157,3 +157,21 @@ def test_book_helper(settings):
     book = Book.from_dict({"cash": 1000, "positions": [{"ticker": "NVDA", "quantity": 2, "average_price": 100}]})
     assert book.equity == 1200
     assert book.position("nvda") is not None
+
+
+def test_seeding_adds_new_tickers_to_existing_db(settings):
+    """Розширення списку в config.yaml має працювати й на наявній базі.
+
+    У GitHub Actions журнал відновлюється з кеша, тому «старий» список із 4 тікерів
+    не повинен блокувати нові 20 — seed додає відсутні, старі лишає.
+    """
+    store = Store(settings.db_path)
+    store.seed_watchlist(["NVDA", "AAPL"])
+
+    settings.config["watchlist"] = ["NVDA", "AAPL", "MSFT", "TSLA", "AMD"]
+    store.seed_watchlist(settings.watchlist)          # як робить run.py на старті
+
+    assert store.watchlist() == ["AAPL", "AMD", "MSFT", "NVDA", "TSLA"]   # відсортовано в SQL
+    store.remove_ticker("AAPL")
+    store.seed_watchlist(settings.watchlist)
+    assert "AAPL" in store.watchlist()                # видалення вручну не «залипає» назавжди

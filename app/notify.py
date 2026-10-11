@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import os
 from datetime import datetime, timezone
 from pathlib import Path
@@ -11,6 +12,8 @@ import httpx
 
 from .models import RunRecord
 from .risk import Book
+
+log = logging.getLogger("assistant.notify")
 
 
 def _fmt_money(value: float | None) -> str:
@@ -182,16 +185,49 @@ def format_record(record: RunRecord, book: Book | None = None) -> str:
     return "\n".join(lines)
 
 
+TELEGRAM_LIMIT = 3900          # у Telegram ліміт 4096 символів на повідомлення
+
+
+def split_message(text: str, limit: int = TELEGRAM_LIMIT) -> list[str]:
+    """Ділить довге повідомлення на частини по рядках (не обрізаючи текст).
+
+    Список із 20 тікерів у зведенні легко перевищує ліміт Telegram, а мовчазне
+    обрізання означало б, що останні плани ви просто не побачите.
+    """
+    if len(text) <= limit:
+        return [text]
+    chunks: list[str] = []
+    current: list[str] = []
+    size = 0
+    for line in text.split("\n"):
+        line_len = len(line) + 1
+        if current and size + line_len > limit:
+            chunks.append("\n".join(current))
+            current, size = [], 0
+        current.append(line)
+        size += line_len
+    if current:
+        chunks.append("\n".join(current))
+    total = len(chunks)
+    return [f"{chunk}\n<i>(частина {i + 1}/{total})</i>" if total > 1 else chunk
+            for i, chunk in enumerate(chunks)]
+
+
 def send_telegram(text: str, token: str, chat_id: str) -> tuple[bool, str]:
     url = f"https://api.telegram.org/bot{token}/sendMessage"
-    payload = {"chat_id": chat_id, "text": text[:4000], "parse_mode": "HTML", "disable_web_page_preview": True}
-    try:
-        response = httpx.post(url, json=payload, timeout=15.0)
-        if response.status_code == 200:
-            return True, "ok"
-        return False, f"HTTP {response.status_code}: {response.text[:200]}"
-    except httpx.HTTPError as exc:
-        return False, f"мережева помилка: {exc}"
+    parts = split_message(text)
+    for index, part in enumerate(parts):
+        payload = {"chat_id": chat_id, "text": part, "parse_mode": "HTML",
+                   "disable_web_page_preview": True}
+        try:
+            response = httpx.post(url, json=payload, timeout=15.0)
+        except httpx.HTTPError as exc:
+            return False, f"мережева помилка: {exc}"
+        if response.status_code != 200:
+            return False, f"HTTP {response.status_code}: {response.text[:200]}"
+        if index == 0 and len(parts) > 1:
+            log.info("Повідомлення задовге — надіслано %d частин", len(parts))
+    return True, "ok"
 
 
 def deliver(

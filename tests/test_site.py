@@ -130,10 +130,12 @@ def test_proposal_page_contains_plan_order_and_premarket(settings, tmp_path):
 
 
 def test_wait_proposal_has_no_order_but_is_visible(settings, tmp_path):
-    store = _seed(settings, make_proposal(ticker="AAPL", bias="WAIT", entry_price=None,
-                                          stop_price=None, target_price=None, rr=None, qty=0,
-                                          approved=False, order_template="",
-                                          gate_reasons=["немає сетапу: імпульс негативний"]))
+    store = _seed(settings, make_proposal(
+        ticker="AAPL", bias="WAIT", entry_price=None, stop_price=None, target_price=None,
+        rr=None, qty=0, approved=False, order_template="",
+        # саме так виглядає реальна WAIT-пропозиція: причина — у reasons
+        reasons=["немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної)"],
+        gate_reasons=["немає сетапу — ризик-гейт не застосовується"]))
     out = tmp_path / "site"
     build_site(settings=settings, out_dir=out, sessions=1, repo_url=None)
 
@@ -141,7 +143,7 @@ def test_wait_proposal_has_no_order_but_is_visible(settings, tmp_path):
     assert "AAPL" in index
     assert "БЕЗ СЕТАПУ" in index
     assert "Готові заявки" not in index               # жодної заявки — жодного блоку заявок
-    assert "немає сетапу" in index
+    assert "імпульс негативний" in index          # конкретна причина, а не загальне «гейт не застосовується»
     assert store.recent_proposals(limit=1)[0].ticker == "AAPL"
 
 
@@ -185,3 +187,25 @@ def test_broken_proposal_does_not_brake_the_site(settings, tmp_path):
     result = build_site(settings=settings, out_dir=out, sessions=1, repo_url=None)
     assert result["proposals"] == 1
     assert "—" in (out / "index.html").read_text(encoding="utf-8")
+
+
+def test_site_renders_twenty_positions(settings, tmp_path):
+    """Список із 20 тікерів: усі рядки мають бути на сторінці й у markdown."""
+    from tests.test_site import make_proposal  # noqa: F401  (сам файл)
+
+    tickers = ["AAPL", "AMD", "AMZN", "AVGO", "COST", "CRM", "GOOGL", "JPM", "LLY", "META",
+               "MSFT", "NFLX", "NVDA", "ORCL", "QQQ", "SPY", "TSLA", "UNH", "V", "XOM"]
+    store = Store(settings.db_path)
+    for index, ticker in enumerate(tickers):
+        store.insert_proposal(make_proposal(ticker=ticker, entry_price=100.0 + index,
+                                            stop_price=95.0 + index, target_price=115.0 + index))
+    out = tmp_path / "site"
+    result = build_site(settings=settings, out_dir=out, sessions=1, repo_url=None)
+
+    assert result["proposals"] == 20
+    index_html = (out / "index.html").read_text(encoding="utf-8")
+    for ticker in tickers:
+        assert f">{ticker}<" in index_html, ticker     # є рядок у таблиці
+    markdown = (out / "results.md").read_text(encoding="utf-8")
+    assert sum(1 for ticker in tickers if f"| {ticker} |" in markdown) == 20
+    assert len(list(out.glob("proposal-*.html"))) == 20

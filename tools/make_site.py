@@ -77,9 +77,12 @@ def _bias(bias: str | None) -> str:
 
 def _gate(proposal) -> str:
     if proposal.bias != "BUY":
-        why = (proposal.gate_reasons or proposal.reasons or ["—"])[0]
+        # Для WAIT показуємо конкретну причину («імпульс негативний», «немає висхідної структури»),
+        # а не загальне «гейт не застосовується» — інакше рядок нічого не пояснює.
+        why = (proposal.reasons or proposal.gate_reasons or ["—"])[0]
+        why = str(why).replace("немає сетапу на найближчу сесію: ", "")
         return (f'<span class="tag hold">не розглядається</span>'
-                f'<div class="sub">{escape(str(why))[:90]}</div>')
+                f'<div class="sub">{escape(why)[:110]}</div>')
     if proposal.approved:
         return '<span class="tag buy">✅ дозволено</span>'
     reason = (proposal.gate_reasons or ["—"])[0]
