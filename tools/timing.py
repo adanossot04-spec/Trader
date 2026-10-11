@@ -1,19 +1,19 @@
-"""Замір: з чого складається час роботи бота (і чому він такий короткий).
+"""Замір: з чого складається час роботи бота — тепер із шаром глибини.
 
 Запуск:
     python3 tools/timing.py            # усі тікери зі списку
     python3 tools/timing.py 5          # перші п'ять
 
-Вимірюються чотири фази:
-  1) котирування — мережеві запити до Yahoo (2 роки добових свічок на тікер);
-  2) премаркет — запит хвилинних барів 04:00–09:30 ET на тікер;
-  3) рахунок — індикатори (SMA/EMA/RSI/MACD/ATR), правила сценарію, ризик-гейт;
-  4) сторінка — збірка HTML-звіту.
+Фази (саме в тому порядку, як у щоденному прогоні):
+  0) свічки — мережа (Yahoo, 420 добових барів на тікер);
+  1) контекст глибини — режим ринку (VIX, 10Y, DXY), ширина списку, календар звітів;
+  2) прогрів SEC + RSS — фундаментал (SEC EDGAR) і заголовки (Yahoo RSS) паралельно;
+  3) пакети глибини — фундаментальні показники, історія правила (бектест), оцінки;
+  4) індикатори + правила + гейт — чиста математика на 420 свічках на тікер;
+  5) сторінка результатів — HTML-збірка.
 
-Сенс вправ: уся «аналітика» тут — це арифметика над ≈ 420 свічками на тікер,
-тому рахунок займає мілісекунди. Час з'їдає мережа. Саме тому 20 тікерів
-укладаються в десятки секунд, тоді як LLM-аналіз (TradingAgents тощо) —
-це хвилини на один тікер.
+Міряємо ДВІ конфігурації: холодний кеш (перший запуск доби) і теплий (той самий
+день удруге — так буде в кожному наступному прогінi). Кеш SEC/макро/RSS живе добу.
 """
 
 from __future__ import annotations
@@ -24,14 +24,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-
-from app import market as market_module          # noqa: E402
-from app import pipeline                         # noqa: E402
-from app.db import Store                         # noqa: E402
-from app.settings import load_settings           # noqa: E402
-
 sys.path.insert(0, str(ROOT / "tools"))
-from make_site import build_site                 # noqa: E402
+
+from app import depth as depth_module              # noqa: E402
+from app import market as market_module            # noqa: E402
+from app import pipeline                           # noqa: E402
+from app.db import Store                           # noqa: E402
+from app.settings import load_settings             # noqa: E402
+from make_site import build_site                   # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -41,62 +41,98 @@ def main(argv: list[str] | None = None) -> int:
     if argv and argv[0].isdigit():
         tickers = tickers[: int(argv[0])]
 
+    store = Store(settings.db_path)
+    store.seed_watchlist(settings.watchlist)
     requests = 0
     timings: dict[str, float] = {}
 
+    def phase(name: str, fn):
+        step = time.perf_counter()
+        out = fn()
+        timings[name] = timings.get(name, 0.0) + (time.perf_counter() - step)
+        return out
+
+    # ── холодний прогін ──────────────────────────────────────────────────────
+    def fetch_all() -> dict:
+        nonlocal requests
+        bars: dict = {}
+        for ticker in tickers:
+            try:
+                data = market_module.fetch_daily(ticker, settings, force_refresh=True)
+                requests += 1
+                if data and data.bars:
+                    bars[ticker.upper()] = data.bars
+            except Exception as exc:                                  # noqa: BLE001
+                print(f"  {ticker}: не вдалося ({exc})")
+        return bars
+
+    print("→ холодний кеш (перший запуск доби)")
     started = time.perf_counter()
-    for ticker in tickers:
-        step = time.perf_counter()
-        try:
-            market_module.fetch_daily(ticker, settings, force_refresh=True)
-            requests += 1
-        except Exception as exc:                              # noqa: BLE001
-            print(f"  {ticker}: не вдалося ({exc})")
-        timings["котирування (мережа)"] = timings.get("котирування (мережа)", 0.0) + (
-            time.perf_counter() - step
-        )
+    bars_map = phase("0. свічки (мережа)", fetch_all)
 
-    for ticker in tickers:
-        step = time.perf_counter()
-        market_module.premarket_quote(ticker)
-        requests += 1
-        timings["премаркет (мережа)"] = timings.get("премаркет (мережа)", 0.0) + (
-            time.perf_counter() - step
-        )
+    def context():
+        return depth_module.build_context(settings, ticker_bars=bars_map)
 
-    store = Store(settings.db_path)
-    proposals = []
-    for ticker in tickers:
-        step = time.perf_counter()
-        proposals.append(
-            pipeline.propose_one(settings, store, ticker, notify=False, use_llm=False,
-                                 force_refresh=False)         # дані вже в кеші → чистий рахунок
-        )
-        timings["індикатори + правила + гейт"] = timings.get("індикатори + правила + гейт", 0.0) + (
-            time.perf_counter() - step
-        )
-
-    step = time.perf_counter()
-    build_site(settings=settings, out_dir=Path("site"), sessions=10, pages_for_sessions=1)
-    timings["збірка сторінки результатів"] = time.perf_counter() - step
-
-    total = time.perf_counter() - started
-    bars = sum(1 for _ in [0])  # заповнюється нижче
     try:
-        bars = len(market_module.fetch_daily(tickers[0], settings).bars)
-    except Exception:                                        # noqa: BLE001
-        bars = 0
+        context_data = phase("1. контекст глибини (макро+календар)", context)
+    except Exception as exc:                                          # noqa: BLE001
+        print(f"  контекст глибини недоступний: {exc}")
+        context_data = {"macro": {}, "calendar": {}, "spy_bars": None, "breadth_pct": None}
 
-    print(f"\nТікерів: {len(tickers)} · HTTP-запитів: {requests} · свічок на тікер: {bars}")
-    print(f"{'фаза':40} {'секунд':>9} {'частка':>8}")
-    print("-" * 60)
-    for name, seconds in sorted(timings.items(), key=lambda kv: -kv[1]):
-        print(f"{name:40} {seconds:9.2f} {100 * seconds / total:7.1f}%")
-    print("-" * 60)
-    print(f"{'РАЗОМ':40} {total:9.2f} {100:7.1f}%")
-    print(f"\nЗ них рахунок (без мережі та збірки HTML): "
-          f"{timings.get('індикатори + правила + гейт', 0):.3f} с "
-          f"за {len(proposals)} пропозицій")
+    phase("2. прогрів SEC + RSS (паралельно)",
+          lambda: depth_module.warm(settings, [t.upper() for t in tickers], context_data.get("calendar")))
+
+    def packets():
+        out = []
+        for ticker in tickers:
+            out.append(depth_module.collect(
+                ticker, settings, bars=bars_map.get(ticker.upper(), []),
+                spy_bars=context_data.get("spy_bars"), macro=context_data.get("macro"),
+                calendar=context_data.get("calendar"),
+            ))
+        return out
+
+    cold_packets = phase("3. пакети глибини (рахунок)", packets)
+
+    def proposals():
+        return pipeline.build_proposals(settings, store, notify=False, summary=False)
+
+    made = phase("4. індикатори + правила + гейт (з глибиною)", proposals)
+    cold_total = time.perf_counter() - started
+
+    phase("5. збірка сторінки результатів",
+          lambda: build_site(settings=settings, out_dir=Path("site"), sessions=10, pages_for_sessions=1))
+
+    cold = dict(timings)
+    timings = {key: 0.0 for key in timings}
+    requests_cold = requests
+
+    # ── теплий прогін (усе в кеші — так виглядає другий запуск того ж дня) ────
+    print("→ теплий кеш (той самий день, повторний прогін)")
+    started = time.perf_counter()
+    phase("4. індикатори + правила + гейт (з глибиною)", proposals)
+    warm_total = time.perf_counter() - started
+
+    def report(title: str, values: dict[str, float], total: float) -> None:
+        print(f"\n{title}")
+        print(f"{'фаза':44} {'секунд':>9} {'частка':>8}")
+        print("-" * 64)
+        for name, seconds in sorted(values.items(), key=lambda kv: -kv[1]):
+            if seconds <= 0:
+                continue
+            print(f"{name:44} {seconds:9.2f} {100 * seconds / total:7.1f}%")
+        print("-" * 64)
+        print(f"{'РАЗОМ':44} {total:9.2f} {100:7.1f}%")
+
+    bars_count = len(next(iter(bars_map.values()), []))
+    print(f"\nТікерів: {len(tickers)} · HTTP-запитів (свічки): {requests_cold} · свічок на тікер: {bars_count}")
+    print(f"Пропозицій у прогоні: {len(made)} · пакетів глибини: {len(cold_packets)}")
+    report("ХОЛОДНИЙ КЕШ (секунди)", cold, cold_total)
+    report("ТЕПЛИЙ КЕШ (секунди)", timings, warm_total)
+
+    math_ms = 1000 * cold.get("3. пакети глибини (рахунок)", 0) / max(1, len(tickers))
+    print(f"\nЧистий рахунок глибини (без мережі): {math_ms:.1f} мс на тікер "
+          f"({len(tickers)} тікерів за {cold.get('3. пакети глибини (рахунок)', 0):.2f} с)")
     return 0
 
 

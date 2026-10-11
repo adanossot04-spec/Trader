@@ -98,6 +98,172 @@ def _entry_label(proposal) -> str:
 
 # ─── сторінки ────────────────────────────────────────────────────────────────
 
+def _depth_snapshot(settings, session: str | None) -> dict[str, Any]:
+    """Зріз глибини, збережений прогоном (data/depth/<сесія>.json). Не перераховуємо."""
+    folder = settings.data_dir / "depth"
+    if not folder.exists():
+        return {}
+    candidates = []
+    if session:
+        candidates.append(folder / f"{session}.json")
+    candidates += sorted(folder.glob("*.json"), reverse=True)
+    for path in candidates:
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+    return {}
+
+
+def _macro_state_label(state: str | None) -> tuple[str, str]:
+    return {
+        "risk_on": ("🟢", "сприятливий для ризику (risk-on)"),
+        "risk_off": ("🔴", "обережний режим (risk-off)"),
+        "neutral": ("🟡", "нейтральний"),
+    }.get(str(state), ("⚪️", "немає даних"))
+
+
+def _round_num(value, digits: int = 2) -> str:
+    """Число з розумним округленням; «—», якщо даних немає."""
+    if isinstance(value, (int, float)):
+        return f"{float(value):.{digits}f}"
+    return "—"
+
+
+def _macro_section(snapshot: dict[str, Any], proposals: list) -> str:
+    """Блок «режим ринку» + календар звітів + підсумок фундаменталу по всьому списку."""
+    if not snapshot:
+        return ""
+    macro = snapshot.get("macro") or {}
+    inputs = macro.get("inputs") or {}
+    icon, label = _macro_state_label(macro.get("state"))
+    reasons = "".join(f"<li>{escape(str(r))}</li>" for r in (macro.get("reasons") or []))
+    cards = "".join([
+        f'<div class="card"><div class="k">Режим ринку</div><div class="v" style="font-size:18px">{icon} {label}</div>'
+        f'<div class="sub">бал {macro.get("score", "—")} · оновлено {escape(str(macro.get("as_of") or "—"))}</div></div>',
+        f'<div class="card"><div class="k">VIX</div><div class="v">{_round_num(inputs.get("vix"), 1)}</div>'
+        f'<div class="sub">попереднє: {_round_num(inputs.get("vix_prev"), 1)}</div></div>',
+        f'<div class="card"><div class="k">10-річна ставка</div><div class="v">{_round_num(inputs.get("ten_year"), 2)}%</div>'
+        f'<div class="sub">долар (DXY): {_round_num(inputs.get("dollar"), 2)}</div></div>',
+        f'<div class="card"><div class="k">Ширина ринку</div><div class="v">'
+        f'{snapshot.get("breadth_pct") if snapshot.get("breadth_pct") is not None else "—"}%</div>'
+        f'<div class="sub">частка списку над SMA50</div></div>',
+    ])
+
+    # календар звітностей на найближчі дні
+    calendar = snapshot.get("calendar") or {}
+    watch = {p.ticker for p in proposals}
+    rows = ""
+    for day in sorted(calendar)[:7]:
+        for item in calendar[day]:
+            symbol = str(item.get("symbol", "")).upper()
+            if symbol not in watch:
+                continue
+            rows += (f'<tr><td>{escape(symbol)}</td><td>{escape(day)}</td>'
+                     f'<td class="sub">{escape(str(item.get("time") or "—"))}</td>'
+                     f'<td class="num">{escape(str(item.get("epsForecast") or "—"))}</td></tr>')
+    earnings_block = (f'<h3>Календар звітностей (наш список, 10 днів)</h3><table><thead><tr>'
+                      f'<th>Тікер</th><th>Дата</th><th>Коли</th><th>Прогноз EPS</th></tr></thead>'
+                      f'<tbody>{rows}</tbody></table>') if rows else ""
+
+    # зведення по тікерах: фундаментал, сила, історія правила, подія
+    matrix = ""
+    tickers = snapshot.get("tickers") or {}
+    for ticker, item in sorted(tickers.items(), key=lambda kv: str(kv[1].get("sector") or "")):
+        earnings = item.get("earnings") or {}
+        days_to = earnings.get("days_to")
+        blocks = item.get("blocks") or []
+        matrix += (
+            f'<tr><td><b>{escape(ticker)}</b><div class="sub">{escape(str(item.get("sector_label") or "—"))}</div></td>'
+            f'<td class="num">{item.get("score") if item.get("score") is not None else "—"}</td>'
+            f'<td class="num">{_pct(item.get("rs_20_pct"))}</td>'
+            f'<td class="num">{item.get("expectancy_r") if item.get("expectancy_r") is not None else "—"}'
+            f'<div class="sub">{item.get("signals") or 0} сигн.</div></td>'
+            f'<td class="num">{f"за {days_to} дн." if days_to is not None else "—"}</td>'
+            f'<td class="sub">{escape(str(blocks[0])[:90]) if blocks else "—"}</td></tr>'
+        )
+    matrix_block = (f'<h3>Хто як виглядає за даними</h3><table><thead><tr>'
+                    f'<th>Тікер</th><th>Фундам. бал</th><th>До SPY (20 с.)</th>'
+                    f'<th>Історія правила</th><th>Звітність</th><th>Що завадило</th></tr></thead>'
+                    f'<tbody>{matrix}</tbody></table>') if matrix else ""
+
+    return f'''<h2>Глибина аналізу: режим ринку й фон</h2>
+<div class="grid">{cards}</div>
+<div class="card"><b>Що кажуть індикатори режиму:</b>
+<ul style="margin:6px 0 0;padding-left:18px">{reasons or "<li>даних мало</li>"}</ul>
+<div class="sub" style="margin-top:6px">Режим впливає на розмір: risk-off → ризик на угоду ×0.5,
+VIX ≥ 30 → нові входи заборонені. Це правило коду, не «думка» моделі.</div></div>
+{earnings_block}
+{matrix_block}'''
+
+
+def _depth_card(proposal) -> str:
+    """Секція «Глибина» на сторінці розбору: дайджест, фундаментал, подія, історія, новини."""
+    depth = getattr(proposal, "depth", None) or {}
+    if not depth.get("enabled"):
+        return ""
+    fundamentals = depth.get("fundamentals") or {}
+    revenue = fundamentals.get("revenue") or {}
+    eps = fundamentals.get("eps") or {}
+    earnings = fundamentals.get("earnings") or {}
+    stats = depth.get("backtest") or {}
+    macro = depth.get("macro") or {}
+    news = depth.get("news") or []
+    verdict = depth.get("verdict") or {}
+    levels = depth.get("levels") or {}
+
+    rows = [
+        ("Сектор", escape(str(depth.get("sector_label") or "—"))),
+        ("Емітент (SEC)", escape(str(fundamentals.get("company") or "—"))),
+        ("Виручка (квартал)", f'{_num(revenue.get("last"), 0, "$")} <span class="sub">{escape(str(revenue.get("period") or ""))}</span>'),
+        ("Виручка рік до року", _pct(revenue.get("yoy_pct"))),
+        ("EPS рік до року", _pct(eps.get("yoy_pct"))),
+        ("Чиста маржа", f'{_num(fundamentals.get("net_margin_pct"), 1)}%'),
+        ("Найближчий звіт", (f'{escape(str(earnings.get("date")))} '
+                            f'<span class="sub">через {earnings.get("days_to")} дн.</span>')
+                            if earnings.get("days_to") is not None else "—"),
+        ("Фундаментальний бал", f'{fundamentals.get("score", "—")} <span class="sub">(від −3 до +3)</span>'),
+        ("Сила до SPY (20 с.)", _pct(depth.get("rs_20_pct"))),
+        ("Історія правила", (f'{escape(str(stats.get("signals")))} сигналів · '
+                             f'{_num(stats.get("win_rate"), 1)}% успішних · '
+                             f'очікування {stats.get("expectancy_r")}R · '
+                             f'макс. просідання {stats.get("max_dd_r")}R')
+                            if stats.get("signals") else "мало сигналів для оцінки"),
+        ("Опори / підтримки", f'{escape(", ".join(str(x) for x in (levels.get("resistances") or [])) or "—")} / '
+                              f'{escape(", ".join(str(x) for x in (levels.get("supports") or [])) or "—")}'),
+        ("Дивергенція RSI", escape(str(levels.get("divergence_note") or levels.get("divergence") or "немає"))),
+        ("Вплив на впевненість", f'{depth.get("confidence_delta", 0):+}'),
+        ("Вплив на ризик", f'ризик ×{depth.get("risk_factor", 1)}'),
+    ]
+    table = "".join(f'<tr><td class="sub">{key}</td><td>{value}</td></tr>' for key, value in rows)
+
+    notes = "".join(f"<li>{escape(str(n))}</li>" for n in (verdict.get("notes") or []))
+    blocks = "".join(f"<li>⛔ {escape(str(b))}</li>" for b in (verdict.get("blocks") or []))
+    news_items = ""
+    for item in news[:5]:
+        published = str(item.get("published") or "")[:16]
+        stamp = f' <span class="sub">{escape(published)}</span>' if published else ""
+        news_items += f'<li>{escape(str(item.get("title")))}{stamp}</li>'
+    news_block = (f'<h3>Заголовки (Yahoo RSS)</h3><div class="card">'
+                  f'<ul style="margin:0;padding-left:18px">{news_items}</ul></div>') if news_items else ""
+
+    digest_raw = str(depth.get("digest") or "")
+    digest_body = escape(digest_raw.replace("**", ""))
+    digest_body = digest_body.replace("\n\n", "<br><br>").replace("\n", "<br>")
+    source_label = "правила коду" if str(depth.get("digest_source")) == "rules" else escape(str(depth.get("digest_source")))
+    digest_html = (f'<h2>Що це означає (дайджест)</h2><div class="card">{digest_body}'
+                   f'<div class="sub" style="margin-top:8px">джерело: {source_label}</div></div>')
+
+    return f'''{digest_html}
+<h2>Глибина: цифри, на яких ухвалено рішення</h2>
+<table><tbody>{table}</tbody></table>
+<div class="card"><b>Висновок шару глибини:</b>
+<ul style="margin:6px 0 0;padding-left:18px">{blocks}{notes or ("<li>без зауважень</li>" if not blocks else "")}</ul>
+<div class="sub" style="margin-top:6px">Дані: SEC EDGAR (фундаментал), Nasdaq (календар звітів),
+Yahoo (VIX, ставка, ширина), Yahoo RSS (заголовки). Усе безкоштовно й без ключів.</div></div>
+{news_block}'''
+
+
 def _header(subtitle: str, links: str = "") -> str:
     return (f'<header><div><h1>📈 Пропозиції за годину до відкриття US-ринку</h1>'
             f'<div class="sub">{subtitle}</div></div>'
@@ -242,6 +408,7 @@ def proposal_page(proposal, settings, bars: list | None, *, back_link: str = "in
 <h2>Коментар</h2>
 <div class="card">{escape(str(proposal.note or "—")).replace(chr(10), "<br>")}</div>
 {invalidation}
+{_depth_card(proposal)}
 <h2>Технічний паспорт добового графіка</h2>
 <table><tbody>{tech_rows}</tbody></table>
 {'<h2>Сигнали</h2><div class="card"><ul style="margin:0;padding-left:18px">' + signals + '</ul></div>' if signals else ''}
@@ -253,6 +420,7 @@ def index_page(
     *,
     settings,
     proposals: list,
+    depth: dict[str, Any] | None = None,
     history: list,
     stats: dict,
     runs: list,
@@ -329,6 +497,7 @@ def index_page(
 <div class="grid">{cards}</div>
 <h2>Пропозиції на {escape(_session(str(session)))}</h2>
 {_proposals_table(proposals)}
+{_macro_section(depth or {}, proposals)}
 {_order_block(approved)}
 {history_table}
 {runs_block}
@@ -393,9 +562,11 @@ def build_site(
     stats: dict[str, Any] = {"minutes_to_open": market_module.minutes_to_open()}
     stats["next_session"] = market_module.next_open_datetime().date().isoformat()
 
+    depth_snapshot = _depth_snapshot(settings, latest)
     index = index_page(
         settings=settings,
         proposals=proposals,
+        depth=depth_snapshot,
         history=_sessions(store, sessions),
         stats=stats,
         runs=store.recent_runs(limit=10),
@@ -419,6 +590,12 @@ def build_site(
             for r in store.recent_runs(limit=20)
         ],
         "journal": store.stats(),
+        "depth": {
+            "macro": (depth_snapshot.get("macro") or {}),
+            "breadth_pct": depth_snapshot.get("breadth_pct"),
+            "calendar": depth_snapshot.get("calendar") or {},
+            "tickers": depth_snapshot.get("tickers") or {},
+        } if depth_snapshot else {},
     }
     (out_dir / "results.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -487,7 +664,38 @@ def _proposal_json(p) -> dict[str, Any]:
         "data_source": p.data_source,
         "synthetic": p.synthetic,
         "created_at": p.created_at,
+        "confidence": p.confidence,
         "page": f"proposal-{p.id}.html",
+        "depth": _depth_json(p),
+    }
+
+
+def _depth_json(p) -> dict[str, Any]:
+    """Компактний зріз глибини для results.json (без важких списків)."""
+    depth = getattr(p, "depth", None) or {}
+    if not depth.get("enabled"):
+        return {}
+    fundamentals = depth.get("fundamentals") or {}
+    return {
+        "sector": depth.get("sector"),
+        "sector_label": depth.get("sector_label"),
+        "rs_20_pct": depth.get("rs_20_pct"),
+        "fundamentals_score": fundamentals.get("score"),
+        "revenue_yoy_pct": (fundamentals.get("revenue") or {}).get("yoy_pct"),
+        "eps_yoy_pct": (fundamentals.get("eps") or {}).get("yoy_pct"),
+        "net_margin_pct": fundamentals.get("net_margin_pct"),
+        "earnings": fundamentals.get("earnings"),
+        "filings": fundamentals.get("filings"),
+        "news": [n.get("title") for n in (depth.get("news") or [])][:5],
+        "backtest": {k: (depth.get("backtest") or {}).get(k)
+                     for k in ("signals", "win_rate", "expectancy_r", "max_dd_r", "avg_days")},
+        "macro_state": (depth.get("macro") or {}).get("state"),
+        "levels": depth.get("levels"),
+        "verdict": depth.get("verdict"),
+        "risk_factor": depth.get("risk_factor"),
+        "confidence_delta": depth.get("confidence_delta"),
+        "digest": depth.get("digest"),
+        "digest_source": depth.get("digest_source"),
     }
 
 
@@ -501,6 +709,16 @@ def _results_md(payload: dict) -> str:
         "| Тікер | Вердикт | Вхід | Стоп | Ціль | R:R | Шт. | Ризик | Гейт |",
         "|---|---|---|---|---|---|---|---|---|",
     ]
+    depth_payload = payload.get("depth") or {}
+    macro = depth_payload.get("macro") or {}
+    if macro:
+        icon, label = _macro_state_label(macro.get("state"))
+        inputs = macro.get("inputs") or {}
+        lines += ["",
+                  f"**Режим ринку:** {icon} {label} · VIX {inputs.get('vix') or '—'} · "
+                  f"10Y {inputs.get('ten_year') or '—'}% · ширина ринку {depth_payload.get('breadth_pct') or '—'}%"]
+        for reason in (macro.get("reasons") or [])[:4]:
+            lines.append(f"- {reason}")
     for p in payload["proposals"]:
         gate = "✅" if p["approved"] else ("—" if p["bias"] != "BUY" else "⛔")
         entry = "—" if p["entry_price"] is None else f"{p['entry_price']:.2f} ({p['entry_type']})"
@@ -520,6 +738,35 @@ def _results_md(payload: dict) -> str:
     ]
     if premiums:
         lines += ["", "## Премаркет і нічний ґеп", *premiums]
+
+    deep_lines = []
+    for p in payload["proposals"]:
+        depth = p.get("depth") or {}
+        if not depth:
+            continue
+        stats = depth.get("backtest") or {}
+        earnings = depth.get("earnings") or {}
+        digest = str(depth.get("digest") or "").split(chr(10))[0]
+        head = (f"- **{p['ticker']}** ({depth.get('sector_label') or '—'}): "
+                f"фундаментал {depth.get('fundamentals_score', '—')}, "
+                f"до SPY {depth.get('rs_20_pct', '—')} п.п., "
+                f"історія правила {stats.get('signals') or 0} сигн. "
+                f"({stats.get('win_rate') or '—'}% успішних, {stats.get('expectancy_r') or '—'}R)"
+                + (f", звітність за {earnings.get('days_to')} дн." if earnings.get('days_to') is not None else ""))
+        if digest:
+            head += f". {digest}"
+        badges = []
+        if depth.get("risk_factor", 1) != 1:
+            badges.append(f"ризик ×{depth['risk_factor']}")
+        if depth.get("confidence_delta"):
+            badges.append(f"впевненість {depth['confidence_delta']:+}")
+        for block in ((depth.get("verdict") or {}).get("blocks") or []):
+            badges.append(f"⛔ {block}")
+        if badges:
+            head += " · " + " · ".join(str(b) for b in badges)
+        deep_lines.append(head)
+    if deep_lines:
+        lines += ["", "## Глибина аналізу (безкоштовні джерела, без ключів)", *deep_lines]
     lines += [
         "",
         "> Бот лише готує пропозицію: рівні й розмір рахує код, вердикт дає детермінований ризик-гейт.",

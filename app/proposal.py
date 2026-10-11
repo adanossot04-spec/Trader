@@ -17,6 +17,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import date as date_cls, datetime, timezone
 from typing import Any
 
+from . import depth as depth_module
 from . import llm as llm_module
 from . import market as market_module
 from . import technical as tech_module
@@ -62,6 +63,10 @@ class Proposal:
     synthetic: bool = False
     warnings: list[str] = field(default_factory=list)
     technical: dict[str, Any] = field(default_factory=dict)
+    # Глибина: фундаментал, подія, режим ринку, сектор, історія правила, дайджест.
+    # Зберігається разом із пропозицією, щоб сторінка показувала ті самі цифри,
+    # на яких ухвалено рішення (а не перераховані заново).
+    depth: dict[str, Any] = field(default_factory=dict)
     created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat(timespec="seconds"))
     id: int | None = None
 
@@ -315,6 +320,9 @@ def build_proposal(
     book: Book | None = None,
     use_llm: bool = True,
     force_refresh: bool = False,
+    depth_packet: dict[str, Any] | None = None,
+    depth_context: dict[str, Any] | None = None,
+    approved_sectors: dict[str, int] | None = None,
 ) -> Proposal:
     ticker = ticker.upper()
     market_data = market_module.fetch_daily(ticker, settings, force_refresh=force_refresh)
@@ -343,6 +351,45 @@ def build_proposal(
         warnings=list(market_data.warnings),
     )
 
+    # ── шар глибини: фундаментал, подія, режим ринку, сектор, історія правила ──
+    depth_cfg = settings.depth
+    depth_verdict: dict[str, Any] = {"allowed": True, "blocks": [], "notes": [], "risk_factor": 1.0}
+    depth_info: dict[str, Any] = {"enabled": False}
+    confidence_delta = 0.0
+    if depth_cfg.get("enabled", True):
+        packet = depth_packet
+        if packet is None:
+            context = depth_context or depth_module.build_context(settings)
+            packet = depth_module.collect(
+                ticker, settings, bars=market_data.bars,
+                spy_bars=context.get("spy_bars"), macro=context.get("macro"),
+                calendar=context.get("calendar"),
+            )
+        packet["ticker"] = ticker
+        depth_verdict = depth_module.deep_verdict(
+            bias=proposal.bias, packet=packet, settings=settings,
+            approved_sectors=approved_sectors,
+        )
+        confidence_delta = _depth_confidence_delta(packet, depth_verdict)
+        proposal.confidence = round(min(0.95, max(0.05, proposal.confidence + confidence_delta)), 3)
+        depth_info = {
+            "enabled": True,
+            "sector": packet.get("sector"),
+            "sector_label": packet.get("sector_label"),
+            "rs_20_pct": packet.get("rs_20_pct"),
+            "levels": {"supports": tech.supports, "resistances": tech.resistances,
+                       "divergence": tech.divergence, "divergence_note": tech.divergence_note},
+            "fundamentals": packet.get("fundamentals"),
+            "news": packet.get("news") or [],
+            "backtest": packet.get("backtest") or {},
+            "macro": packet.get("macro") or {},
+            "verdict": {k: depth_verdict[k] for k in ("allowed", "blocks", "notes")},
+            "risk_factor": depth_verdict["risk_factor"],
+            "confidence_delta": confidence_delta,
+        }
+    risk_factor = float(depth_verdict.get("risk_factor") or 1.0)
+    depth_allowed = bool(depth_verdict.get("allowed", True))
+
     # ── ризик-гейт і розмір ──
     gate_action = "BUY" if proposal.bias == "BUY" else "HOLD"
     signal = Signal(
@@ -356,7 +403,7 @@ def build_proposal(
     )
 
     verdict = _run_gate(settings, store, signal, book, proposal.for_session)
-    proposal.approved = verdict.approved
+    proposal.approved = verdict.approved and depth_allowed
     if proposal.bias == "WAIT":
         # для відсутнього сетапу показуємо лише аварійні стани гейта (kill-switch),
         # а не «сигнал HOLD — дій не потрібно»
@@ -366,14 +413,11 @@ def build_proposal(
         proposal.gate_reasons = list(verdict.reasons)
 
     if proposal.bias == "BUY" and proposal.entry_price and proposal.stop_price:
-        risk_qty = size_by_risk(
-            book.equity,
-            float(settings.proposal_cfg.get("risk_per_trade_pct", 0.5)),
-            proposal.entry_price,
-            proposal.stop_price,
-        )
+        base_risk_pct = float(settings.proposal_cfg.get("risk_per_trade_pct", 0.5))
+        risk_pct = base_risk_pct * risk_factor
+        risk_qty = size_by_risk(book.equity, risk_pct, proposal.entry_price, proposal.stop_price)
         gate_qty = verdict.quantity or 0
-        qty = min(risk_qty, gate_qty) if verdict.approved else 0
+        qty = min(risk_qty, gate_qty) if (verdict.approved and depth_allowed) else 0
         proposal.qty = max(0, qty)
         if proposal.qty:
             proposal.notional = round(proposal.qty * proposal.entry_price, 2)
@@ -387,6 +431,24 @@ def build_proposal(
         if not verdict.approved:
             proposal.qty = 0
             proposal.notional = None
+
+    if depth_info.get("enabled"):
+        if depth_verdict["blocks"]:
+            proposal.gate_reasons = list(depth_verdict["blocks"]) + list(proposal.gate_reasons)
+        elif risk_factor < 1 and proposal.bias == "BUY":
+            was = float(settings.proposal_cfg.get("risk_per_trade_pct", 0.5))
+            now = round(was * risk_factor, 3)
+            proposal.gate_reasons = list(proposal.gate_reasons) + [
+                f"режим ринку зменшив ризик на угоду: {was}% → {now}% капіталу (×{risk_factor})"
+            ]
+        digest = llm_module.deep_digest(packet, settings) if (
+            use_llm and proposal.bias == "BUY" and depth_allowed
+        ) else {"text": llm_module.rules_digest(packet), "source": "rules", "error": None}
+        depth_info["digest"] = digest["text"]
+        depth_info["digest_source"] = digest["source"]
+        if digest.get("error"):
+            depth_info["digest_error"] = digest["error"]
+        proposal.depth = depth_info
 
     proposal.invalidation = _invalidation(tech, proposal)
     # за годину до відкриття перевіряємо нічний ґеп (якщо премаркет-дані вже є)
@@ -410,6 +472,38 @@ def build_proposal(
     if store is not None:
         proposal.id = store.insert_proposal(proposal)
     return proposal
+
+
+def _depth_confidence_delta(packet: dict[str, Any], verdict: dict[str, Any]) -> float:
+    """Наскільки глибина підсилює/послаблює впевненість у плані (±0.1 максимум).
+
+    Правила прості й перевірні: фундаментальний бал SEC (±0.02 за бал), сила
+    відносно SPY, історична якість правила, дивергенція RSI, режим ринку.
+    """
+    delta = 0.0
+    score = (packet.get("fundamentals") or {}).get("score")
+    if isinstance(score, int):
+        delta += 0.02 * score
+    rs = packet.get("rs_20_pct")
+    if isinstance(rs, (int, float)):
+        if rs > 2:
+            delta += 0.03
+        elif rs < -2:
+            delta -= 0.03
+    state = (packet.get("backtest") or {}).get("_quality")
+    quality = (packet.get("quality") or {}).get("state") if packet.get("quality") else state
+    if quality == "good":
+        delta += 0.03
+    elif quality == "poor":
+        delta -= 0.05
+    if (packet.get("levels") or {}).get("divergence") == "bearish" or packet.get("divergence") == "bearish":
+        delta -= 0.02
+    macro_state = (packet.get("macro") or {}).get("state")
+    if macro_state == "risk_on":
+        delta += 0.03
+    elif macro_state == "risk_off":
+        delta -= 0.05
+    return round(max(-0.1, min(0.1, delta)), 3)
 
 
 def _llm_payload(proposal: Proposal, tech: tech_module.Technical, book: Book) -> dict[str, Any]:
@@ -442,6 +536,17 @@ def _llm_payload(proposal: Proposal, tech: tech_module.Technical, book: Book) ->
             "ризик_%_капіталу": proposal.risk_pct_of_equity,
         },
         "стан_рахунку": {"equity": book.equity, "cash": book.cash, "денний_P/L_%": round(book.daily_pnl_pct(), 2)},
+        "глибина": {
+            "сектор": (proposal.depth or {}).get("sector_label"),
+            "сила_до_SPY_пп": (proposal.depth or {}).get("rs_20_pct"),
+            "фундаментал_бали_SEC": ((proposal.depth or {}).get("fundamentals") or {}).get("score"),
+            "фундаментал_факти": ((proposal.depth or {}).get("fundamentals") or {}).get("notes"),
+            "звітність": ((proposal.depth or {}).get("fundamentals") or {}).get("earnings"),
+            "режим_ринку": ((proposal.depth or {}).get("macro") or {}).get("state"),
+            "історія_правила": ((proposal.depth or {}).get("backtest") or {}).get("signals"),
+            "очікування_R": ((proposal.depth or {}).get("backtest") or {}).get("expectancy_r"),
+            "дивергенція": ((proposal.depth or {}).get("levels") or {}).get("divergence"),
+        },
     }
 
 

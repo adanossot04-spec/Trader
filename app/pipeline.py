@@ -51,13 +51,18 @@ def propose_one(
     notify: bool = True,
     use_llm: bool = True,
     force_refresh: bool = False,
+    depth_packet: dict[str, Any] | None = None,
+    depth_context: dict[str, Any] | None = None,
+    approved_sectors: dict[str, int] | None = None,
 ):
     """Одна пропозиція на наступну сесію. Помилки не піднімаються вище — логуються."""
     from . import proposal as proposal_module
 
     try:
         made = proposal_module.build_proposal(
-            settings, store, ticker, use_llm=use_llm, force_refresh=force_refresh
+            settings, store, ticker, use_llm=use_llm, force_refresh=force_refresh,
+            depth_packet=depth_packet, depth_context=depth_context,
+            approved_sectors=approved_sectors,
         )
     except Exception as exc:  # noqa: BLE001
         log.exception("Пропозиція для %s не вдалася", ticker)
@@ -79,6 +84,58 @@ def propose_one(
     return made
 
 
+def _bars_for(tickers: list[str], settings, force_refresh: bool) -> dict[str, Any]:
+    """Свічки списку (з кешу — тому другий прохід нічого не коштує)."""
+    from . import market as market_module
+
+    out: dict[str, Any] = {}
+    for ticker in tickers:
+        try:
+            data = market_module.fetch_daily(ticker, settings, force_refresh=force_refresh)
+            if data and data.bars:
+                out[ticker.upper()] = data.bars
+        except Exception as exc:  # noqa: BLE001
+            log.debug("глибина: немає свічок %s (%s)", ticker, exc)
+    return out
+
+
+def _save_depth_snapshot(settings, context: dict[str, Any], proposals: list) -> None:
+    """Зберігає зріз глибини прогону — сторінка показує саме його, не перераховує."""
+    import json
+
+    session = proposals[0].for_session if proposals else datetime.now().date().isoformat()
+    folder = settings.data_dir / "depth"
+    folder.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "session": session,
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "macro": context.get("macro") or {},
+        "breadth_pct": context.get("breadth_pct"),
+        "calendar": context.get("calendar") or {},
+        "tickers": {
+            p.ticker: {
+                "sector": (p.depth or {}).get("sector"),
+                "sector_label": (p.depth or {}).get("sector_label"),
+                "bias": p.bias,
+                "approved": bool(p.approved),
+                "score": ((p.depth or {}).get("fundamentals") or {}).get("score"),
+                "rs_20_pct": (p.depth or {}).get("rs_20_pct"),
+                "expectancy_r": ((p.depth or {}).get("backtest") or {}).get("expectancy_r"),
+                "signals": ((p.depth or {}).get("backtest") or {}).get("signals"),
+                "earnings": ((p.depth or {}).get("fundamentals") or {}).get("earnings"),
+                "blocks": ((p.depth or {}).get("verdict") or {}).get("blocks") or [],
+            }
+            for p in proposals
+        },
+    }
+    try:
+        (folder / f"{session}.json").write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+    except OSError as exc:
+        log.warning("зріз глибини не збережено: %s", exc)
+
+
 def build_proposals(
     settings,
     store: Store,
@@ -95,13 +152,41 @@ def build_proposals(
         log.warning("Порожній watchlist — немає для чого будувати пропозиції")
         return []
 
+    # ── контекст глибини рахуємо ОДИН раз на весь прогін (режим ринку, ширина,
+    # календар звітностей, свічки SPY) — тому це не додає запитів на кожен тікер
+    from . import depth as depth_module
+
+    depth_context: dict[str, Any] | None = None
+    if settings.depth.get("enabled", True):
+        try:
+            depth_context = depth_module.build_context(settings, ticker_bars=_bars_for(tickers, settings, force_refresh))
+            # фундаментал (SEC) і заголовки (RSS) — паралельно по всьому списку, один раз
+            depth_module.warm(settings, [t.upper() for t in tickers], depth_context.get("calendar"))
+        except Exception as exc:  # noqa: BLE001 — без глибини прогін усе одно має працювати
+            log.warning("Контекст глибини не зібрано (%s)", exc)
+            depth_context = {"macro": {}, "calendar": {}, "spy_bars": None, "breadth_pct": None}
+
     proposals = []
+    approved_sectors: dict[str, int] = {}
     for ticker in tickers:
-        proposals.append(
-            propose_one(
-                settings, store, ticker, notify=notify, use_llm=use_llm, force_refresh=force_refresh
+        packet = None
+        if depth_context is not None:
+            bars = depth_context.get("_bars", {}).get(ticker.upper())
+            packet = depth_module.collect(
+                ticker, settings, bars=bars or [], spy_bars=depth_context.get("spy_bars"),
+                macro=depth_context.get("macro"), calendar=depth_context.get("calendar"),
             )
+        made = propose_one(
+            settings, store, ticker, notify=notify, use_llm=use_llm, force_refresh=force_refresh,
+            depth_packet=packet, depth_context=depth_context, approved_sectors=approved_sectors,
         )
+        proposals.append(made)
+        sector = (made.depth or {}).get("sector")
+        if sector and made.approved:
+            approved_sectors[sector] = approved_sectors.get(sector, 0) + 1
+
+    if depth_context is not None and proposals:
+        _save_depth_snapshot(settings, depth_context, proposals)
 
     if summary and notify and proposals:
         notify_module.deliver_proposals_summary(proposals, settings, proposals[0].for_session)

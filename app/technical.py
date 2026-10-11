@@ -120,6 +120,88 @@ def _pct_change(new: float, old: float) -> float:
     return 0.0 if not old else (new - old) / old * 100.0
 
 
+def _pivots(bars: Sequence[Bar], left: int = 2, right: int = 2) -> tuple[list[tuple[int, float]], list[tuple[int, float]]]:
+    """Локальні екстремуми: (індекс, ціна). Піввікно 2 бари з кожного боку."""
+    highs: list[tuple[int, float]] = []
+    lows: list[tuple[int, float]] = []
+    for idx in range(left, len(bars) - right):
+        window = bars[idx - left: idx + right + 1]
+        price_high = bars[idx].high
+        price_low = bars[idx].low
+        if price_high >= max(b.high for b in window):
+            highs.append((idx, price_high))
+        if price_low <= min(b.low for b in window):
+            lows.append((idx, price_low))
+    return highs, lows
+
+
+def _cluster(levels: list[float], tolerance: float = 0.0075) -> list[float]:
+    """Схожі рівні (±0.75%) зливаємо в один, беремо середнє."""
+    merged: list[list[float]] = []
+    for level in sorted(levels):
+        if merged and abs(level - merged[-1][-1]) / level <= tolerance:
+            merged[-1].append(level)
+        else:
+            merged.append([level])
+    return [sum(group) / len(group) for group in merged]
+
+
+def key_levels(bars: Sequence[Bar], lookback: int = 120, count: int = 3) -> dict[str, list[float]]:
+    """Найближчі опори та опори-знизу/опори-зверху, округлені до центів.
+
+    Опір — рівні ВИЩЕ ціни (де продавець тиснув), підтримка — НИЖЧЕ (де покупець
+    відкуповував). Рахуємо по локальних екстремумах останніх `lookback` сесій.
+    """
+    if len(bars) < 30:
+        return {"supports": [], "resistances": []}
+    window = list(bars[-lookback:])
+    highs, lows = _pivots(window)
+    close = window[-1].close
+    resistances = [round(lvl, 2) for lvl in _cluster([h for _, h in highs]) if lvl > close * 1.002]
+    supports = [round(lvl, 2) for lvl in _cluster([l for _, l in lows]) if lvl < close * 0.998]
+    return {
+        "resistances": sorted(resistances)[:count],
+        "supports": sorted(supports, reverse=True)[:count],
+    }
+
+
+def rsi_divergence(bars: Sequence[Bar], lookback: int = 60, period: int = 14) -> tuple[str, str]:
+    """Дивергенція ціни й RSI по двох останніх однойменних екстремумах.
+
+    Повертає (тип, пояснення): none | bullish | bearish.
+      • ціна зробила нижчий мінімум, а RSI — вищий  → bullish (тиск продавців слабшає);
+      • ціна зробила вищий максимум, а RSI — нижчий → bearish (імпульс видихається).
+    """
+    window = list(bars[-lookback:])
+    if len(window) < 40:
+        return "none", ""
+    rsi = rsi_series([b.close for b in window], period)
+    highs, lows = _pivots(window)
+    # два останні максимуми / мінімуми, рознесені хоча б на 5 сесій
+    def _pair(points: list[tuple[int, float]]) -> tuple[tuple[int, float], tuple[int, float]] | None:
+        clean = [pt for pt in points if rsi[pt[0]] is not None]
+        if len(clean) < 2:
+            return None
+        for i in range(len(clean) - 1, 0, -1):
+            if clean[i][0] - clean[i - 1][0] >= 5:
+                return clean[i - 1], clean[i]
+        return None
+
+    top = _pair(highs)
+    if top:
+        (idx_a, high_a), (idx_b, high_b) = top
+        if high_b > high_a * 1.001 and rsi[idx_b] < rsi[idx_a] - 2:
+            return "bearish", (f"ціна оновила максимум ({high_a:.2f} → {high_b:.2f}), "
+                               f"а RSI нижчий ({rsi[idx_a]:.1f} → {rsi[idx_b]:.1f}) — імпульс слабшає")
+    bottom = _pair(lows)
+    if bottom:
+        (idx_a, low_a), (idx_b, low_b) = bottom
+        if low_b < low_a * 0.999 and rsi[idx_b] > rsi[idx_a] + 2:
+            return "bullish", (f"ціна оновила мінімум ({low_a:.2f} → {low_b:.2f}), "
+                               f"а RSI вищий ({rsi[idx_a]:.1f} → {rsi[idx_b]:.1f}) — продавці видихаються")
+    return "none", ""
+
+
 # ─── підсумковий аналіз ───────────────────────────────────────────────────────
 
 @dataclass
@@ -151,6 +233,10 @@ class Technical:
     avg_vol20: float
     vol_ratio: float
     trend: str            # up | down | range
+    resistances: list[float] = field(default_factory=list)   # 3 найближчі опори вище ціни
+    supports: list[float] = field(default_factory=list)      # 3 найближчі підтримки нижче ціни
+    divergence: str = "none"                                 # none | bullish | bearish
+    divergence_note: str = ""
     signals: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
@@ -201,6 +287,9 @@ def analyze(ticker: str, bars: Sequence[Bar]) -> Technical:
         elif last_close < sma50 and sma20 < sma50:
             trend = "down"
 
+    levels = key_levels(bars)
+    div_kind, div_note = rsi_divergence(bars)
+
     signals: list[str] = []
     if sma20 and sma50:
         signals.append(
@@ -223,6 +312,14 @@ def analyze(ticker: str, bars: Sequence[Bar]) -> Technical:
         signals.append("ціна біля максимуму 20 сесій — потенційний пробій")
     if vol_ratio >= 1.5:
         signals.append(f"обсяг ×{vol_ratio:.2f} до середнього за 20 днів")
+    if div_kind == "bearish":
+        signals.append("ведмежа дивергенція RSI — імпульс слабшає")
+    elif div_kind == "bullish":
+        signals.append("бичача дивергенція RSI — тиск продавців слабшає")
+    if levels["resistances"]:
+        signals.append("опір: " + ", ".join(f"{lvl:.2f}" for lvl in levels["resistances"]))
+    if levels["supports"]:
+        signals.append("підтримка: " + ", ".join(f"{lvl:.2f}" for lvl in levels["supports"]))
 
     return Technical(
         ticker=ticker.upper(),
@@ -252,6 +349,10 @@ def analyze(ticker: str, bars: Sequence[Bar]) -> Technical:
         avg_vol20=float(int(avg_vol20)),
         vol_ratio=round(vol_ratio, 2),
         trend=trend,
+        resistances=levels["resistances"],
+        supports=levels["supports"],
+        divergence=div_kind,
+        divergence_note=div_note,
         signals=signals,
     )
 

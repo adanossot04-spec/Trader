@@ -40,6 +40,8 @@ def main() -> int:
     parser.add_argument("--tickers", default="", help="список через кому (за замовчуванням — watchlist)")
     parser.add_argument("--date", default=None, help="дата аналізу YYYY-MM-DD")
     parser.add_argument("--settle", action="store_true", help="тільки оцінити минулі рішення")
+    parser.add_argument("--no-depth", action="store_true",
+                        help="вимкнути глибину (SEC/Nasdaq/RSS) і лишити тільки графік")
     parser.add_argument("--no-schedule", action="store_true", help="не запускати планувальник")
     parser.add_argument("--host", default=None)
     parser.add_argument("--port", type=int, default=None)
@@ -47,6 +49,9 @@ def main() -> int:
 
     setup_logging()
     settings = load_settings()
+    if args.no_depth:
+        settings.config.setdefault("depth", {})["enabled"] = False
+        print("→ глибину вимкнено (--no-depth): працює лише технічний план")
     store = Store(settings.db_path)
     store.seed_watchlist(settings.watchlist)
 
@@ -69,7 +74,27 @@ def main() -> int:
             verdict = "✅" if p.approved else ("⛔" if p.bias == "BUY" else "⚪️")
             plan = (f"вхід {p.entry_price} → стоп {p.stop_price} → ціль {p.target_price} (R:R {p.rr})"
                     if p.bias == "BUY" else (p.reasons[0] if p.reasons else "—"))
-            print(f"   {p.ticker:6} {p.bias:5} {verdict} {p.qty or 0:>3} шт. · {plan[:90]}")
+            print(f"   {p.ticker:6} {p.bias:5} {verdict} {p.qty or 0:>3} шт. · {plan[:80]}")
+            depth = p.depth or {}
+            if depth.get("enabled"):
+                fundamentals = depth.get("fundamentals") or {}
+                stats = depth.get("backtest") or {}
+                earnings = fundamentals.get("earnings") or {}
+                blocks = (depth.get("verdict") or {}).get("blocks") or []
+                bits = [
+                    f"сектор {depth.get('sector_label')}",
+                    f"бал SEC {fundamentals.get('score')}",
+                    f"до SPY {depth.get('rs_20_pct')} п.п.",
+                    f"історія {stats.get('signals') or 0} сигн / {stats.get('expectancy_r')}R",
+                ]
+                if earnings.get("days_to") is not None:
+                    bits.append(f"звіт за {earnings['days_to']} дн"
+                                + (" (оцінка)" if earnings.get("source") == "sec_estimate" else ""))
+                if depth.get("risk_factor", 1) != 1:
+                    bits.append(f"ризик ×{depth['risk_factor']}")
+                print(f"          ↳ глибина: " + " · ".join(str(b) for b in bits))
+                if blocks:
+                    print(f"          ⛔ {blocks[0][:120]}")
         return 0
 
     if args.run_now:

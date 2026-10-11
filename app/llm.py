@@ -147,6 +147,134 @@ def _anthropic(prompt: str, cfg: dict[str, Any], settings) -> str:
     return "".join(b.get("text", "") for b in blocks if b.get("type") == "text").strip()
 
 
+# ─── дайджест глибини ─────────────────────────────────────────────────────────
+
+def _fmt_money(value: float | None) -> str:
+    if value is None:
+        return "—"
+    if abs(value) >= 1e9:
+        return f"{value / 1e9:.2f} млрд"
+    if abs(value) >= 1e6:
+        return f"{value / 1e6:.1f} млн"
+    return f"{value:.2f}"
+
+
+def rules_digest(packet: dict[str, Any]) -> str:
+    """Детермінований текст «що це означає» — без жодного LLM і без мережі."""
+    ticker = packet.get("ticker", "тікер")
+    parts: list[str] = []
+
+    fundamentals = packet.get("fundamentals") or {}
+    revenue = fundamentals.get("revenue") or {}
+    eps_series = fundamentals.get("eps") or {}
+    if revenue.get("yoy_pct") is not None:
+        trend = "зростає" if revenue["yoy_pct"] > 0 else "падає"
+        line = (f"**Бізнес.** Виручка за останній квартал ({revenue.get('period')}) — "
+                f"{_fmt_money(revenue.get('last'))}$, {trend} на {abs(revenue['yoy_pct']):.1f}% рік до року.")
+        if eps_series.get("yoy_pct") is not None:
+            line += f" Прибуток на акцію {eps_series['yoy_pct']:+.1f}% рік до року."
+        if fundamentals.get("net_margin_pct") is not None:
+            line += f" Чиста маржа {fundamentals['net_margin_pct']:.1f}%."
+        if fundamentals.get("company"):
+            line += f" Емітент: {str(fundamentals['company']).rstrip('.')}."
+        parts.append(line)
+    else:
+        parts.append("**Бізнес.** Фундаментальних даних SEC для цього тікера немає "
+                     "(ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.")
+
+    earnings = fundamentals.get("earnings") or {}
+    if earnings.get("days_to") is not None:
+        parts.append(f"**Подія.** Найближча звітність — {earnings.get('date')} "
+                     f"(через {earnings.get('days_to')} дн.). Нові входи перед звітом не плануємо.")
+
+    macro = packet.get("macro") or {}
+    inputs = macro.get("inputs") or {}
+    if macro.get("state"):
+        state_label = {"risk_on": "сприятливий (risk-on)",
+                       "risk_off": "обережний (risk-off)",
+                       "neutral": "нейтральний"}.get(macro["state"], macro["state"])
+        above = None
+        if inputs.get("spy_close") is not None and inputs.get("spy_sma200") is not None:
+            above = inputs["spy_close"] >= inputs["spy_sma200"]
+        vix = inputs.get("vix")
+        ten_year = inputs.get("ten_year")
+        vix_text = f"{float(vix):.1f}" if isinstance(vix, (int, float)) else "—"
+        ten_text = f"{float(ten_year):.2f}" if isinstance(ten_year, (int, float)) else "—"
+        line = (f"**Режим ринку.** {state_label}: VIX {vix_text}, "
+                f"10-річна ставка {ten_text}%")
+        if above is not None:
+            line += f", S&P 500 {'вище' if above else 'нижче'} SMA200"
+        if inputs.get("breadth_pct") is not None:
+            line += f", ширина ринку {float(inputs['breadth_pct']):.0f}%"
+        parts.append(line + ".")
+
+    stats = packet.get("backtest") or {}
+    if stats.get("signals"):
+        parts.append(f"**Історія правила.** За 2 роки на цьому тікері правило BUY давало "
+                     f"{stats['signals']} сигналів: {stats.get('win_rate')}% прибуткових, "
+                     f"очікування {stats.get('expectancy_r'):+.2f}R, середній утримування "
+                     f"{stats.get('avg_days')} сесій.")
+
+    rs = packet.get("rs_20_pct")
+    if rs is not None:
+        parts.append(f"**Сила.** За 20 сесій тікер {'випереджає' if rs > 0 else 'відстає від'} "
+                     f"SPY на {abs(rs):.1f} п.п.")
+
+    news = packet.get("news") or []
+    if news:
+        titles = "; ".join(str(item.get("title")) for item in news[:3])
+        parts.append(f"**Новини.** {titles}.")
+
+    if not parts:
+        parts.append(f"**{ticker}.** Глибоких даних цього разу немає — план побудовано на графіку.")
+    return "\n\n".join(parts)
+
+
+DIGEST_PROMPT = (
+    "Ти — аналітик. Нижче вже перевірені числа й готовий висновок коду. Зроби з них 2–3 абзаци "
+    "українською: що це означає для угоди на найближчу сесію. Не додавай нових цифр, не змінюй "
+    "рівні входу/стопу/цілі, не давай порад поза цим контекстом.\n\n"
+)
+
+
+def deep_digest(packet: dict[str, Any], settings) -> dict[str, Any]:
+    """Дайджест глибини: (текст, джерело, помилка). Без ключа — детермінований текст.
+
+    LLM тут може ЛИШЕ перефразувати вже готовий текст `rules_digest`. Рівні входу,
+    стопу, цілі й розмір позиції він не бачить і змінити не може.
+    """
+    base = rules_digest(packet)
+    cfg = settings.llm_cfg
+    provider = str(cfg.get("provider", "none")).lower()
+    depth_cfg = settings.depth or {}
+    if provider in ("none", "", "disabled") or not depth_cfg.get("digest_llm", True):
+        return {"text": base, "source": "rules", "error": None}
+
+    prompt = DIGEST_PROMPT + json.dumps(
+        {"тикер": packet.get("ticker"), "готовий_текст": base,
+         "факти": {"фундаментал": packet.get("fundamentals"), "макро": packet.get("macro"),
+                   "історія_правила": (packet.get("backtest") or {}).get("signals"),
+                   "сила_до_SPY_пп": packet.get("rs_20_pct"),
+                   "заголовки": [n.get("title") for n in (packet.get("news") or [])]}},
+        ensure_ascii=False, indent=2,
+    )
+    try:
+        if provider == "google":
+            text = _google(prompt, cfg, settings)
+        elif provider == "anthropic":
+            text = _anthropic(prompt, cfg, settings)
+        elif provider in OPENAI_COMPATIBLE:
+            text = _openai_compatible(provider, prompt, cfg, settings)
+        else:
+            return {"text": base, "source": "rules", "error": f"невідомий провайдер llm: {provider}"}
+    except Exception as exc:  # noqa: BLE001 — збій LLM не має ламати аналіз
+        log.warning("LLM-дайджест не вдався (%s): %s", provider, exc)
+        return {"text": base, "source": "rules", "error": f"{type(exc).__name__}: {exc}"[:400]}
+    if not text:
+        return {"text": base, "source": "rules", "error": None}
+    return {"text": text.strip(), "source": f"llm:{provider}", "error": None}
+
+
 def narrate(payload: dict[str, Any], settings) -> tuple[str | None, str | None]:
     """Повертає (текст, помилка). Будь-який збій не ламає пропозицію — просто не буде коментаря."""
     cfg = settings.llm_cfg

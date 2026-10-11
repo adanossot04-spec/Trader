@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS proposals (
     llm_error TEXT, order_template TEXT DEFAULT '',
     data_source TEXT DEFAULT '', synthetic INTEGER DEFAULT 0, warnings TEXT DEFAULT '',
     premarket_price REAL, premarket_gap_pct REAL, premarket_as_of TEXT, premarket_note TEXT DEFAULT '',
-    technical TEXT DEFAULT '{}'
+    technical TEXT DEFAULT '{}',
+    depth TEXT DEFAULT '{}'
 );
 CREATE INDEX IF NOT EXISTS idx_proposals_session ON proposals(for_session);
 CREATE INDEX IF NOT EXISTS idx_proposals_ticker ON proposals(ticker, for_session);
@@ -84,6 +85,7 @@ class Store:
             "premarket_gap_pct": "REAL",
             "premarket_as_of": "TEXT",
             "premarket_note": "TEXT DEFAULT ''",
+            "depth": "TEXT DEFAULT '{}'",
         }
     }
 
@@ -238,6 +240,7 @@ class Store:
             "premarket_as_of": proposal.premarket_as_of,
             "premarket_note": proposal.premarket_note,
             "technical": json.dumps(proposal.technical, ensure_ascii=False),
+            "depth": json.dumps(getattr(proposal, "depth", {}) or {}, ensure_ascii=False),
         }
         cols = ", ".join(payload)
         marks = ", ".join("?" for _ in payload)
@@ -258,6 +261,10 @@ class Store:
             data["technical"] = json.loads(data.get("technical") or "{}")
         except json.JSONDecodeError:
             data["technical"] = {}
+        try:
+            data["depth"] = json.loads(data.get("depth") or "{}")
+        except json.JSONDecodeError:
+            data["depth"] = {}
         return Proposal(**data)
 
     def approved_proposals_since(self, days: int):

@@ -134,6 +134,38 @@ class Settings:
         return self.config["schedule"]
 
     @property
+    def depth(self) -> dict[str, Any]:
+        """Налаштування глибини; ключі з config.yaml перекривають типові."""
+        merged = {
+            "enabled": True,
+            "fundamentals": True,
+            "news": True,
+            "backtest": True,
+            "max_hold_days": 10,
+            "calendar_days": 4,
+            "min_signals": 8,
+            "min_expectancy_r": 0.0,
+            "event_block_days": 3,
+            "max_per_sector": 1,
+            "rs_window": 20,
+            "news_count": 5,
+            "digest_llm": True,
+            "macro": {
+                "vix_block": 30,
+                "vix_caution": 22,
+                "risk_off_risk_factor": 0.5,
+                "breadth_min_pct": 40,
+            },
+        }
+        found = self.config.get("depth") or {}
+        for key, value in found.items():
+            if isinstance(value, dict) and isinstance(merged.get(key), dict):
+                merged[key] = {**merged[key], **value}
+            else:
+                merged[key] = value
+        return merged
+
+    @property
     def notify_cfg(self) -> dict[str, Any]:
         return self.config["notify"]
 
