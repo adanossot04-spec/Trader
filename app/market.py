@@ -17,6 +17,7 @@ import logging
 import math
 import random
 from dataclasses import asdict, dataclass, field
+from functools import lru_cache
 from datetime import date as date_cls, datetime, time, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -78,9 +79,98 @@ def now_et() -> datetime:
     return datetime.now(ET)
 
 
+# ─── календар торгів NYSE ────────────────────────────────────────────────────
+# Потрібен, бо cron «пн-пт» не знає про свята: без нього бот у День подяки
+# вважав би, що до відкриття лишилась година, і «планував» неіснуючу сесію.
+
+def easter_sunday(year: int) -> date_cls:
+    """Великдень (західний обряд) — потрібен для Страсної п'ятниці (біржа зачинена)."""
+    a = year % 19
+    b, c = divmod(year, 100)
+    d, e = divmod(b, 4)
+    f = (b + 8) // 25
+    g = (b - f + 1) // 3
+    h = (19 * a + b - d - g + 15) % 30
+    i, k = divmod(c, 4)
+    l = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l) // 451
+    month, day = divmod(h + l - 7 * m + 114, 31)
+    return date_cls(year, month, day + 1)
+
+
+def _observed(day: date_cls) -> date_cls:
+    """Перенос свята з вихідного: субота → п'ятниця, неділя → понеділок."""
+    if day.weekday() == 5:
+        return day - timedelta(days=1)
+    if day.weekday() == 6:
+        return day + timedelta(days=1)
+    return day
+
+
+def _nth_weekday(year: int, month: int, weekday: int, n: int) -> date_cls:
+    day = date_cls(year, month, 1)
+    shift = (weekday - day.weekday()) % 7
+    return day + timedelta(days=shift + 7 * (n - 1))
+
+
+def _last_weekday(year: int, month: int, weekday: int) -> date_cls:
+    day = date_cls(year, month, 28)
+    while (day + timedelta(days=1)).month == month:
+        day += timedelta(days=1)
+    return day - timedelta(days=(day.weekday() - weekday) % 7)
+
+
+@lru_cache(maxsize=32)
+def us_market_holidays(year: int) -> frozenset[date_cls]:
+    """Свята, коли NYSE не працює (правила NYSE, включно з переносами)."""
+    return frozenset({
+        _observed(date_cls(year, 1, 1)),          # Новий рік
+        _nth_weekday(year, 1, 0, 3),              # Мартін Лютер Кінг (3-й пн січня)
+        _nth_weekday(year, 2, 0, 3),              # День президентів (3-й пн лютого)
+        easter_sunday(year) - timedelta(days=2),  # Страсна п'ятниця
+        _last_weekday(year, 5, 0),                # Memorial Day (останній пн травня)
+        _observed(date_cls(year, 6, 19)),         # Juneteenth
+        _observed(date_cls(year, 7, 4)),          # День незалежності
+        _nth_weekday(year, 9, 0, 1),              # День праці (1-й пн вересня)
+        _nth_weekday(year, 11, 3, 4),             # День подяки (4-й чт листопада)
+        _observed(date_cls(year, 12, 25)),        # Різдво
+    })
+
+
+def market_holiday_name(day: date_cls) -> str | None:
+    """Українська назва свята, якщо біржа зачинена саме цього дня."""
+    rules = (
+        ("Новий рік", _observed(date_cls(day.year, 1, 1))),
+        ("Мартін Лютер Кінг", _nth_weekday(day.year, 1, 0, 3)),
+        ("День президентів", _nth_weekday(day.year, 2, 0, 3)),
+        ("Страсна п'ятниця", easter_sunday(day.year) - timedelta(days=2)),
+        ("Memorial Day", _last_weekday(day.year, 5, 0)),
+        ("Juneteenth", _observed(date_cls(day.year, 6, 19))),
+        ("День незалежності", _observed(date_cls(day.year, 7, 4))),
+        ("День праці", _nth_weekday(day.year, 9, 0, 1)),
+        ("День подяки", _nth_weekday(day.year, 11, 3, 4)),
+        ("Різдво", _observed(date_cls(day.year, 12, 25))),
+    )
+    for name, when in rules:
+        if when == day:
+            return name
+    return None
+
+
+def is_trading_day(day: date_cls) -> bool:
+    return day.weekday() < 5 and day not in us_market_holidays(day.year)
+
+
+def next_trading_day(day: date_cls) -> date_cls:
+    candidate = day + timedelta(days=1)
+    while not is_trading_day(candidate):
+        candidate += timedelta(days=1)
+    return candidate
+
+
 def session_is_open(moment: datetime | None = None) -> bool:
     moment = moment or now_et()
-    if moment.weekday() >= 5:
+    if not is_trading_day(moment.date()):
         return False
     return time(9, 30) <= moment.time() <= time(16, 0)
 
@@ -104,15 +194,12 @@ def completed_sessions_only(bars: list[Bar], moment: datetime | None = None) -> 
 
 
 def next_open_datetime(moment: datetime | None = None) -> datetime:
-    """Найближче відкриття US-ринку (9:30 ET, пн-пт). Свята не враховуються."""
+    """Найближче відкриття US-ринку (9:30 ET) з урахуванням свят NYSE."""
     moment = moment or now_et()
     day, clock = moment.date(), moment.time()
-    if day.weekday() < 5 and clock < OPEN_ET:
+    if is_trading_day(day) and clock < OPEN_ET:
         return datetime.combine(day, OPEN_ET, tzinfo=ET)
-    candidate = day + timedelta(days=1)
-    while candidate.weekday() >= 5:
-        candidate += timedelta(days=1)
-    return datetime.combine(candidate, OPEN_ET, tzinfo=ET)
+    return datetime.combine(next_trading_day(day), OPEN_ET, tzinfo=ET)
 
 
 def minutes_to_open(moment: datetime | None = None) -> int:
@@ -452,5 +539,5 @@ def last_session_date(bars: list[Bar]) -> date_cls:
 
 
 def next_session_date(bars: list[Bar]) -> date_cls:
-    """Наступна торгова сесія після останньої свічки (пн-пт; свята не враховуються)."""
-    return next_weekday(last_session_date(bars))
+    """Наступна торгова сесія після останньої свічки (з урахуванням свят NYSE)."""
+    return next_trading_day(last_session_date(bars))
