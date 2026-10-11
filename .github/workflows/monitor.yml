@@ -7,9 +7,18 @@
 #   EDST (квіт–лист): 12:10 і 12:40 UTC = 08:10 і 08:40 за Нью-Йорком
 #   EST  (лист–бер):  13:10 і 13:40 UTC = 08:10 і 08:40 за Нью-Йорком
 #
-# У кожному сезоні у вікно [07:50, 09:05] ET потрапляє лише одне з чотирьох
-# вікон; решта відсіюються. Другий прогін того ж дня не дублює повідомлення
-# в Telegram (є перевірка «план щойно побудовано»).
+# У кожному сезоні у вікно [07:50, 09:05] ET потрапляє два вікна з чотирьох
+# (08:10 і 08:40); решта відсіюються. Другий прогін того ж дня не дублює
+# повідомлення в Telegram (є перевірка «план щойно побудовано»).
+#
+# ПРО GITHUB PAGES — важливо:
+#   створити сайт Pages може лише адміністратор репозиторію. Токен workflow
+#   (GITHUB_TOKEN) такої можливості не має за жодних дозволів, тому крок
+#   configure-pages з enablement: true тут не працює — увімкніть Pages один раз:
+#       Settings → Pages → Build and deployment → Source: GitHub Actions
+#   Тому ж кожен запуск додатково кладе готову сторінку в теку results/site/ —
+#   вона доступна за посиланням через CDN навіть без Pages (посилання пишеться
+#   в підсумок запуску).
 name: Пропозиції — за годину до відкриття US-ринку
 
 on:
@@ -36,10 +45,10 @@ concurrency:
 
 env:
   PYTHON_VERSION: "3.12"
-  # Класти звіт у теку results/ репозиторію (окрім артефактів і сторінки).
-  # Навіщо: (1) історія планів не зникає разом з артефактами й кешем;
-  # (2) GitHub вимикає розклад у репозиторії без активності 60 днів, а щоденний
-  # коміт утримує його живим. Вимкніть ("false"), якщо не хочете комітів від бота.
+  # Класти звіт і сторінку результатів у репозиторій (results/), не лише в артефакти.
+  # Навіщо: (1) історія не зникає разом з артефактами й кешем; (2) GitHub вимикає
+  # розклад у репозиторії без активності 60 днів, а щоденний коміт утримує його живим;
+  # (3) саме ця тека дає сторінку результатів навіть без увімкнених Pages.
   COMMIT_RESULTS: "true"
 
 jobs:
@@ -47,7 +56,7 @@ jobs:
     name: План на найближчу сесію
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # потрібно для кроку «Зберегти звіт у репозиторії»
+      contents: write        # потрібно для кроку «Зберегти звіт і сторінку в репозиторії»
       pages: write
       id-token: write
     outputs:
@@ -64,6 +73,10 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      # Контакт для SEC EDGAR (глибина: фундаментал). Не секрет і не ключ —
+      # SEC просто вимагає, щоб у User-Agent був спосіб зв'язатися з вами.
+      # Можна замінити на свій email через змінну репозиторію SEC_USER_AGENT.
+      SEC_EDGAR_USER_AGENT: ${{ vars.SEC_USER_AGENT || 'TradingAssistant research@example.com' }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
       ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
@@ -139,42 +152,52 @@ jobs:
       - name: Статичний сайт результатів
         if: steps.gate.outputs.run == 'yes'
         run: |
-          python3 tools/make_site.py --out site --sessions 10 \
+          python3 tools/make_site.py --out site --sessions 10 --pages-for-sessions 1 \
             --repo-url "${{ github.server_url }}/${{ github.repository }}" \
             --title "Пропозиції на ${{ steps.gate.outputs.session }}" --summary
 
-      - name: Чи доступні GitHub Pages?
+      - name: Чи увімкнені GitHub Pages?
         id: pages
         if: steps.gate.outputs.run == 'yes'
         continue-on-error: true
+        env:
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/pages" || echo "000")
+          # УВАГА: створити сайт Pages може лише адміністратор — токен workflow
+          # не має таких прав за жодних дозволів (configure-pages з enablement: true
+          # дає «Resource not accessible by integration»). Тому Pages або вже
+          # увімкнені, або їх увімкне людина одним кліком.
+          cdn="https://cdn.jsdelivr.net/gh/${OWNER}/${REPO}@main/results/site/index.html"
+          alt="https://raw.githack.com/${OWNER}/${REPO}/main/results/site/index.html"
           if [ "$code" = "200" ] || [ "${{ vars.PAGES_ENABLED }}" = "true" ]; then
             echo "available=true" >> "$GITHUB_OUTPUT"
-            echo "Pages доступні (HTTP $code) — сторінка результатів буде опублікована"
+            echo "Pages увімкнені — сторінка буде тут: https://${OWNER,,}.github.io/${REPO}/"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "🌐 **Сторінка результатів:** https://${OWNER,,}.github.io/${REPO}/" >> "$GITHUB_STEP_SUMMARY"
           else
             echo "available=false" >> "$GITHUB_OUTPUT"
             {
               echo ""
-              echo "### ℹ️ Сторінка результатів не публікується"
-              echo "GitHub Pages недоступні (HTTP $code): у приватному репозиторії на безкоштовному"
-              echo "тарифі Pages вимкнено. Результати все одно є — підсумок вище, артефакти запуску"
-              echo "і тека results/ у репозиторії."
+              echo "🌐 **Сторінка результатів (працює без налаштувань):** $cdn"
               echo ""
-              echo "Хочете сторінку: зробіть репозиторій публічним (Settings → General → Danger Zone)"
-              echo "або увімкніть Pages і додайте змінну репозиторію PAGES_ENABLED=true"
-              echo "(Settings → Secrets and variables → Actions → Variables)."
+              echo "<sub>резервне посилання: $alt</sub>"
+              echo ""
+              echo "ℹ️ Офіційну адресу GitHub Pages можна ввімкнути одним кліком —"
+              echo "**Settings → Pages → Build and deployment → Source: GitHub Actions**."
+              echo "Створити сайт із самого workflow неможливо: токен Actions не має прав"
+              echo "адміністратора репозиторію, які для цього потрібні. Поки що сторінка"
+              echo "доступна за посиланням вище — вона лежить у теці \`results/site/\`."
             } >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Налаштувати GitHub Pages
         if: steps.gate.outputs.run == 'yes' && steps.pages.outputs.available == 'true'
         uses: actions/configure-pages@v6
-        with:
-          enablement: true
 
       - name: Артефакт для сторінки результатів
         if: steps.gate.outputs.run == 'yes' && steps.pages.outputs.available == 'true'
@@ -183,7 +206,7 @@ jobs:
           path: site
           include-hidden-files: true
 
-      - name: Зберегти звіт у репозиторії (results/)
+      - name: Зберегти звіт і сторінку в репозиторії (results/)
         if: steps.gate.outputs.run == 'yes'
         env:
           SESSION: ${{ steps.gate.outputs.session }}
@@ -196,6 +219,9 @@ jobs:
           cp site/results.md results/latest.md
           cp site/results.json results/latest.json
           cp site/results.md "results/history/${SESSION}.md"
+          rm -rf results/site
+          cp -r site results/site
+          rm -f results/site/results.md.bak
           git config user.name "trading-assistant[bot]"
           git config user.email "actions@users.noreply.github.com"
           git add results
@@ -206,8 +232,9 @@ jobs:
             git pull --rebase --autostash origin "${{ github.ref_name }}" || true
             git push
           fi
+          du -sh results/site | awk '{print "розмір сторінки результатів у репозиторії:", $1}'
 
-      - name: Артефакт зі звітом (markdown/json + журнал)
+      - name: Артефакт зі звітом (markdown/json + тексти повідомлень)
         if: steps.gate.outputs.run == 'yes'
         uses: actions/upload-artifact@v7
         with:
@@ -239,7 +266,7 @@ jobs:
     name: Публікація результатів на GitHub Pages
     needs: propose
     if: needs.propose.outputs.run == 'yes' && needs.propose.outputs.pages == 'true'
-    continue-on-error: true      # якщо Pages усе ж не спрацюють — план уже є в Summary і артефактах
+    continue-on-error: true      # якщо Pages усе ж не спрацюють — план уже є в Summary, results/ і на CDN
     runs-on: ubuntu-latest
     environment:
       name: github-pages
