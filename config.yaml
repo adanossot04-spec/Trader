@@ -1,0 +1,90 @@
+# ─── Помічник: пропозиції на наступну сесію за добовим графіком ───────────────
+# Секрети — у .env, не тут. Усе безкоштовне за замовчуванням.
+
+data:
+  # Безкоштовні джерела добових свічок, пробуються по порядку.
+  # yahoo — взагалі без ключа. twelvedata/alphavantage — безкоштовні ключі (див. .env.example).
+  sources: [yahoo, twelvedata, alphavantage]
+  cache_ttl_min: 240          # не смикати безкоштовні ліміти частіше, ніж раз на 4 години
+  lookback_days: 420          # скільки сесій тягнути (420 ≈ 1.7 року)
+  offline_fallback: synthetic # якщо всі джерела недоступні — демо-ряд (буде позначено!)
+
+llm:
+  # Коментар до пропозиції. ЦИФРИ РАХУЄ КОД, LLM лише пояснює — і його можна вимкнути.
+  #   none        — без LLM (0 витрат, за замовчуванням)
+  #   groq        — безкоштовний тариф: console.groq.com/keys → GROQ_API_KEY
+  #   google      — Gemini free tier: aistudio.google.com/apikey → GOOGLE_API_KEY
+  #   openrouter  — безкоштовні моделі з :free → OPENROUTER_API_KEY
+  #   ollama      — локально, ключ не потрібен
+  provider: none
+  model: null                  # null = модель за замовчуванням провайдера
+  backend_url: null            # тільки для openai_compatible / кастомних релеїв
+  temperature: 0.3
+  max_tokens: 400
+  timeout_sec: 60
+
+proposal:
+  risk_per_trade_pct: 0.5     # % капіталу, який втрачаємо, якщо спрацює стоп
+  min_rr: 2.0                 # мінімальне співвідношення ціль/ризик
+  atr_stop_mult: 1.5          # стоп = вхід − 1.5×ATR (і не всередині діапазону 20 сесій)
+  entry_pullback_atr: 0.5     # бажаний відкат для лімітної заявки
+  max_pullback_atr: 3.0       # якщо структура вимагає входу глибше 3×ATR — пропускаємо
+  max_atr_pct: 6.0            # не пропонувати занадто волатильні папери
+  max_stop_pct: 8.0           # якщо стоп далі 8% від входу — пропозицію відхиляємо
+  rsi_buy_range: [42, 72]     # робочий діапазон RSI для бичачого сетапу (без перекупленості)
+
+risk:
+  max_position_pct: 5.0       # макс. частка капіталу в одній позиції, %
+  max_positions: 8
+  daily_loss_limit_pct: 3.0   # kill-switch
+  min_confidence: 0.55
+  allow_short: false
+  stop_loss_pct: 8.0          # довідково: базовий стоп, якщо рахуєте руками
+  take_profit_pct: 20.0
+  cooldown_days: 3
+  max_orders_per_day: 3
+
+# Розклад. Головне вікно — ЗА ГОДИНУ ДО ВІДКРИТТЯ US-ринку (8:30 ET):
+# план уже враховує нічний ґеп і свіжу премаркет-ціну, і ви встигаєте поставити заявку.
+schedule:
+  enabled: true
+  anchor: pre_open            # pre_open | after_close | both
+  market_timezone: America/New_York
+  # ВАЖЛИВО: 8:30 задається в таймзоні біржі, а не Києва. США та Україна переходять
+  # на літній час у різні дати (березень / кінець жовтня) — київський cron у ті
+  # тижні «пливе» на годину, нью-йоркський — ні.
+  pre_open_cron: "30 8 * * 1-5"        # цілий рік рівно 60 хв до відкриття
+  after_close_cron: "15 23 * * 1-5"    # опційно (16:15 ET) — план на завтра ввечері
+  after_close_timezone: Europe/Kyiv
+  display_timezone: Europe/Kyiv        # у якій таймзоні показувати час запуску в дашборді
+  settle_before_run: true
+  notify_summary: true
+
+notify:
+  telegram: true
+  only_actionable: true       # надсилати лише схвалені BUY з планом
+  notify_on_error: true
+
+# ── Необов'язково: глибокий аналіз агентами TradingAgents (кнопка в дашборді) ──
+engine:
+  mode: auto                  # auto | real | mock
+  llm_provider: openai
+  quick_think_llm: gpt-6-luna
+  deep_think_llm: gpt-6-sol
+  max_debate_rounds: 1
+  max_risk_rounds: 1
+  analysts: [market, news, fundamentals]
+  output_language: Ukrainian
+  temperature: 0.2
+
+watchlist:
+  - NVDA
+  - AAPL
+  - MSFT
+  - SPY
+
+portfolio:
+  currency: USD
+  cash: 50000.0
+  prev_close_equity: 50000.0
+  positions: []

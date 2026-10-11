@@ -1,0 +1,15 @@
+{
+  "_коментар": "Зразок портфеля. Скопіюйте у data/book.json і відредагуйте під себе (або відкрийте сторінку /settings у дашборді). data/book.json має пріоритет над блоком portfolio у config.yaml.",
+  "currency": "USD",
+  "cash": 10000.0,
+  "prev_close_equity": 10000.0,
+  "positions": [
+    {
+      "_коментар": "Приклад відкритої позиції — приберіть або замініть своєю",
+      "ticker": "AAPL",
+      "qty": 10,
+      "entry_price": 215.4,
+      "stop_price": 205.0
+    }
+  ]
+}

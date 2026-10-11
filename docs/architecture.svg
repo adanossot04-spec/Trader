@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-label="Схема роботи помічника: планувальник, джерела даних, індикатори, пропозиція, ризик-гейт, вивід">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563"/>
+    </marker>
+    <marker id="arrowDashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b5cf6"/>
+    </marker>
+    <style>
+      .box      { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 10; }
+      .box-alt  { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; rx: 10; }
+      .box-risk { fill: #fff7ed; stroke: #fb923c; stroke-width: 2; rx: 10; }
+      .box-llm  { fill: #faf5ff; stroke: #a855f7; stroke-width: 1.5; stroke-dasharray: 6 5; rx: 10; }
+      .h        { font: 600 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: #0f172a; }
+      .t        { font: 13px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: #334155; }
+      .small    { font: 11.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; fill: #64748b; }
+      .mono     { font: 600 12.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #1d4ed8; }
+      .edge     { stroke: #4b5563; stroke-width: 1.8; fill: none; }
+      .edge-d   { stroke: #8b5cf6; stroke-width: 1.8; fill: none; stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="470" fill="#ffffff"/>
+
+  <!-- 1. Планувальник -->
+  <rect class="box" x="40" y="30" width="900" height="72"/>
+  <text class="h" x="60" y="55">Планувальник · APScheduler</text>
+  <text class="t" x="60" y="76">«30 8 * * 1-5» America/New_York = 8:30 ET, пн–пт — рівно за 60 хв до відкриття ринку</text>
+  <text class="small" x="60" y="94">+ опційне вечірнє вікно 23:15 Kyiv · + ручний запуск --run-now · + кнопка в дашборді</text>
+
+  <!-- 2. Джерела -->
+  <rect class="box-alt" x="40" y="118" width="290" height="128"/>
+  <text class="mono" x="60" y="142">app/market.py</text>
+  <text class="h" x="60" y="164">Джерела даних</text>
+  <text class="t" x="60" y="186">Yahoo — без ключа</text>
+  <text class="t" x="60" y="205">Twelve Data — 800/добу</text>
+  <text class="t" x="60" y="224">Alpha Vantage — 25/добу</text>
+  <text class="small" x="60" y="241">кеш 240 хв · лише закриті сесії</text>
+
+  <!-- 3. Індикатори -->
+  <rect class="box-alt" x="370" y="118" width="250" height="128"/>
+  <text class="mono" x="390" y="142">app/technical.py</text>
+  <text class="h" x="390" y="164">Індикатори</text>
+  <text class="t" x="390" y="186">тренд · RSI · MACD</text>
+  <text class="t" x="390" y="205">ATR · рівні 10/20 сесій</text>
+  <text class="small" x="390" y="241">рахунок на добових свічках</text>
+
+  <!-- 4. Пропозиція -->
+  <rect class="box-alt" x="660" y="118" width="280" height="128"/>
+  <text class="mono" x="680" y="142">app/proposal.py</text>
+  <text class="h" x="680" y="164">План на сесію</text>
+  <text class="t" x="680" y="186">вхід · стоп · ціль · R:R</text>
+  <text class="t" x="680" y="205">премаркет-ґеп 04:00–09:30 ET</text>
+  <text class="small" x="680" y="241">ґеп суперечить плану → угоду скасовано</text>
+
+  <!-- стрілки верхнього ряду -->
+  <path class="edge" d="M 330 182 H 364" marker-end="url(#arrow)"/>
+  <path class="edge" d="M 620 182 H 654" marker-end="url(#arrow)"/>
+  <path class="edge" d="M 185 102 V 112" marker-end="url(#arrow)"/>
+
+  <!-- 5. Ризик-гейт -->
+  <rect class="box-risk" x="40" y="286" width="450" height="112"/>
+  <text class="mono" x="60" y="310">app/risk.py</text>
+  <text class="h" x="60" y="332">Ризик-гейт — без LLM</text>
+  <text class="t" x="60" y="354">0.5% капіталу на угоду · ліміт позиції 5%</text>
+  <text class="t" x="60" y="373">kill-switch · ліміт дій на добу · кулдаун · готівка</text>
+  <text class="small" x="60" y="390">кількість акцій = min(ризик, ліміт позиції) — округлення вниз</text>
+
+  <!-- 6. Вивід -->
+  <rect class="box" x="520" y="286" width="420" height="112"/>
+  <text class="mono" x="540" y="310">app/notify.py · app/db.py · app/views.py</text>
+  <text class="h" x="540" y="332">Вивід</text>
+  <text class="t" x="540" y="354">Telegram / outbox — готовий текст заявки брокеру</text>
+  <text class="t" x="540" y="373">SQLite-журнал: усі пропозиції, вердикти, результат</text>
+  <text class="small" x="540" y="390">дашборд із графіком · /api/health|summary|proposals · /docs</text>
+
+  <!-- стрілки нижнього ряду -->
+  <path class="edge" d="M 800 246 V 280" marker-end="url(#arrow)"/>
+  <path class="edge" d="M 490 342 H 514" marker-end="url(#arrow)"/>
+  <path class="edge" d="M 700 246 V 266 H 265 V 280" marker-end="url(#arrow)"/>
+
+  <!-- 7. LLM -->
+  <rect class="box-llm" x="40" y="418" width="900" height="36"/>
+  <text class="t" x="60" y="441">LLM (Groq · Gemini · OpenRouter · Ollama) — лише пояснює готові цифри; рівні, розмір і вердикт гейта визначає код.</text>
+  <path class="edge-d" d="M 946 182 H 972 V 436 H 944" marker-end="url(#arrowDashed)"/>
+</svg>
