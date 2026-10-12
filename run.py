@@ -96,6 +96,13 @@ def main() -> int:
             plan = (f"вхід {p.entry_price} → стоп {p.stop_price} → ціль {p.target_price} (R:R {p.rr})"
                     if p.bias == "BUY" else (p.reasons[0] if p.reasons else "—"))
             print(f"   {p.ticker:6} {p.bias:5} {verdict} {p.qty or 0:>3} шт. · {plan[:80]}")
+            if p.live_price is not None:
+                extra = ""
+                if p.live_vs_close_pct is not None:
+                    extra += f" ({p.live_vs_close_pct:+.2f}% до закриття)"
+                if p.live_vs_entry_pct is not None:
+                    extra += f" · до входу {p.live_vs_entry_pct:+.2f}%"
+                print(f"          ↳ зараз {p.live_price:.2f} — {p.live_label}{extra}")
             depth = p.depth or {}
             if depth.get("enabled"):
                 fundamentals = depth.get("fundamentals") or {}
