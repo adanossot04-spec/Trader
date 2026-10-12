@@ -99,8 +99,8 @@ def _bars_for(tickers: list[str], settings, force_refresh: bool) -> dict[str, An
     return out
 
 
-def _save_depth_snapshot(settings, context: dict[str, Any], proposals: list) -> None:
-    """Зберігає зріз глибини прогону — сторінка показує саме його, не перераховує."""
+def _save_depth_snapshot(settings, context: dict[str, Any], proposals: list) -> dict[str, Any]:
+    """Зберігає зріз глибини прогону — сторінка й лист показують саме його."""
     import json
 
     session = proposals[0].for_session if proposals else datetime.now().date().isoformat()
@@ -134,6 +134,7 @@ def _save_depth_snapshot(settings, context: dict[str, Any], proposals: list) -> 
         )
     except OSError as exc:
         log.warning("зріз глибини не збережено: %s", exc)
+    return payload
 
 
 def build_proposals(
@@ -185,11 +186,17 @@ def build_proposals(
         if sector and made.approved:
             approved_sectors[sector] = approved_sectors.get(sector, 0) + 1
 
+    depth_snapshot = None
     if depth_context is not None and proposals:
-        _save_depth_snapshot(settings, depth_context, proposals)
+        depth_snapshot = _save_depth_snapshot(settings, depth_context, proposals)
 
     if summary and notify and proposals:
-        notify_module.deliver_proposals_summary(proposals, settings, proposals[0].for_session)
+        # Лист «бот живий» навіть без угод — якщо так налаштовано (email_on_no_trades).
+        has_trades = any(p.actionable for p in proposals)
+        if has_trades or settings.notify_cfg.get("email_on_no_trades", True):
+            notify_module.deliver_proposals_summary(
+                proposals, settings, proposals[0].for_session, depth_snapshot=depth_snapshot
+            )
     return proposals
 
 

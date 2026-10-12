@@ -87,7 +87,18 @@ DEFAULTS: dict[str, Any] = {
         "settle_before_run": True,
         "notify_summary": True,
     },
-    "notify": {"telegram": True, "only_actionable": True, "notify_on_error": True},
+    "notify": {
+        "telegram": True,
+        "only_actionable": True,
+        "notify_on_error": True,
+        # Пошта: надсилається лист-зведення «План на сесію» через Resend API.
+        # Ключ і адреси — у змінних середовища (RESEND_API_KEY, MAIL_TO, MAIL_FROM),
+        # тут лишаються тільки перемикачі та необов'язкові значення за замовчуванням.
+        "email": False,
+        "email_to": "",
+        "email_from": "",
+        "email_on_no_trades": True,
+    },
 }
 
 
@@ -124,9 +135,15 @@ class Settings:
         return self.config["risk"]
 
     def env_or(self, name: str, default: str = "") -> str:
-        """Значення з .env/середовища (єдине місце, щоб не смикати os.environ по коду)."""
+        """Значення з .env/середовища (єдине місце, щоб не смикати os.environ по коду).
+
+        Спершу дивимось у `self.env` — це дає змогу тестам підставляти ключі
+        без підміни реального оточення процесу.
+        """
         import os as _os
 
+        if name in self.env:
+            return str(self.env[name])
         return _os.getenv(name, default)
 
     @property

@@ -18,6 +18,7 @@ import sys
 
 from dotenv import load_dotenv
 
+from app import notify as notify_module
 from app import pipeline
 from app.db import Store
 from app.settings import BASE_DIR, load_settings
@@ -42,6 +43,10 @@ def main() -> int:
     parser.add_argument("--settle", action="store_true", help="тільки оцінити минулі рішення")
     parser.add_argument("--no-depth", action="store_true",
                         help="вимкнути глибину (SEC/Nasdaq/RSS) і лишити тільки графік")
+    parser.add_argument("--test-email", action="store_true",
+                        help="надіслати тестовий лист через Resend і вийти")
+    parser.add_argument("--email", action="store_true",
+                        help="надіслати лист із планом після прогону (якщо notify.email вимкнено)")
     parser.add_argument("--no-schedule", action="store_true", help="не запускати планувальник")
     parser.add_argument("--host", default=None)
     parser.add_argument("--port", type=int, default=None)
@@ -65,7 +70,23 @@ def main() -> int:
         print(f"→ закрито рішень: {len(settled)}")
         return 0
 
+    if args.test_email:
+        from app import mail as mail_module
+
+        status = mail_module.mail_config_status(settings)
+        print(f"→ пошта: ключ {'є' if status['resend_key'] else 'НЕМАЄ'} · "
+              f"кому: {status['mail_to'] or 'НЕ ЗАДАНО'} · від: {status['mail_from']}")
+        ok, detail = notify_module.send_test_mail(settings)
+        print(("✅ " if ok else "⛔ ") + detail)
+        if not ok:
+            print("   підказка: RESEND_API_KEY і MAIL_TO у .env (або secrets у GitHub Actions);"
+                  " без підтвердженого домену Resend лист можна слати лише собі на свою адресу")
+            return 1
+        return 0
+
     if args.propose:
+        if args.email:
+            settings.config.setdefault("notify", {})["email"] = True
         tickers = [t.strip().upper() for t in args.tickers.split(",") if t.strip()] or None
         proposals = pipeline.build_proposals(settings, store, tickers, force_refresh=args.force)
         session = proposals[0].for_session if proposals else "—"

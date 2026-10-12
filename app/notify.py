@@ -113,10 +113,12 @@ def deliver_proposal(proposal, settings, *, always: bool = False) -> bool:
     return ok
 
 
-def deliver_proposals_summary(proposals, settings, session: str) -> bool:
-    """Одна збірка на всю сесію: що робимо завтра і що ігноруємо."""
+def deliver_proposals_summary(proposals, settings, session: str, *,
+                              depth_snapshot: dict[str, Any] | None = None) -> bool:
+    """Одна збірка на всю сесію: Telegram + лист на пошту (Resend) + outbox."""
     if not proposals:
         return False
+    sent_email = deliver_plan_email(proposals, settings, session, depth_snapshot=depth_snapshot)
     actionable = [p for p in proposals if p.actionable]
     waiting = [p for p in proposals if p.bias == "WAIT"]
     open_line = _open_line(session)
@@ -141,9 +143,33 @@ def deliver_proposals_summary(proposals, settings, session: str) -> bool:
     token = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
     chat_id = os.getenv("TELEGRAM_CHAT_ID", "").strip()
     if not settings.notify_cfg.get("telegram", True) or not token or not chat_id:
-        return False
+        return sent_email
     ok, _ = send_telegram(text, token, chat_id)
+    return ok or sent_email
+
+
+def deliver_plan_email(proposals, settings, session: str, *,
+                       depth_snapshot: dict[str, Any] | None = None) -> bool:
+    """Надсилає план на пошту через Resend. Без ключа або без адреси — тихо пропускає."""
+    from . import mail as mail_module
+
+    if not settings.notify_cfg.get("email", False):
+        return False
+    try:
+        ok, detail = mail_module.send_plan_email(proposals, settings, session,
+                                                depth_snapshot=depth_snapshot)
+    except Exception as exc:  # noqa: BLE001 — пошта не має ламати прогін
+        log.warning("лист не вдався: %s", exc)
+        ok, detail = False, f"{type(exc).__name__}: {exc}"
+    _append_outbox(settings.outbox_path, f"[email] {detail}", skipped=False)
     return ok
+
+
+def send_test_mail(settings) -> tuple[bool, str]:
+    """Перевірка каналу пошти (кнопка в дашборді / прaпорець --test-email)."""
+    from . import mail as mail_module
+
+    return mail_module.test_email(settings)
 
 
 def format_record(record: RunRecord, book: Book | None = None) -> str:
@@ -268,7 +294,7 @@ def deliver(
 
 
 def deliver_summary(records: list[RunRecord], settings, book: Book | None) -> bool:
-    """Ранкова/вечірня збірка: один повідомлення на весь watchlist."""
+    """Ранкова/вечірня збірка агентів: Telegram + outbox."""
     if not records:
         return False
     approved = [r for r in records if r.approved]
@@ -309,8 +335,17 @@ def book_from_settings(settings) -> Book:
     return Book.from_dict(settings.portfolio())
 
 
-def notify_config_status() -> dict[str, Any]:
-    return {
+def notify_config_status(settings=None) -> dict[str, Any]:
+    status: dict[str, Any] = {
         "telegram_token": bool(os.getenv("TELEGRAM_BOT_TOKEN", "").strip()),
         "telegram_chat": bool(os.getenv("TELEGRAM_CHAT_ID", "").strip()),
+        "resend_key": bool(os.getenv("RESEND_API_KEY", "").strip()),
+        "mail_to": (os.getenv("MAIL_TO", "") or "").strip(),
+        "mail_from": (os.getenv("MAIL_FROM", "") or "").strip(),
+        "email_enabled": False,
     }
+    if settings is not None:
+        from . import mail as mail_module
+
+        status.update(mail_module.mail_config_status(settings))
+    return status

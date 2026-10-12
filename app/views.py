@@ -414,6 +414,20 @@ def settings_page(settings, stats: dict, telegram_status: dict, book_json: str, 
     prop = settings.proposal_cfg
     llm_status = llm_status or {}
     llm_color = "ok" if llm_status.get("key_present") else "warn"
+    # стан пошти (Resend): рахуємо заздалегідь — усередині f-рядка так читабельніше
+    if telegram_status.get("resend_key") and telegram_status.get("mail_to"):
+        mail_state = (f'<span class="ok">налаштовано</span> · '
+                      f'{escape(str(telegram_status.get("mail_to")))}')
+    else:
+        missing = []
+        if not telegram_status.get("resend_key"):
+            missing.append("RESEND_API_KEY")
+        if not telegram_status.get("mail_to"):
+            missing.append("MAIL_TO")
+        if telegram_status.get("email_enabled") is False:
+            missing.append("notify.email: true у config.yaml")
+        mail_state = f'<span class="warn">не налаштовано ({", ".join(missing) or "—"})</span>'
+    mail_enabled_note = "" if telegram_status.get("email_enabled", True) else " (надсилання вимкнено в config.yaml)"
     body = f"""<header>
   <div><h1>Налаштування</h1><div class="sub">Ключі — у <code>.env</code>, параметри — у <code>config.yaml</code></div></div>
   <div class="sub"><a href="/">← до дашборда</a></div>
@@ -462,7 +476,12 @@ def settings_page(settings, stats: dict, telegram_status: dict, book_json: str, 
     <span>Telegram: {'<span class="ok">налаштовано</span>' if telegram_status['telegram_token'] and telegram_status['telegram_chat'] else '<span class="warn">не налаштовано (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID)</span>'}</span>
     <button onclick="testNotify()">Надіслати тест</button>
   </div>
+  <div class="row" style="margin-top:10px">
+    <span>Пошта (Resend): {mail_state}{mail_enabled_note}</span>
+    <button onclick="testMail()">Надіслати тестовий лист</button>
+  </div>
   <div id="notifyResult" class="sub" style="margin-top:8px"></div>
+  <div id="mailResult" class="sub" style="margin-top:8px"></div>
 </div>
 <h2>Портфель (data/book.json)</h2>
 <textarea id="book">{escape(book_json)}</textarea>
@@ -472,6 +491,13 @@ def settings_page(settings, stats: dict, telegram_status: dict, book_json: str, 
 без сетапу: {stats.get('proposals_wait', 0)}<br>
 Глибоких аналізів: {stats.get('runs_total', 0)} · помилок: {stats.get('runs_error', 0)}</div>
 <script>
+async function testMail() {{
+  const box = document.getElementById('mailResult');
+  box.textContent = 'надсилаю…';
+  fetch('/api/mail/test', {{method: 'POST'}}).then(r => r.json()).then(d => {{
+    box.textContent = (d.sent ? '✅ ' : '⛔ ') + d.detail;
+  }}).catch(e => {{ box.textContent = '⛔ ' + e; }});
+}}
 async function testNotify() {{
   const r = await fetch('/api/notify/test', {{method:'POST'}}); const j = await r.json();
   document.getElementById('notifyResult').textContent = j.detail || (j.sent ? 'Надіслано' : 'Не надіслано');

@@ -290,9 +290,22 @@ async def save_book(payload: dict, request: Request) -> dict[str, Any]:
     return {"ok": True, "book": settings.portfolio()}
 
 
+@app.post("/api/mail/test")
+def mail_test(request: Request) -> dict[str, Any]:
+    """Надсилає тестовий лист, щоб перевірити Resend без чекання розкладу."""
+    settings: Settings = request.app.state.settings
+    status = notify_module.notify_config_status(settings)
+    if not status["resend_key"]:
+        return {"sent": False, "detail": "пошта не налаштована: додайте RESEND_API_KEY у .env"}
+    if not status["mail_to"]:
+        return {"sent": False, "detail": "не задано отримувача: MAIL_TO у .env або notify.email_to у config.yaml"}
+    ok, detail = notify_module.send_test_mail(settings)
+    return {"sent": ok, "detail": detail}
+
+
 @app.post("/api/notify/test")
 def notify_test(request: Request) -> dict[str, Any]:
-    status = notify_module.notify_config_status()
+    status = notify_module.notify_config_status(request.app.state.settings)
     if not (status["telegram_token"] and status["telegram_chat"]):
         return {"sent": False, "detail": "Telegram не налаштовано: додайте TELEGRAM_BOT_TOKEN і TELEGRAM_CHAT_ID у .env"}
     ok, detail = notify_module.send_telegram(
@@ -356,7 +369,7 @@ def settings_page(request: Request) -> str:
     return views.settings_page(
         settings,
         store.stats() | store.proposal_stats(),
-        notify_module.notify_config_status(),
+        notify_module.notify_config_status(settings),
         book_json,
         STATE.get("engine_warning"),
         llm_status=llm_module.provider_status(settings),
