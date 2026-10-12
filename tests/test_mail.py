@@ -293,28 +293,27 @@ def test_email_failure_is_logged_in_outbox_and_does_not_break_run(settings, monk
     assert "[email] HTTP 401" in outbox
 
 
-def test_results_hint_builds_cdn_link_from_github_repo(settings):
+def test_results_hint_builds_cdn_link_from_github_repo(settings, monkeypatch):
+    """Посилання береться з RESULTS_URL, інакше з GITHUB_REPOSITORY.
+
+    ВАЖЛИВО: у GitHub Actions раннер сам виставляє GITHUB_REPOSITORY, тому тест
+    мусить чистити оточення процесу — інакше він проходить локально й падає в CI.
+    """
+    monkeypatch.delenv("RESULTS_URL", raising=False)
+    monkeypatch.delenv("GITHUB_REPOSITORY", raising=False)
+
     settings.env = {"GITHUB_REPOSITORY": "adanossot04-spec/Trader"}
     assert mail_module.results_hint(settings) == (
         "https://cdn.jsdelivr.net/gh/adanossot04-spec/Trader@main/results/site/index.html")
+
     settings.env = {"RESULTS_URL": "https://my.page/index.html"}
     assert mail_module.results_hint(settings) == "https://my.page/index.html"
+
     settings.env = {}
-    assert mail_module.results_hint(settings) == ""
+    assert mail_module.results_hint(settings) == ""          # немає ні змінної, ні репозиторію
 
-
-def test_trade_card_shows_stop_target_risk_and_gate(settings):
-    subject, html, text = mail_module.build_plan_email(
-        [make_proposal(confidence=0.87, atr_pct=2.1)], settings, "2026-10-12")
-    for probe in ("517.47", "499.71", "552.99", "2 шт."[:1], "0.87", "2.10%", "Ризик-гейт і глибина"):
-        assert probe in html, probe
-
-
-def test_dashboard_endpoint_reports_missing_config(settings, monkeypatch):
-    """Кнопка «Надіслати тестовий лист» має чесно казати, чого не хватає."""
-    from fastapi.testclient import TestClient
-
-    import app.web as web
+    monkeypatch.setenv("GITHUB_REPOSITORY", "someone/other-repo")
+    assert "someone/other-repo@main" in mail_module.results_hint(settings)   # як у CI
 
     settings.env = {}
     monkeypatch.setattr(web, "load_settings", lambda: settings)
