@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-12T08:02:36+00:00",
+  "generated_at": "2026-10-12T12:44:04+00:00",
   "session": "2026-10-12",
   "schedule": "За годину до відкриття US-ринку: cron «30 8 * * 1-5» (America/New_York)",
   "sessions": [
     {
       "session": "2026-10-12",
-      "total": 164,
-      "buy": 51,
-      "wait": 113,
-      "approved": 27,
-      "last_at": "12.10.2026 11:02 Kyiv"
+      "total": 184,
+      "buy": 57,
+      "wait": 127,
+      "approved": 30,
+      "last_at": "12.10.2026 15:44 Kyiv"
     }
   ],
   "proposals": [
     {
-      "id": 145,
+      "id": 165,
       "ticker": "AAPL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -31,12 +31,12 @@
       "atr_pct": 2.05,
       "last_close": 336.64,
       "last_bar_date": "2026-10-09",
-      "live_price": 337.47,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 337.96,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.25,
+      "live_vs_close_pct": 0.39,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -53,9 +53,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:22+00:00",
+      "created_at": "2026-10-12T12:43:57+00:00",
       "confidence": 0.42,
-      "page": "proposal-145.html",
+      "page": "proposal-165.html",
       "depth": {
         "sector": "tech",
         "sector_label": "технології",
@@ -113,11 +113,11 @@
           ]
         },
         "news": [
+          "Just How Sustainable is Apple’s $340 Price Ahead of Oct. 29 Earnings?",
+          "Guide to Magnificent Seven ETF investing",
           "New Apple TV and HomePod Mini Expected: What Matters for AAPL Stock",
           "Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play",
-          "Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat",
-          "Elon Musk Will ‘Eventually’ Make a Phone, Says Gene Munster: Starlink Device Will Be a ‘Bigger Problem’ for Apple, Samsung",
-          "Apple Has Consistently Lost the Smart-Home Race. A New Partnership With LG Could Change That."
+          "Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat"
         ],
         "backtest": {
           "signals": 8,
@@ -146,12 +146,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.07,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 109.42 млрд$, зростає на 16.4% рік до року. Прибуток на акцію +28.7% рік до року. Чиста маржа 27.2%. Емітент: Apple Inc.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 8 сигналів: 37.5% прибуткових, очікування -0.23R, середній утримування 4.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.6 п.п.\n\n**Новини.** New Apple TV and HomePod Mini Expected: What Matters for AAPL Stock; Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play; Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 109.42 млрд$, зростає на 16.4% рік до року. Прибуток на акцію +28.7% рік до року. Чиста маржа 27.2%. Емітент: Apple Inc.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 8 сигналів: 37.5% прибуткових, очікування -0.23R, середній утримування 4.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.6 п.п.\n\n**Новини.** Just How Sustainable is Apple’s $340 Price Ahead of Oct. 29 Earnings?; Guide to Magnificent Seven ETF investing; New Apple TV and HomePod Mini Expected: What Matters for AAPL Stock.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 146,
+      "id": 166,
       "ticker": "AMD",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -168,12 +168,12 @@
       "atr_pct": 4.09,
       "last_close": 608.1,
       "last_bar_date": "2026-10-09",
-      "live_price": 611.61,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 602.49,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.58,
+      "live_vs_close_pct": -0.92,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -190,9 +190,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:23+00:00",
+      "created_at": "2026-10-12T12:43:57+00:00",
       "confidence": 0.45,
-      "page": "proposal-146.html",
+      "page": "proposal-166.html",
       "depth": {
         "sector": "semis",
         "sector_label": "напівпровідники",
@@ -254,11 +254,11 @@
           ]
         },
         "news": [
+          "Micron, SK Hynix stocks fall as Chinese memory maker announces progress in new design",
+          "INTC, AMD, NVDA, MU: Chip Stocks Open Mixed Premarket After Worst Week In A Month",
           "AMD Stock And Two AI Infrastructure Names Facing A Big Margin Test",
           "Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook",
-          "History Says This Will Happen to AMD Stock in 2027",
-          "AMD Stock Fell 6% in Three Sessions After Its Record Close. Here’s What OpenAI’s $20 Billion Revenue Gap Means for the Stock",
-          "Not Anthropic. Not AMD. Here's My Top AI Stock for 2027."
+          "History Says This Will Happen to AMD Stock in 2027"
         ],
         "backtest": {
           "signals": 6,
@@ -288,12 +288,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 11.54 млрд$, зростає на 50.1% рік до року. Прибуток на акцію +155.6% рік до року. Чиста маржа 19.9%. Емітент: ADVANCED MICRO DEVICES INC.\n\n**Подія.** Найближча звітність — 2026-11-04 (через 24 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 0.0% прибуткових, очікування -0.77R, середній утримування 2.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 15.9 п.п.\n\n**Новини.** AMD Stock And Two AI Infrastructure Names Facing A Big Margin Test; Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook; History Says This Will Happen to AMD Stock in 2027.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 11.54 млрд$, зростає на 50.1% рік до року. Прибуток на акцію +155.6% рік до року. Чиста маржа 19.9%. Емітент: ADVANCED MICRO DEVICES INC.\n\n**Подія.** Найближча звітність — 2026-11-04 (через 24 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 0.0% прибуткових, очікування -0.77R, середній утримування 2.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 15.9 п.п.\n\n**Новини.** Micron, SK Hynix stocks fall as Chinese memory maker announces progress in new design; INTC, AMD, NVDA, MU: Chip Stocks Open Mixed Premarket After Worst Week In A Month; AMD Stock And Two AI Infrastructure Names Facing A Big Margin Test.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 147,
+      "id": 167,
       "ticker": "AMZN",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -310,12 +310,12 @@
       "atr_pct": 2.3,
       "last_close": 262.43,
       "last_bar_date": "2026-10-09",
-      "live_price": 263.92,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 262.1,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.57,
+      "live_vs_close_pct": -0.13,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -332,9 +332,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:23+00:00",
+      "created_at": "2026-10-12T12:43:57+00:00",
       "confidence": 0.42,
-      "page": "proposal-147.html",
+      "page": "proposal-167.html",
       "depth": {
         "sector": "consumer",
         "sector_label": "споживчий сектор",
@@ -396,11 +396,11 @@
           ]
         },
         "news": [
-          "AMZN Stock Inches Up Overnight: Amazon Reportedly Nears $7B Deal For Decart AI After Anthropic Walks Away",
-          "SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week",
-          "Amazon Reportedly in Talks to Buy Decart for $7 Billion — Market Strategist Says It Is 'Effectively Buying Software Expertise'",
-          "$15 doorbell camera became Amazon's second-largest acquisition.",
-          "Amazon in talks to acquire AI startup Decart for $7 bln- WSJ"
+          "Amazon in talks to acquire AI startup Decart for $7 billion",
+          "What Projected Job Cuts at These Two Mag 7 Firms Says About AI in 2027",
+          "From Brooklyn to Home Depot, Walmart and Amazon: Mitch Gould's Retail Journey",
+          "Businesses Risk Wave of Democratic Probes on Costs, Corruption",
+          "Sandisk, IREN, SK Hynix, Amazon, and More Stocks That Explain Today’s Market"
         ],
         "backtest": {
           "signals": 4,
@@ -431,12 +431,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.07,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 200.61 млрд$, зростає на 19.6% рік до року. Прибуток на акцію +242.3% рік до року. Чиста маржа 31.2%. Емітент: AMAZON COM INC.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 4 сигналів: 50.0% прибуткових, очікування -0.10R, середній утримування 8.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 0.3 п.п.\n\n**Новини.** AMZN Stock Inches Up Overnight: Amazon Reportedly Nears $7B Deal For Decart AI After Anthropic Walks Away; SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week; Amazon Reportedly in Talks to Buy Decart for $7 Billion — Market Strategist Says It Is 'Effectively Buying Software Expertise'.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 200.61 млрд$, зростає на 19.6% рік до року. Прибуток на акцію +242.3% рік до року. Чиста маржа 31.2%. Емітент: AMAZON COM INC.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 4 сигналів: 50.0% прибуткових, очікування -0.10R, середній утримування 8.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 0.3 п.п.\n\n**Новини.** Amazon in talks to acquire AI startup Decart for $7 billion; What Projected Job Cuts at These Two Mag 7 Firms Says About AI in 2027; From Brooklyn to Home Depot, Walmart and Amazon: Mitch Gould's Retail Journey.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 148,
+      "id": 168,
       "ticker": "AVGO",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -453,12 +453,12 @@
       "atr_pct": 3.21,
       "last_close": 361.54,
       "last_bar_date": "2026-10-09",
-      "live_price": 362.843,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 359.15,
+      "live_label": "премаркет 08:42 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:42-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.36,
+      "live_vs_close_pct": -0.66,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -475,9 +475,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:25+00:00",
+      "created_at": "2026-10-12T12:43:58+00:00",
       "confidence": 0.42,
-      "page": "proposal-148.html",
+      "page": "proposal-168.html",
       "depth": {
         "sector": "semis",
         "sector_label": "напівпровідники",
@@ -540,11 +540,11 @@
           ]
         },
         "news": [
-          "How Broadcom’s $42 Billion ‘Loan’ to Anthropic Is a Bet on a $2 Trillion IPO",
-          "Jim Cramer Told a Broadcom (AVGO) Holder Not to Sell, and Said He Trimmed It Himself",
-          "3 Low-Cost ETFs Spreading Income Across Hundreds of Holdings. One Still Puts 7.35% Behind a Single Company",
-          "Broadcom vs. Intel: Which Chip Stock Is a Better Buy in 2026?",
-          "Broadcom’s AI Revenue Is Tripling, but the Stock Has Lagged. Is It Time to Load Up?"
+          "Intel and Broadcom CEOs warn capital may bottleneck AI growth",
+          "Broadcom CEO Hock Tan calls AI investors casino gamblers",
+          "Broadcom CEO says many AI investors are gamblers",
+          "Broadcom CEO Sees Capital as Main Constraint on AI Growth Despite Easing Chip Shortages",
+          "Broadcom CEO Likens Many AI Investors to Casino Gamblers"
         ],
         "backtest": {
           "signals": 7,
@@ -575,12 +575,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.07,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-08-02) — 29.59 млрд$, зростає на 85.5% рік до року. Прибуток на акцію +215.3% рік до року. Емітент: Broadcom Inc.\n\n**Подія.** Найближча звітність — 2026-12-12 (через 62 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 7 сигналів: 42.9% прибуткових, очікування -0.37R, середній утримування 5.6 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 2.0 п.п.\n\n**Новини.** How Broadcom’s $42 Billion ‘Loan’ to Anthropic Is a Bet on a $2 Trillion IPO; Jim Cramer Told a Broadcom (AVGO) Holder Not to Sell, and Said He Trimmed It Himself; 3 Low-Cost ETFs Spreading Income Across Hundreds of Holdings. One Still Puts 7.35% Behind a Single Company.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-08-02) — 29.59 млрд$, зростає на 85.5% рік до року. Прибуток на акцію +215.3% рік до року. Емітент: Broadcom Inc.\n\n**Подія.** Найближча звітність — 2026-12-12 (через 62 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 7 сигналів: 42.9% прибуткових, очікування -0.37R, середній утримування 5.6 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 2.0 п.п.\n\n**Новини.** Intel and Broadcom CEOs warn capital may bottleneck AI growth; Broadcom CEO Hock Tan calls AI investors casino gamblers; Broadcom CEO says many AI investors are gamblers.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 149,
+      "id": 169,
       "ticker": "COST",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -597,12 +597,12 @@
       "atr_pct": 1.58,
       "last_close": 946.92,
       "last_bar_date": "2026-10-09",
-      "live_price": 946.92,
-      "live_label": "закриття 09.10",
-      "live_session": "остання сесія",
-      "live_as_of": "2026-10-09T16:00-04:00",
-      "live_source": "yahoo-meta",
-      "live_vs_close_pct": 0.0,
+      "live_price": 948.88,
+      "live_label": "премаркет 06:51 ET",
+      "live_session": "премаркет",
+      "live_as_of": "2026-10-12T06:51-04:00",
+      "live_source": "yahoo-1m",
+      "live_vs_close_pct": 0.21,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -619,9 +619,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:25+00:00",
+      "created_at": "2026-10-12T12:43:58+00:00",
       "confidence": 0.45,
-      "page": "proposal-149.html",
+      "page": "proposal-169.html",
       "depth": {
         "sector": "consumer",
         "sector_label": "споживчий сектор",
@@ -721,12 +721,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-05-10) — 70.53 млрд$, зростає на 11.6% рік до року. Прибуток на акцію +15.2% рік до року. Чиста маржа 3.1%. Емітент: COSTCO WHOLESALE CORP /NEW.\n\n**Подія.** Найближча звітність — 2026-12-30 (через 80 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 53.8% прибуткових, очікування +0.40R, середній утримування 5.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.8 п.п.\n\n**Новини.** History Says This Is the Amount of Yearly Dividend Income a $10,000 Investment in Costco Stock Could Generate by 2031 (Without Even Considering Special Dividends); Costco Stock Is 14% Below Its Record. History Says Buyers Have Usually Been Rewarded.; Costco is booming as Americans rethink where every dollar goes.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-05-10) — 70.53 млрд$, зростає на 11.6% рік до року. Прибуток на акцію +15.2% рік до року. Чиста маржа 3.1%. Емітент: COSTCO WHOLESALE CORP /NEW.\n\n**Подія.** Найближча звітність — 2026-12-30 (через 80 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 53.8% прибуткових, очікування +0.40R, середній утримування 5.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.8 п.п.\n\n**Новини.** History Says This Is the Amount of Yearly Dividend Income a $10,000 Investment in Costco Stock Could Generate by 2031 (Without Even Considering Special Dividends); Costco Stock Is 14% Below Its Record. History Says Buyers Have Usually Been Rewarded.; Costco is booming as Americans rethink where every dollar goes.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 150,
+      "id": 170,
       "ticker": "CRM",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -743,12 +743,12 @@
       "atr_pct": 3.69,
       "last_close": 229.13,
       "last_bar_date": "2026-10-09",
-      "live_price": 230.44,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 238.77,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.57,
+      "live_vs_close_pct": 4.21,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -765,9 +765,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:26+00:00",
+      "created_at": "2026-10-12T12:43:58+00:00",
       "confidence": 0.39,
-      "page": "proposal-150.html",
+      "page": "proposal-170.html",
       "depth": {
         "sector": "software",
         "sector_label": "ПЗ",
@@ -830,11 +830,11 @@
           ]
         },
         "news": [
-          "The SaaSpocalypse is dead: Software stocks make a comeback",
-          "Brokers Suggest Investing in Salesforce (CRM): Read This Before Placing a Bet",
-          "Wall Street Left Software for Dead: 4 Stocks Institutions Are Buying Back",
-          "How Salesforce’s New Missionforce CMO Hire (CRM) Shapes Its Public-Sector AI Ambitions",
-          "Salesforce (CRM) Advances While Market Declines: Some Information for Investors"
+          "BofA double upgrades Salesforce to Buy on AI strategy",
+          "Here Are Monday’s Top Wall Street Analyst Research Calls: Adobe, Biogen, First Solar, GoDaddy, Hubspot, Palantir Technologies, Robinhood Markets, Snowflake, TeraWulf, T-Mobile US and More",
+          "Stock Market Today: Dow Wavers Amid Trump's 'Energy Ceasefire'; Salesforce Jumps On Upgrade (Live Coverage)",
+          "Salesforce Just Turned the Agent Allowlist Into a CRM Product",
+          "Salesforce Climbs Amid Bank Of America Upgrade To Buy On Improved AI Trends"
         ],
         "backtest": {
           "signals": 10,
@@ -865,12 +865,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.04,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-31) — 11.35 млрд$, зростає на 10.8% рік до року. Прибуток на акцію +118.9% рік до року. Чиста маржа 31.1%. Емітент: Salesforce, Inc.\n\n**Подія.** Найближча звітність — 2026-11-26 (через 46 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 50.0% прибуткових, очікування +0.18R, середній утримування 6.0 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 9.4 п.п.\n\n**Новини.** The SaaSpocalypse is dead: Software stocks make a comeback; Brokers Suggest Investing in Salesforce (CRM): Read This Before Placing a Bet; Wall Street Left Software for Dead: 4 Stocks Institutions Are Buying Back.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-31) — 11.35 млрд$, зростає на 10.8% рік до року. Прибуток на акцію +118.9% рік до року. Чиста маржа 31.1%. Емітент: Salesforce, Inc.\n\n**Подія.** Найближча звітність — 2026-11-26 (через 46 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 50.0% прибуткових, очікування +0.18R, середній утримування 6.0 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 9.4 п.п.\n\n**Новини.** BofA double upgrades Salesforce to Buy on AI strategy; Here Are Monday’s Top Wall Street Analyst Research Calls: Adobe, Biogen, First Solar, GoDaddy, Hubspot, Palantir Technologies, Robinhood Markets, Snowflake, TeraWulf, T-Mobile US and More; Stock Market Today: Dow Wavers Amid Trump's 'Energy Ceasefire'; Salesforce Jumps On Upgrade (Live Coverage).",
         "digest_source": "rules"
       }
     },
     {
-      "id": 151,
+      "id": 171,
       "ticker": "GOOGL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -887,12 +887,12 @@
       "atr_pct": 2.44,
       "last_close": 351.66,
       "last_bar_date": "2026-10-09",
-      "live_price": 353.34,
-      "live_label": "премаркет 04:02 ET",
+      "live_price": 351.1043,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:02-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.48,
+      "live_vs_close_pct": -0.16,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -909,9 +909,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:26+00:00",
+      "created_at": "2026-10-12T12:43:59+00:00",
       "confidence": 0.45,
-      "page": "proposal-151.html",
+      "page": "proposal-171.html",
       "depth": {
         "sector": "internet",
         "sector_label": "інтернет",
@@ -958,11 +958,11 @@
           ]
         },
         "news": [
-          "Constellation’s $4.3 Billion Nuclear Upgrade Could Be Its Smartest Move Yet",
-          "Not Alphabet. Not Amazon. Microsoft Trades at Big Tech's Cheapest Valuation.",
-          "Michael Moritz Says Most Investors Can’t Do the One Thing That Actually Makes Money",
-          "Warren Buffett's Successor Has Billions in This Cloud Titan",
-          "Amazon and Alphabet Just Committed $420 Billion to Data Centers. 1 Stock Is the Better Buy."
+          "IREN Reportedly Joins Anthropic's Cloud Providers; Shares Jump",
+          "The AI Spending Boom Could Be Just Getting Started for This Company",
+          "Quantum Computing Stocks: Darpa Spreads Its Bets As Industry Shakeout Looms",
+          "WULF Stock Gets A ‘Buy’ From TD Cowen As The AI 'Boom' Overshadows TeraWulf’s Bitcoin Mining Roots",
+          "Waymo Just Borrowed $5 Billion for the First Time"
         ],
         "backtest": {
           "signals": 4,
@@ -993,12 +993,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 119.80 млрд$, зростає на 24.2% рік до року. Прибуток на акцію +294.4% рік до року. Чиста маржа 93.7%. Емітент: Alphabet Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 4 сигналів: 50.0% прибуткових, очікування +0.56R, середній утримування 6.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.0 п.п.\n\n**Новини.** Constellation’s $4.3 Billion Nuclear Upgrade Could Be Its Smartest Move Yet; Not Alphabet. Not Amazon. Microsoft Trades at Big Tech's Cheapest Valuation.; Michael Moritz Says Most Investors Can’t Do the One Thing That Actually Makes Money.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 119.80 млрд$, зростає на 24.2% рік до року. Прибуток на акцію +294.4% рік до року. Чиста маржа 93.7%. Емітент: Alphabet Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 4 сигналів: 50.0% прибуткових, очікування +0.56R, середній утримування 6.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.0 п.п.\n\n**Новини.** IREN Reportedly Joins Anthropic's Cloud Providers; Shares Jump; The AI Spending Boom Could Be Just Getting Started for This Company; Quantum Computing Stocks: Darpa Spreads Its Bets As Industry Shakeout Looms.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 152,
+      "id": 172,
       "ticker": "JPM",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1015,12 +1015,12 @@
       "atr_pct": 1.78,
       "last_close": 332.99,
       "last_bar_date": "2026-10-09",
-      "live_price": 334.48,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 334.2,
+      "live_label": "премаркет 08:36 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:36-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.45,
+      "live_vs_close_pct": 0.36,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -1037,9 +1037,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:26+00:00",
+      "created_at": "2026-10-12T12:43:59+00:00",
       "confidence": 0.37,
-      "page": "proposal-152.html",
+      "page": "proposal-172.html",
       "depth": {
         "sector": "finance",
         "sector_label": "фінанси",
@@ -1058,11 +1058,11 @@
           "report_dates": []
         },
         "news": [
+          "JPMorgan gets bullish on Biogen ahead of 2027 catalysts",
           "What To Expect From JPMorgan Chase’s (JPM) Q3 Earnings",
           "Ford and JPMorgan Back Michigan Factories in Attempt to Bring US Manufacturing Home",
           "JPMorgan's CEO sends a stern warning to corporate America",
-          "Savara Has Lost 30% Since December: JPMorgan Sees 146% Upside",
-          "In 2000, A 62-Year-Old Texas Man Retired After Working 33 Years With $1.3 Million In Company Stock. Twenty Months Later, He Said It Was Worth About $8,000. The Unlucky Story Of Charles Prestwood Holds An Important Lesson For Every Investor"
+          "Savara Has Lost 30% Since December: JPMorgan Sees 146% Upside"
         ],
         "backtest": {
           "signals": 18,
@@ -1093,12 +1093,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.02,
-        "digest": "**Бізнес.** Виручка за останній квартал (2014-09-30) — 24.25 млрд$, зростає на 4.9% рік до року. Прибуток на акцію +47.0% рік до року. Чиста маржа 22.9%. Емітент: JPMORGAN CHASE & CO.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 18 сигналів: 50.0% прибуткових, очікування +0.18R, середній утримування 8.2 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 8.4 п.п.\n\n**Новини.** What To Expect From JPMorgan Chase’s (JPM) Q3 Earnings; Ford and JPMorgan Back Michigan Factories in Attempt to Bring US Manufacturing Home; JPMorgan's CEO sends a stern warning to corporate America.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2014-09-30) — 24.25 млрд$, зростає на 4.9% рік до року. Прибуток на акцію +47.0% рік до року. Чиста маржа 22.9%. Емітент: JPMORGAN CHASE & CO.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 18 сигналів: 50.0% прибуткових, очікування +0.18R, середній утримування 8.2 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 8.4 п.п.\n\n**Новини.** JPMorgan gets bullish on Biogen ahead of 2027 catalysts; What To Expect From JPMorgan Chase’s (JPM) Q3 Earnings; Ford and JPMorgan Back Michigan Factories in Attempt to Bring US Manufacturing Home.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 153,
+      "id": 173,
       "ticker": "LLY",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1115,12 +1115,12 @@
       "atr_pct": 3.01,
       "last_close": 1179.27,
       "last_bar_date": "2026-10-09",
-      "live_price": 1179.27,
-      "live_label": "закриття 09.10",
-      "live_session": "остання сесія",
-      "live_as_of": "2026-10-09T16:00-04:00",
-      "live_source": "yahoo-meta",
-      "live_vs_close_pct": 0.0,
+      "live_price": 1190.0,
+      "live_label": "премаркет 08:24 ET",
+      "live_session": "премаркет",
+      "live_as_of": "2026-10-12T08:24-04:00",
+      "live_source": "yahoo-1m",
+      "live_vs_close_pct": 0.91,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -1137,9 +1137,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:27+00:00",
+      "created_at": "2026-10-12T12:43:59+00:00",
       "confidence": 0.45,
-      "page": "proposal-153.html",
+      "page": "proposal-173.html",
       "depth": {
         "sector": "health",
         "sector_label": "охорона здоров'я",
@@ -1202,11 +1202,11 @@
           ]
         },
         "news": [
+          "Lilly reports Phase IIIb data on Taltz and Zepbound combination",
+          "Eli Lilly Stock Has Pulled Back 8%. History Says This Is What Happens Next.",
           "SLS Stock Jumps Overnight: Retail Sees Big Pharma Buyout Clues In 'M&A Negotiation Lounge' Booth At ASH",
           "Eli Lilly (LLY) Posted 48% Revenue Growth. Why Does the Stock Trade Below Its Average Multiple?",
-          "Eli Lilly (LLY) As Zepbound And Retatrutide Updates Test Whether More Upside Is Priced In",
-          "Eli Lilly’s Biggest Shareholder Just Filed to Sell $347 Million of Stock",
-          "Cantor Fitzgerald Lifts Price Targets on Four Pharma Giants Amid Mixed Growth Outlooks"
+          "Eli Lilly (LLY) As Zepbound And Retatrutide Updates Test Whether More Upside Is Priced In"
         ],
         "backtest": {
           "signals": 5,
@@ -1237,12 +1237,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 22.97 млрд$, зростає на 47.7% рік до року. Прибуток на акцію +26.2% рік до року. Чиста маржа 30.9%. Емітент: ELI LILLY & Co.\n\n**Подія.** Найближча звітність — 2026-11-10 (через 30 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 5 сигналів: 40.0% прибуткових, очікування +0.20R, середній утримування 4.6 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.8 п.п.\n\n**Новини.** SLS Stock Jumps Overnight: Retail Sees Big Pharma Buyout Clues In 'M&A Negotiation Lounge' Booth At ASH; Eli Lilly (LLY) Posted 48% Revenue Growth. Why Does the Stock Trade Below Its Average Multiple?; Eli Lilly (LLY) As Zepbound And Retatrutide Updates Test Whether More Upside Is Priced In.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 22.97 млрд$, зростає на 47.7% рік до року. Прибуток на акцію +26.2% рік до року. Чиста маржа 30.9%. Емітент: ELI LILLY & Co.\n\n**Подія.** Найближча звітність — 2026-11-10 (через 30 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 5 сигналів: 40.0% прибуткових, очікування +0.20R, середній утримування 4.6 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.8 п.п.\n\n**Новини.** Lilly reports Phase IIIb data on Taltz and Zepbound combination; Eli Lilly Stock Has Pulled Back 8%. History Says This Is What Happens Next.; SLS Stock Jumps Overnight: Retail Sees Big Pharma Buyout Clues In 'M&A Negotiation Lounge' Booth At ASH.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 154,
+      "id": 174,
       "ticker": "META",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1259,12 +1259,12 @@
       "atr_pct": 3.17,
       "last_close": 718.67,
       "last_bar_date": "2026-10-09",
-      "live_price": 724.3,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 728.58,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.78,
+      "live_vs_close_pct": 1.38,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -1281,9 +1281,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:27+00:00",
+      "created_at": "2026-10-12T12:44:00+00:00",
       "confidence": 0.41,
-      "page": "proposal-154.html",
+      "page": "proposal-174.html",
       "depth": {
         "sector": "internet",
         "sector_label": "інтернет",
@@ -1325,11 +1325,11 @@
           ]
         },
         "news": [
+          "Can broadening earnings growth sustain the equity upcycle? JPM weighs in",
+          "President Trump Just Dropped Over $1 Million Into 3 Tech Stocks -- Should You Buy Them Too?",
           "Meta Stock Warning? Zuckerberg Sells $21 Million as Insiders Exit",
           "Prediction: Meta Platforms Stock Will Drop After Earnings, and That Could Be an Incredible Buying Opportunity",
-          "We gave Meta's new Muse tool 3 money chores — what it saved us (and what went wrong)",
-          "“Just Do the Math”: Meta’s Muse Needs $2.8 Billion Compute to Serve 100 Million Users. Facebook Has 3 Billion",
-          "1 Reason the Meta Muse AI Agent Has the Upper Hand"
+          "We gave Meta's new Muse tool 3 money chores — what it saved us (and what went wrong)"
         ],
         "backtest": {
           "signals": 11,
@@ -1359,12 +1359,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.06,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 60.80 млрд$, зростає на 28.0% рік до року. Прибуток на акцію -13.4% рік до року. Чиста маржа 26.1%. Емітент: Meta Platforms, Inc.\n\n**Подія.** Найближча звітність — 2026-10-29 (через 18 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 11 сигналів: 0.0% прибуткових, очікування -0.92R, середній утримування 6.1 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 9.0 п.п.\n\n**Новини.** Meta Stock Warning? Zuckerberg Sells $21 Million as Insiders Exit; Prediction: Meta Platforms Stock Will Drop After Earnings, and That Could Be an Incredible Buying Opportunity; We gave Meta's new Muse tool 3 money chores — what it saved us (and what went wrong).",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 60.80 млрд$, зростає на 28.0% рік до року. Прибуток на акцію -13.4% рік до року. Чиста маржа 26.1%. Емітент: Meta Platforms, Inc.\n\n**Подія.** Найближча звітність — 2026-10-29 (через 18 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 11 сигналів: 0.0% прибуткових, очікування -0.92R, середній утримування 6.1 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 9.0 п.п.\n\n**Новини.** Can broadening earnings growth sustain the equity upcycle? JPM weighs in; President Trump Just Dropped Over $1 Million Into 3 Tech Stocks -- Should You Buy Them Too?; Meta Stock Warning? Zuckerberg Sells $21 Million as Insiders Exit.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 155,
+      "id": 175,
       "ticker": "MSFT",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1381,16 +1381,16 @@
       "atr_pct": 2.26,
       "last_close": 535.07,
       "last_bar_date": "2026-10-09",
-      "live_price": 537.56,
-      "live_label": "премаркет 04:02 ET",
+      "live_price": 537.0,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:02-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.47,
-      "live_vs_entry_pct": 3.88,
-      "premarket_price": 537.56,
-      "premarket_gap_pct": 0.47,
-      "premarket_note": "Премаркет $537.56 (+0.47%) — ґеп у межах, план лишається чинним.",
+      "live_vs_close_pct": 0.36,
+      "live_vs_entry_pct": 3.77,
+      "premarket_price": 537.0,
+      "premarket_gap_pct": 0.36,
+      "premarket_note": "Премаркет $537.00 (+0.36%) — ґеп у межах, план лишається чинним.",
       "gate_reasons": [
         "розмір: 4 шт. ≈ $2,069.88 (4.14% капіталу)"
       ],
@@ -1403,14 +1403,14 @@
         "лімітна заявка на відкат: 517.47 (закриття 535.07, стоп під мінімумом 10 сесій 502.22)"
       ],
       "invalidation": "Скасування: ґеп нижче 499.71 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (510.10) — сценарій зламано; закриття нижче 502.22 (мінімум 10 сесій) — виходимо з угоди.",
-      "order_template": "КУПІВЛЯ 4 × MSFT  —  LIMIT 517.47 (GTC)\nSTOP-LOSS: 499.71  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 552.99\nЯкщо на відкритті ціна вище 522.64 — заявку скасувати.\n// Премаркет $537.56 (+0.47%) — ґеп у межах, план лишається чинним.",
+      "order_template": "КУПІВЛЯ 4 × MSFT  —  LIMIT 517.47 (GTC)\nSTOP-LOSS: 499.71  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 552.99\nЯкщо на відкритті ціна вище 522.64 — заявку скасувати.\n// Премаркет $537.00 (+0.36%) — ґеп у межах, план лишається чинним.",
       "note": "Сценарій висхідний: тренд up, RSI 67.5, ATR 2.26% (≈11.84 пункту). План: вхід 517.47 (ліміт), стоп 499.71 (ризик 0.14% капіталу на 4 шт.), ціль 552.99 (R:R 2.0). Опір 537.22, підтримка 487.23.",
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:27+00:00",
+      "created_at": "2026-10-12T12:44:00+00:00",
       "confidence": 0.95,
-      "page": "proposal-155.html",
+      "page": "proposal-175.html",
       "depth": {
         "sector": "tech",
         "sector_label": "технології",
@@ -1457,11 +1457,11 @@
           ]
         },
         "news": [
+          "Park Place Technologies Extends Microsoft Cloud Capability Across U.S. and Canada",
+          "Protiviti Achieves 2026-2027 Microsoft AI Business Solutions Inner Circle Award",
           "Microsoft Is Down 4%. Here's Why I'm Buying More.",
           "3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First",
-          "Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28",
-          "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
-          "Microsoft CEO wants AI treated like a risky insider at work"
+          "Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28"
         ],
         "backtest": {
           "signals": 9,
@@ -1491,12 +1491,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-03-31) — 82.89 млрд$, зростає на 18.3% рік до року. Прибуток на акцію +23.4% рік до року. Чиста маржа 38.3%. Емітент: MICROSOFT CORP.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 44.4% прибуткових, очікування -0.09R, середній утримування 7.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 6.1 п.п.\n\n**Новини.** Microsoft Is Down 4%. Here's Why I'm Buying More.; 3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First; Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-03-31) — 82.89 млрд$, зростає на 18.3% рік до року. Прибуток на акцію +23.4% рік до року. Чиста маржа 38.3%. Емітент: MICROSOFT CORP.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 44.4% прибуткових, очікування -0.09R, середній утримування 7.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 6.1 п.п.\n\n**Новини.** Park Place Technologies Extends Microsoft Cloud Capability Across U.S. and Canada; Protiviti Achieves 2026-2027 Microsoft AI Business Solutions Inner Circle Award; Microsoft Is Down 4%. Here's Why I'm Buying More..",
         "digest_source": "rules"
       }
     },
     {
-      "id": 156,
+      "id": 176,
       "ticker": "NFLX",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1513,12 +1513,12 @@
       "atr_pct": 2.7,
       "last_close": 70.3,
       "last_bar_date": "2026-10-09",
-      "live_price": 70.59,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 71.2,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.41,
+      "live_vs_close_pct": 1.28,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -1535,9 +1535,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:28+00:00",
+      "created_at": "2026-10-12T12:44:01+00:00",
       "confidence": 0.39,
-      "page": "proposal-156.html",
+      "page": "proposal-176.html",
       "depth": {
         "sector": "media",
         "sector_label": "медіа",
@@ -1624,12 +1624,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.04,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 12.56 млрд$, зростає на 13.4% рік до року. Прибуток на акцію +11.1% рік до року. Чиста маржа 27.1%. Емітент: NETFLIX INC.\n\n**Подія.** Найближча звітність — 2026-10-16 (через 5 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 22.2% прибуткових, очікування -0.61R, середній утримування 5.3 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 11.0 п.п.\n\n**Новини.** Why Goldman Sachs still backs Netflix despite falling viewership; What Is Netflix (NFLX) Signaling With Its New Content Acquisition Chief?; Paramount and Warner Bros. Discovery Are Now Skydance. Here's Why I'd Rather Own Netflix..",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 12.56 млрд$, зростає на 13.4% рік до року. Прибуток на акцію +11.1% рік до року. Чиста маржа 27.1%. Емітент: NETFLIX INC.\n\n**Подія.** Найближча звітність — 2026-10-16 (через 5 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 22.2% прибуткових, очікування -0.61R, середній утримування 5.3 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 11.0 п.п.\n\n**Новини.** Why Goldman Sachs still backs Netflix despite falling viewership; What Is Netflix (NFLX) Signaling With Its New Content Acquisition Chief?; Paramount and Warner Bros. Discovery Are Now Skydance. Here's Why I'd Rather Own Netflix..",
         "digest_source": "rules"
       }
     },
     {
-      "id": 157,
+      "id": 177,
       "ticker": "NVDA",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1646,16 +1646,16 @@
       "atr_pct": 2.54,
       "last_close": 229.28,
       "last_bar_date": "2026-10-09",
-      "live_price": 229.9215,
-      "live_label": "премаркет 04:02 ET",
+      "live_price": 228.37,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:02-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.28,
-      "live_vs_entry_pct": 0.28,
-      "premarket_price": 229.9215,
-      "premarket_gap_pct": 0.28,
-      "premarket_note": "Премаркет $229.92 (+0.28%) — ґеп у межах, план лишається чинним.",
+      "live_vs_close_pct": -0.4,
+      "live_vs_entry_pct": -0.4,
+      "premarket_price": 228.37,
+      "premarket_gap_pct": -0.4,
+      "premarket_note": "Премаркет $228.37 (-0.40%) — ґеп у межах, план лишається чинним.",
       "gate_reasons": [
         "розмір: 10 шт. ≈ $2,292.80 (4.59% капіталу)"
       ],
@@ -1667,14 +1667,14 @@
         "відкату немає — план передбачає вхід за ринком на відкритті"
       ],
       "invalidation": "Скасування: ґеп нижче 220.75 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (226.73) — сценарій зламано; закриття нижче 227.03 (мінімум 10 сесій) — виходимо з угоди.",
-      "order_template": "КУПІВЛЯ 10 × NVDA  —  MARKET (на відкритті)\nSTOP-LOSS: 220.75  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 246.34\n// Премаркет $229.92 (+0.28%) — ґеп у межах, план лишається чинним.",
+      "order_template": "КУПІВЛЯ 10 × NVDA  —  MARKET (на відкритті)\nSTOP-LOSS: 220.75  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 246.34\n// Премаркет $228.37 (-0.40%) — ґеп у межах, план лишається чинним.",
       "note": "Сценарій висхідний: тренд up, RSI 53.0, ATR 2.54% (≈5.69 пункту). План: вхід 229.28 (за ринком), стоп 220.75 (ризик 0.17% капіталу на 10 шт.), ціль 246.34 (R:R 2.0). Опір 243.37, підтримка 208.93.",
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:30+00:00",
+      "created_at": "2026-10-12T12:44:01+00:00",
       "confidence": 0.9,
-      "page": "proposal-157.html",
+      "page": "proposal-177.html",
       "depth": {
         "sector": "semis",
         "sector_label": "напівпровідники",
@@ -1736,11 +1736,11 @@
           ]
         },
         "news": [
-          "Prediction: This Will Be Nvidia's Next Stock Split",
-          "Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.",
-          "Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret.",
-          "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
-          "Following OpenAI’s Revenue Report, Should You Really Buy AI Stocks Right Now?"
+          "Micron, SK Hynix stocks fall as Chinese memory maker announces progress in new design",
+          "Nvidia (NVDA) Grows Like a Rocket But Still Looks Cheap",
+          "Own Both VOO and QQQM? You May Be Buying the Same Stocks Twice.",
+          "Nvidia in talks to acquire or invest further in Reflection AI",
+          "Adding Nvidia During The Current Uncertainty is How Fortunes Are Made"
         ],
         "backtest": {
           "signals": 10,
@@ -1774,12 +1774,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-26) — 96.22 млрд$, зростає на 105.8% рік до року. Прибуток на акцію +127.8% рік до року. Чиста маржа 62.0%. Емітент: NVIDIA CORP.\n\n**Подія.** Найближча звітність — 2026-11-25 (через 45 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 40.0% прибуткових, очікування -0.06R, середній утримування 4.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Prediction: This Will Be Nvidia's Next Stock Split; Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.; Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret..",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-26) — 96.22 млрд$, зростає на 105.8% рік до року. Прибуток на акцію +127.8% рік до року. Чиста маржа 62.0%. Емітент: NVIDIA CORP.\n\n**Подія.** Найближча звітність — 2026-11-25 (через 45 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 40.0% прибуткових, очікування -0.06R, середній утримування 4.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Micron, SK Hynix stocks fall as Chinese memory maker announces progress in new design; Nvidia (NVDA) Grows Like a Rocket But Still Looks Cheap; Own Both VOO and QQQM? You May Be Buying the Same Stocks Twice..",
         "digest_source": "rules"
       }
     },
     {
-      "id": 158,
+      "id": 178,
       "ticker": "ORCL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1796,12 +1796,12 @@
       "atr_pct": 4.85,
       "last_close": 141.4,
       "last_bar_date": "2026-10-09",
-      "live_price": 141.98,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 140.71,
+      "live_label": "премаркет 08:42 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:42-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.41,
+      "live_vs_close_pct": -0.49,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -1818,9 +1818,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:31+00:00",
+      "created_at": "2026-10-12T12:44:02+00:00",
       "confidence": 0.39,
-      "page": "proposal-158.html",
+      "page": "proposal-178.html",
       "depth": {
         "sector": "software",
         "sector_label": "ПЗ",
@@ -1884,11 +1884,11 @@
           ]
         },
         "news": [
+          "Oracle (ORCL) Has $664B Lined Up. The Market Wants Cash First",
+          "Oracle Is Trucking In Natural Gas to Keep Its AI Data Centers on Schedule",
+          "Michael Burry Shifts Bearish Bets To Nasdaq, Semiconductor ETF Puts — Sees Market Top Within 9 Months",
           "Oracle’s ‘force majeure’ warning lands as AI power gets scarce",
-          "Why Nvidia’s stock is dodging the AI credit scare that is crushing Broadcom and Oracle",
-          "How much ORCL stock does Oracle founder & CTO Larry Ellison actually own?",
-          "CPI FIM (BDL:ORCL) Slides to €0.73 As Fair Value Questions Come Into Focus",
-          "Oracle vs. Cisco: The Dividend Battle Wall Street Didn’t See Coming"
+          "Why Nvidia’s stock is dodging the AI credit scare that is crushing Broadcom and Oracle"
         ],
         "backtest": {
           "signals": 9,
@@ -1919,12 +1919,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.04,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-08-31) — 19.34 млрд$, зростає на 29.6% рік до року. Прибуток на акцію +54.5% рік до року. Чиста маржа 24.6%. Емітент: ORACLE CORP.\n\n**Подія.** Найближча звітність — 2026-12-23 (через 73 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 88.9% прибуткових, очікування +3.55R, середній утримування 6.3 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 7.8 п.п.\n\n**Новини.** Oracle’s ‘force majeure’ warning lands as AI power gets scarce; Why Nvidia’s stock is dodging the AI credit scare that is crushing Broadcom and Oracle; How much ORCL stock does Oracle founder & CTO Larry Ellison actually own?.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-08-31) — 19.34 млрд$, зростає на 29.6% рік до року. Прибуток на акцію +54.5% рік до року. Чиста маржа 24.6%. Емітент: ORACLE CORP.\n\n**Подія.** Найближча звітність — 2026-12-23 (через 73 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 88.9% прибуткових, очікування +3.55R, середній утримування 6.3 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 7.8 п.п.\n\n**Новини.** Oracle (ORCL) Has $664B Lined Up. The Market Wants Cash First; Oracle Is Trucking In Natural Gas to Keep Its AI Data Centers on Schedule; Michael Burry Shifts Bearish Bets To Nasdaq, Semiconductor ETF Puts — Sees Market Top Within 9 Months.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 159,
+      "id": 179,
       "ticker": "QQQ",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1941,16 +1941,16 @@
       "atr_pct": 1.23,
       "last_close": 751.27,
       "last_bar_date": "2026-10-09",
-      "live_price": 752.42,
-      "live_label": "премаркет 04:02 ET",
+      "live_price": 749.79,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:02-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.15,
-      "live_vs_entry_pct": 1.44,
-      "premarket_price": 752.42,
-      "premarket_gap_pct": 0.15,
-      "premarket_note": "Премаркет $752.42 (+0.15%) — ґеп у межах, план лишається чинним.",
+      "live_vs_close_pct": -0.2,
+      "live_vs_entry_pct": 1.09,
+      "premarket_price": 749.84,
+      "premarket_gap_pct": -0.19,
+      "premarket_note": "Премаркет $749.84 (-0.19%) — ґеп у межах, план лишається чинним.",
       "gate_reasons": [
         "ліміт дій на добу вичерпано (3/3)"
       ],
@@ -1967,9 +1967,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:32+00:00",
+      "created_at": "2026-10-12T12:44:02+00:00",
       "confidence": 0.86,
-      "page": "proposal-159.html",
+      "page": "proposal-179.html",
       "depth": {
         "sector": "index",
         "sector_label": "індексний ETF",
@@ -1985,7 +1985,7 @@
           "Exchange-Traded Funds Rise as US Equities Advance After Midday",
           "$10,000 in VGT the Day ChatGPT Launched Is Now $30,500. QQQ Turned the Same Money Into $26,100",
           "Stocktwits Passport Portfolio: Wall Street Outpaces Asia As AI Trade Wobbles And Bond Yields Climb",
-          "Why Buy-and-Hold Investors Are Switching From QQQ to This Lower-Fee Alternative"
+          "Exchange-Traded Funds, Equity Futures Up Pre-Bell Friday as Oil Prices Fall, Traders Assess SpaceX Spectrum Deal"
         ],
         "backtest": {
           "signals": 7,
@@ -2017,12 +2017,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.06,
-        "digest": "**Бізнес.** Фундаментальних даних SEC для цього тікера немає (ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 7 сигналів: 0.0% прибуткових, очікування -1.00R, середній утримування 4.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist; Exchange-Traded Funds Rise as US Equities Advance After Midday; $10,000 in VGT the Day ChatGPT Launched Is Now $30,500. QQQ Turned the Same Money Into $26,100.",
+        "digest": "**Бізнес.** Фундаментальних даних SEC для цього тікера немає (ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 7 сигналів: 0.0% прибуткових, очікування -1.00R, середній утримування 4.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist; Exchange-Traded Funds Rise as US Equities Advance After Midday; $10,000 in VGT the Day ChatGPT Launched Is Now $30,500. QQQ Turned the Same Money Into $26,100.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 160,
+      "id": 180,
       "ticker": "SPY",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -2039,16 +2039,16 @@
       "atr_pct": 0.86,
       "last_close": 778.57,
       "last_bar_date": "2026-10-09",
-      "live_price": 780.51,
-      "live_label": "премаркет 04:02 ET",
+      "live_price": 778.74,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:02-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.25,
-      "live_vs_entry_pct": 2.04,
-      "premarket_price": 780.51,
-      "premarket_gap_pct": 0.25,
-      "premarket_note": "Премаркет $780.51 (+0.25%) — ґеп у межах, план лишається чинним.",
+      "live_vs_close_pct": 0.02,
+      "live_vs_entry_pct": 1.81,
+      "premarket_price": 778.74,
+      "premarket_gap_pct": 0.02,
+      "premarket_note": "Премаркет $778.74 (+0.02%) — ґеп у межах, план лишається чинним.",
       "gate_reasons": [
         "розмір: 3 шт. ≈ $2,294.76 (4.59% капіталу)"
       ],
@@ -2061,14 +2061,14 @@
         "лімітна заявка на відкат: 764.92 (закриття 778.57, стоп під мінімумом 10 сесій 758.79)"
       ],
       "invalidation": "Скасування: ґеп нижче 755.00 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (767.98) — сценарій зламано; закриття нижче 758.79 (мінімум 10 сесій) — виходимо з угоди.",
-      "order_template": "КУПІВЛЯ 3 × SPY  —  LIMIT 764.92 (GTC)\nSTOP-LOSS: 755.00  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 785.53\nЯкщо на відкритті ціна вище 772.57 — заявку скасувати.\n// Премаркет $780.51 (+0.25%) — ґеп у межах, план лишається чинним.",
+      "order_template": "КУПІВЛЯ 3 × SPY  —  LIMIT 764.92 (GTC)\nSTOP-LOSS: 755.00  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 785.53\nЯкщо на відкритті ціна вище 772.57 — заявку скасувати.\n// Премаркет $778.74 (+0.02%) — ґеп у межах, план лишається чинним.",
       "note": "Сценарій висхідний: тренд up, RSI 59.9, ATR 0.86% (≈6.61 пункту). План: вхід 764.92 (ліміт), стоп 755.00 (ризик 0.06% капіталу на 3 шт.), ціль 785.53 (R:R 2.08). Опір 781.62, підтримка 749.60.",
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:32+00:00",
+      "created_at": "2026-10-12T12:44:02+00:00",
       "confidence": 0.9,
-      "page": "proposal-160.html",
+      "page": "proposal-180.html",
       "depth": {
         "sector": "index",
         "sector_label": "індексний ETF",
@@ -2088,10 +2088,10 @@
         },
         "news": [
           "Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist",
+          "Guide to Magnificent Seven ETF investing",
           "Is Walt Disney (DIS) a Good or Bad Investment at Today’s Price?",
           "What is SBA Communications’ (SBAC) Economic Moat, and is it Widening or Narrowing?",
-          "What is Copart’s (CPRT) Economic Moat, and is it Widening or Narrowing?",
-          "What is Domino’s (DPZ) Economic Moat, and is it Widening or Narrowing?"
+          "What is Copart’s (CPRT) Economic Moat, and is it Widening or Narrowing?"
         ],
         "backtest": {
           "signals": 11,
@@ -2120,12 +2120,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.03,
-        "digest": "**Бізнес.** Фундаментальних даних SEC для цього тікера немає (ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 11 сигналів: 18.2% прибуткових, очікування -0.53R, середній утримування 6.9 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.0 п.п.\n\n**Новини.** Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist; Is Walt Disney (DIS) a Good or Bad Investment at Today’s Price?; What is SBA Communications’ (SBAC) Economic Moat, and is it Widening or Narrowing?.",
+        "digest": "**Бізнес.** Фундаментальних даних SEC для цього тікера немає (ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 11 сигналів: 18.2% прибуткових, очікування -0.53R, середній утримування 6.9 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.0 п.п.\n\n**Новини.** Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist; Guide to Magnificent Seven ETF investing; Is Walt Disney (DIS) a Good or Bad Investment at Today’s Price?.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 161,
+      "id": 181,
       "ticker": "TSLA",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -2142,16 +2142,16 @@
       "atr_pct": 3.2,
       "last_close": 382.7,
       "last_bar_date": "2026-10-09",
-      "live_price": 384.145,
-      "live_label": "премаркет 04:02 ET",
+      "live_price": 382.38,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:02-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.38,
-      "live_vs_entry_pct": 6.14,
-      "premarket_price": 384.145,
-      "premarket_gap_pct": 0.38,
-      "premarket_note": "Премаркет $384.14 (+0.38%) — ґеп у межах, план лишається чинним.",
+      "live_vs_close_pct": -0.08,
+      "live_vs_entry_pct": 5.65,
+      "premarket_price": 382.38,
+      "premarket_gap_pct": -0.08,
+      "premarket_note": "Премаркет $382.38 (-0.08%) — ґеп у межах, план лишається чинним.",
       "gate_reasons": [
         "правило на цьому тікері історично слабке: 13 сигналів, очікування -0.30R < -0.10R",
         "ліміт дій на добу вичерпано (3/3)"
@@ -2168,9 +2168,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:34+00:00",
+      "created_at": "2026-10-12T12:44:03+00:00",
       "confidence": 0.74,
-      "page": "proposal-161.html",
+      "page": "proposal-181.html",
       "depth": {
         "sector": "auto",
         "sector_label": "автовиробники",
@@ -2234,11 +2234,11 @@
           ]
         },
         "news": [
+          "How SpaceX’s Spectrum Purchase Brings It Closer to a Tesla Merger",
           "TSLA Stock Climbs Overnight As Cybercab Eyes Dallas — Musk Recalls When Shorts Had Tesla In ‘Checkmate’",
           "Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas",
           "SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week",
-          "Elon Musk’s 250,000 Cybertruck Goal Falls Well Short: New Data Shows Only 13% of Goal Sold Annually",
-          "Forget the Recent Delivery Beat: Here's the Key Number That Will Decide Investors' Reaction to Tesla's Earnings"
+          "Elon Musk’s 250,000 Cybertruck Goal Falls Well Short: New Data Shows Only 13% of Goal Sold Annually"
         ],
         "backtest": {
           "signals": 13,
@@ -2273,12 +2273,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.01,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 28.24 млрд$, зростає на 25.5% рік до року. Прибуток на акцію -3.0% рік до року. Чиста маржа 4.0%. Емітент: Tesla, Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 30.8% прибуткових, очікування -0.30R, середній утримування 7.9 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.9 п.п.\n\n**Новини.** TSLA Stock Climbs Overnight As Cybercab Eyes Dallas — Musk Recalls When Shorts Had Tesla In ‘Checkmate’; Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas; SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 28.24 млрд$, зростає на 25.5% рік до року. Прибуток на акцію -3.0% рік до року. Чиста маржа 4.0%. Емітент: Tesla, Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 30.8% прибуткових, очікування -0.30R, середній утримування 7.9 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.9 п.п.\n\n**Новини.** How SpaceX’s Spectrum Purchase Brings It Closer to a Tesla Merger; TSLA Stock Climbs Overnight As Cybercab Eyes Dallas — Musk Recalls When Shorts Had Tesla In ‘Checkmate’; Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 162,
+      "id": 182,
       "ticker": "UNH",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -2295,12 +2295,12 @@
       "atr_pct": 2.52,
       "last_close": 379.3,
       "last_bar_date": "2026-10-09",
-      "live_price": 381.17,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 380.9229,
+      "live_label": "премаркет 08:43 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:43-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.49,
+      "live_vs_close_pct": 0.43,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -2317,9 +2317,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:34+00:00",
+      "created_at": "2026-10-12T12:44:03+00:00",
       "confidence": 0.4,
-      "page": "proposal-162.html",
+      "page": "proposal-182.html",
       "depth": {
         "sector": "health",
         "sector_label": "охорона здоров'я",
@@ -2371,11 +2371,11 @@
           ]
         },
         "news": [
+          "Johnson & Johnson and UnitedHealth Report the Same Morning. Here’s What Matters.",
+          "After a Record-Setting Week, Wall Street Turns to Inflation Data and the First Big Earnings Reports",
           "UnitedHealth (UNH) Reports Earnings Tomorrow: What To Expect",
           "Suze Orman warns 390,000 seniors on Medicare plan exit",
-          "UnitedHealth’s 4-Star Medicare Enrollment Share Falls to 67%, J.P. Morgan Estimates: What It Means Before Earnings",
-          "UnitedHealth Group (UNH) Beats Stock Market Upswing: What Investors Need to Know",
-          "UnitedHealth vs. Humana: Which Healthcare Giant Has the Edge?"
+          "UnitedHealth’s 4-Star Medicare Enrollment Share Falls to 67%, J.P. Morgan Estimates: What It Means Before Earnings"
         ],
         "backtest": {
           "signals": 6,
@@ -2406,12 +2406,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.05,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 112.03 млрд$, зростає на 0.4% рік до року. Прибуток на акцію +61.5% рік до року. Чиста маржа 4.9%. Емітент: UNITEDHEALTH GROUP INC.\n\n**Подія.** Найближча звітність — 2026-11-09 (через 29 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 16.7% прибуткових, очікування -0.64R, середній утримування 7.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 1.8 п.п.\n\n**Новини.** UnitedHealth (UNH) Reports Earnings Tomorrow: What To Expect; Suze Orman warns 390,000 seniors on Medicare plan exit; UnitedHealth’s 4-Star Medicare Enrollment Share Falls to 67%, J.P. Morgan Estimates: What It Means Before Earnings.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 112.03 млрд$, зростає на 0.4% рік до року. Прибуток на акцію +61.5% рік до року. Чиста маржа 4.9%. Емітент: UNITEDHEALTH GROUP INC.\n\n**Подія.** Найближча звітність — 2026-11-09 (через 29 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 16.7% прибуткових, очікування -0.64R, середній утримування 7.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 1.8 п.п.\n\n**Новини.** Johnson & Johnson and UnitedHealth Report the Same Morning. Here’s What Matters.; After a Record-Setting Week, Wall Street Turns to Inflation Data and the First Big Earnings Reports; UnitedHealth (UNH) Reports Earnings Tomorrow: What To Expect.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 163,
+      "id": 183,
       "ticker": "V",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -2428,12 +2428,12 @@
       "atr_pct": 1.73,
       "last_close": 385.45,
       "last_bar_date": "2026-10-09",
-      "live_price": 386.03,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 385.59,
+      "live_label": "премаркет 08:26 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:26-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": 0.15,
+      "live_vs_close_pct": 0.04,
       "live_vs_entry_pct": null,
       "premarket_price": null,
       "premarket_gap_pct": null,
@@ -2450,9 +2450,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:35+00:00",
+      "created_at": "2026-10-12T12:44:04+00:00",
       "confidence": 0.43,
-      "page": "proposal-163.html",
+      "page": "proposal-183.html",
       "depth": {
         "sector": "finance",
         "sector_label": "фінанси",
@@ -2515,11 +2515,11 @@
           ]
         },
         "news": [
+          "Nvidia and Visa Have Little in Common. I'd Split $1,000 Between Them and Hold Until 2035.",
           "Visa (V): Are Bigger Client Rebates Worth the Valuation?",
           "Visa (V) Beats Stock Market Upswing: What Investors Need to Know",
           "Gate and Visa roll out crypto payment card across 40 markets",
-          "Visa (V) Stock May Be 13% Undervalued On Stablecoin Settlement Push",
-          "Visa to Announce Fiscal Fourth Quarter and Full-Year 2026 Financial Results on October 27, 2026"
+          "Visa (V) Stock May Be 13% Undervalued On Stablecoin Settlement Push"
         ],
         "backtest": {
           "signals": 14,
@@ -2546,12 +2546,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.08,
-        "digest": "**Бізнес.** Виручка за останній квартал (2019-06-30) — 5.84 млрд$, зростає на 11.4% рік до року. Емітент: VISA INC.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 14 сигналів: 42.9% прибуткових, очікування -0.18R, середній утримування 7.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.2 п.п.\n\n**Новини.** Visa (V): Are Bigger Client Rebates Worth the Valuation?; Visa (V) Beats Stock Market Upswing: What Investors Need to Know; Gate and Visa roll out crypto payment card across 40 markets.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2019-06-30) — 5.84 млрд$, зростає на 11.4% рік до року. Емітент: VISA INC.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 14 сигналів: 42.9% прибуткових, очікування -0.18R, середній утримування 7.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.2 п.п.\n\n**Новини.** Nvidia and Visa Have Little in Common. I'd Split $1,000 Between Them and Hold Until 2035.; Visa (V): Are Bigger Client Rebates Worth the Valuation?; Visa (V) Beats Stock Market Upswing: What Investors Need to Know.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 164,
+      "id": 184,
       "ticker": "XOM",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -2568,16 +2568,16 @@
       "atr_pct": 2.12,
       "last_close": 168.94,
       "last_bar_date": "2026-10-09",
-      "live_price": 168.47,
-      "live_label": "премаркет 04:01 ET",
+      "live_price": 170.5,
+      "live_label": "премаркет 08:25 ET",
       "live_session": "премаркет",
-      "live_as_of": "2026-10-12T04:01-04:00",
+      "live_as_of": "2026-10-12T08:25-04:00",
       "live_source": "yahoo-1m",
-      "live_vs_close_pct": -0.28,
-      "live_vs_entry_pct": 2.89,
-      "premarket_price": 168.47,
-      "premarket_gap_pct": -0.28,
-      "premarket_note": "Премаркет $168.47 (-0.28%) — ґеп у межах, план лишається чинним.",
+      "live_vs_close_pct": 0.92,
+      "live_vs_entry_pct": 4.13,
+      "premarket_price": 170.5,
+      "premarket_gap_pct": 0.92,
+      "premarket_note": "Премаркет $170.50 (+0.92%) — ґеп у межах, план лишається чинним.",
       "gate_reasons": [
         "ліміт дій на добу вичерпано (3/3)"
       ],
@@ -2595,9 +2595,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T08:02:35+00:00",
+      "created_at": "2026-10-12T12:44:04+00:00",
       "confidence": 0.95,
-      "page": "proposal-164.html",
+      "page": "proposal-184.html",
       "depth": {
         "sector": "energy",
         "sector_label": "енергетика",
@@ -2654,11 +2654,11 @@
           ]
         },
         "news": [
+          "Exxon’s 43-Year Dividend Streak Faces Its Biggest Test Yet as Oil Prices Slide",
           "BP (BP) vs Exxon Mobil (XOM): Which Oil Major is a Better Buy?",
           "Why ExxonMobil's Venezuela Warning Could Matter for Energy Investors Right Now",
           "Forget Chasing the Biggest Yield. These 5 Dividend Stocks Have Something Better",
-          "ExxonMobil blocked $5B Kashagan environmental fine settlement",
-          "Here's What $1,000 in These 6 Energy Dividend Stocks Could Pay You in a Year"
+          "ExxonMobil blocked $5B Kashagan environmental fine settlement"
         ],
         "backtest": {
           "signals": 15,
@@ -2687,7 +2687,7 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 116.02 млрд$, зростає на 42.3% рік до року. Прибуток на акцію +112.2% рік до року. Чиста маржа 12.5%. Емітент: ExxonMobil Holdings Corp.\n\n**Подія.** Найближча звітність — 2026-11-02 (через 22 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 15 сигналів: 66.7% прибуткових, очікування +0.69R, середній утримування 6.6 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.1 п.п.\n\n**Новини.** BP (BP) vs Exxon Mobil (XOM): Which Oil Major is a Better Buy?; Why ExxonMobil's Venezuela Warning Could Matter for Energy Investors Right Now; Forget Chasing the Biggest Yield. These 5 Dividend Stocks Have Something Better.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 116.02 млрд$, зростає на 42.3% рік до року. Прибуток на акцію +112.2% рік до року. Чиста маржа 12.5%. Емітент: ExxonMobil Holdings Corp.\n\n**Подія.** Найближча звітність — 2026-11-02 (через 22 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.5, 10-річна ставка 5.24%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 15 сигналів: 66.7% прибуткових, очікування +0.69R, середній утримування 6.6 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.1 п.п.\n\n**Новини.** Exxon’s 43-Year Dividend Streak Faces Its Biggest Test Yet as Oil Prices Slide; BP (BP) vs Exxon Mobil (XOM): Which Oil Major is a Better Buy?; Why ExxonMobil's Venezuela Warning Could Matter for Energy Investors Right Now.",
         "digest_source": "rules"
       }
     }
@@ -2706,22 +2706,22 @@
       "state": "risk_on",
       "score": 3,
       "reasons": [
-        "VIX 14.8 — спокійно",
+        "VIX 15.5 — спокійно",
         "індекс (SPY) над SMA200 — довгостроковий тренд бичачий",
         "ширина: 75% тікерів списку над своїми SMA50"
       ],
       "inputs": {
-        "vix": 14.84000015258789,
-        "vix_prev": 15.40999984741211,
+        "vix": 15.460000038146973,
+        "vix_prev": 14.84000015258789,
         "spy_close": 778.5700073242188,
         "spy_sma50": 767.5743981933593,
         "spy_sma200": 722.9283996582031,
-        "ten_year": 5.2769999504089355,
-        "ten_year_prev": 5.269000053405762,
+        "ten_year": 5.240000247955322,
+        "ten_year_prev": 5.24399995803833,
         "breadth_pct": 75.0,
-        "dollar": 102.23400115966797
+        "dollar": 102.42900085449219
       },
-      "as_of": "2026-10-12T08:02"
+      "as_of": "2026-10-12T12:43"
     },
     "breadth_pct": 75.0,
     "calendar": {},
