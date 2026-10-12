@@ -1,0 +1,2935 @@
+{
+  "generated_at": "2026-10-12T05:58:48+00:00",
+  "session": "2026-10-12",
+  "schedule": "За годину до відкриття US-ринку: cron «30 8 * * 1-5» (America/New_York)",
+  "sessions": [
+    {
+      "session": "2026-10-12",
+      "total": 104,
+      "buy": 33,
+      "wait": 71,
+      "approved": 18,
+      "last_at": "12.10.2026 08:58 Kyiv"
+    }
+  ],
+  "proposals": [
+    {
+      "id": 85,
+      "ticker": "AAPL",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 2.05,
+      "last_close": 336.64,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної) Спостерігаємо: ключова підтримка 325.81, опір 345.34.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.42,
+      "page": "proposal-85.html",
+      "depth": {
+        "sector": "tech",
+        "sector_label": "технології",
+        "rs_20_pct": -0.55,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 16.36,
+        "eps_yoy_pct": 28.66,
+        "net_margin_pct": 27.23,
+        "earnings": {
+          "date": "2026-10-30",
+          "days_to": 19,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-31",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm"
+          },
+          "days_since_report": 72,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "10-Q",
+              "date": "2026-07-31",
+              "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-05-01",
+              "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-04-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000011/aapl-20260430.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-04-20",
+              "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm"
+            }
+          ],
+          "company": "Apple Inc.",
+          "report_dates": [
+            "2026-07-31",
+            "2026-05-01"
+          ]
+        },
+        "news": [
+          "Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play",
+          "Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat",
+          "Elon Musk Will ‘Eventually’ Make a Phone, Says Gene Munster: Starlink Device Will Be a ‘Bigger Problem’ for Apple, Samsung",
+          "Apple Has Consistently Lost the Smart-Home Race. A New Partnership With LG Could Change That.",
+          "Tim Cook Told Apple CEO John Ternus ‘Don’t Mimic Me’ Before Stepping Aside Ahead of Apple’s Big iPhone Launch: 'I’m Not a Meddler'"
+        ],
+        "backtest": {
+          "signals": 8,
+          "win_rate": 37.5,
+          "expectancy_r": -0.234,
+          "max_dd_r": -3.49,
+          "avg_days": 4.5
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            334.3,
+            325.81,
+            319.35
+          ],
+          "resistances": [
+            344.3
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.07,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 109.42 млрд$, зростає на 16.4% рік до року. Прибуток на акцію +28.7% рік до року. Чиста маржа 27.2%. Емітент: Apple Inc.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 8 сигналів: 37.5% прибуткових, очікування -0.23R, середній утримування 4.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.6 п.п.\n\n**Новини.** Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play; Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat; Elon Musk Will ‘Eventually’ Make a Phone, Says Gene Munster: Starlink Device Will Be a ‘Bigger Problem’ for Apple, Samsung.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 86,
+      "ticker": "AMD",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 4.09,
+      "last_close": 608.1,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної) Спостерігаємо: ключова підтримка 480.33, опір 658.52.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.45,
+      "page": "proposal-86.html",
+      "depth": {
+        "sector": "semis",
+        "sector_label": "напівпровідники",
+        "rs_20_pct": 15.95,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 50.11,
+        "eps_yoy_pct": 155.56,
+        "net_margin_pct": 19.91,
+        "earnings": {
+          "date": "2026-11-04",
+          "days_to": 24,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-08-05",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm"
+          },
+          "days_since_report": 67,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-28",
+              "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000182/amd-20260926.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-19",
+              "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000163/amd-20260817.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-17",
+              "url": "https://www.sec.gov/Archives/edgar/data/2488/000119312526354029/d142696d8k.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-08-05",
+              "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-04",
+              "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000121/amd-20260804.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-01",
+              "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000115/amd-20260626.htm"
+            }
+          ],
+          "company": "ADVANCED MICRO DEVICES INC",
+          "report_dates": [
+            "2026-08-05"
+          ]
+        },
+        "news": [
+          "Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook",
+          "History Says This Will Happen to AMD Stock in 2027",
+          "AMD Stock Fell 6% in Three Sessions After Its Record Close. Here’s What OpenAI’s $20 Billion Revenue Gap Means for the Stock",
+          "Not Anthropic. Not AMD. Here's My Top AI Stock for 2027.",
+          "AMD’s Biggest Problem Is No Longer Demand. Lisa Su Is in Asia to Fix the Real One"
+        ],
+        "backtest": {
+          "signals": 6,
+          "win_rate": 0.0,
+          "expectancy_r": -0.765,
+          "max_dd_r": -4.59,
+          "avg_days": 2.7
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            596.07,
+            496.75,
+            486.8
+          ],
+          "resistances": [
+            639.0,
+            658.52
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 11.54 млрд$, зростає на 50.1% рік до року. Прибуток на акцію +155.6% рік до року. Чиста маржа 19.9%. Емітент: ADVANCED MICRO DEVICES INC.\n\n**Подія.** Найближча звітність — 2026-11-04 (через 24 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 0.0% прибуткових, очікування -0.77R, середній утримування 2.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 15.9 п.п.\n\n**Новини.** Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook; History Says This Will Happen to AMD Stock in 2027; AMD Stock Fell 6% in Three Sessions After Its Record Close. Here’s What OpenAI’s $20 Billion Revenue Gap Means for the Stock.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 87,
+      "ticker": "AMZN",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 2.3,
+      "last_close": 262.43,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 244.30, опір 262.80.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.42,
+      "page": "proposal-87.html",
+      "depth": {
+        "sector": "consumer",
+        "sector_label": "споживчий сектор",
+        "rs_20_pct": 0.33,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 19.62,
+        "eps_yoy_pct": 242.26,
+        "net_margin_pct": 31.23,
+        "earnings": {
+          "date": "2026-10-30",
+          "days_to": 19,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-31",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm"
+          },
+          "days_since_report": 72,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-14",
+              "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926107526/tm2624614d5_8k.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-09-09",
+              "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000036/amzn-20260908.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-07-31",
+              "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260730.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-09",
+              "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926082293/tm2619352d4_8k.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-12",
+              "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926073562/tm2613616d5_8k.htm"
+            }
+          ],
+          "company": "AMAZON COM INC",
+          "report_dates": [
+            "2026-07-31"
+          ]
+        },
+        "news": [
+          "AMZN Stock Inches Up Overnight: Amazon Reportedly Nears $7B Deal For Decart AI After Anthropic Walks Away",
+          "SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week",
+          "Amazon Reportedly in Talks to Buy Decart for $7 Billion — Market Strategist Says It Is 'Effectively Buying Software Expertise'",
+          "$15 doorbell camera became Amazon's second-largest acquisition.",
+          "Amazon in talks to acquire AI startup Decart for $7 bln- WSJ"
+        ],
+        "backtest": {
+          "signals": 4,
+          "win_rate": 50.0,
+          "expectancy_r": -0.105,
+          "max_dd_r": -1.69,
+          "avg_days": 8.0
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            256.23,
+            251.93,
+            249.58
+          ],
+          "resistances": [
+            265.59,
+            270.78,
+            274.75
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.07,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 200.61 млрд$, зростає на 19.6% рік до року. Прибуток на акцію +242.3% рік до року. Чиста маржа 31.2%. Емітент: AMAZON COM INC.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 4 сигналів: 50.0% прибуткових, очікування -0.10R, середній утримування 8.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 0.3 п.п.\n\n**Новини.** AMZN Stock Inches Up Overnight: Amazon Reportedly Nears $7B Deal For Decart AI After Anthropic Walks Away; SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week; Amazon Reportedly in Talks to Buy Decart for $7 Billion — Market Strategist Says It Is 'Effectively Buying Software Expertise'.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 88,
+      "ticker": "AVGO",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 3.21,
+      "last_close": 361.54,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 335.81, опір 380.84.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.42,
+      "page": "proposal-88.html",
+      "depth": {
+        "sector": "semis",
+        "sector_label": "напівпровідники",
+        "rs_20_pct": -1.99,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 85.5,
+        "eps_yoy_pct": 215.29,
+        "net_margin_pct": null,
+        "earnings": {
+          "date": "2026-12-12",
+          "days_to": 62,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (93 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-09-10",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm"
+          },
+          "days_since_report": 31,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "10-Q",
+              "date": "2026-09-10",
+              "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-09-02",
+              "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-20260902.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-06",
+              "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526295589/d84378d8k.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-18",
+              "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526275077/d149683d8k.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-11",
+              "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526266777/d152717d8k.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-06-09",
+              "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm"
+            }
+          ],
+          "company": "Broadcom Inc.",
+          "report_dates": [
+            "2026-09-10",
+            "2026-06-09"
+          ]
+        },
+        "news": [
+          "How Broadcom’s $42 Billion ‘Loan’ to Anthropic Is a Bet on a $2 Trillion IPO",
+          "Jim Cramer Told a Broadcom (AVGO) Holder Not to Sell, and Said He Trimmed It Himself",
+          "3 Low-Cost ETFs Spreading Income Across Hundreds of Holdings. One Still Puts 7.35% Behind a Single Company",
+          "Broadcom vs. Intel: Which Chip Stock Is a Better Buy in 2026?",
+          "Broadcom’s AI Revenue Is Tripling, but the Stock Has Lagged. Is It Time to Load Up?"
+        ],
+        "backtest": {
+          "signals": 7,
+          "win_rate": 42.9,
+          "expectancy_r": -0.369,
+          "max_dd_r": -3.0,
+          "avg_days": 5.6
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            358.07,
+            350.06,
+            346.89
+          ],
+          "resistances": [
+            366.55,
+            374.81,
+            380.23
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.07,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-08-02) — 29.59 млрд$, зростає на 85.5% рік до року. Прибуток на акцію +215.3% рік до року. Емітент: Broadcom Inc.\n\n**Подія.** Найближча звітність — 2026-12-12 (через 62 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 7 сигналів: 42.9% прибуткових, очікування -0.37R, середній утримування 5.6 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 2.0 п.п.\n\n**Новини.** How Broadcom’s $42 Billion ‘Loan’ to Anthropic Is a Bet on a $2 Trillion IPO; Jim Cramer Told a Broadcom (AVGO) Holder Not to Sell, and Said He Trimmed It Himself; 3 Low-Cost ETFs Spreading Income Across Hundreds of Holdings. One Still Puts 7.35% Behind a Single Company.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 89,
+      "ticker": "COST",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 1.58,
+      "last_close": 946.92,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 883.10, опір 953.25.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.45,
+      "page": "proposal-89.html",
+      "depth": {
+        "sector": "consumer",
+        "sector_label": "споживчий сектор",
+        "rs_20_pct": 2.79,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 11.58,
+        "eps_yoy_pct": 15.19,
+        "net_margin_pct": 3.11,
+        "earnings": {
+          "date": "2026-12-30",
+          "days_to": 80,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (84 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-K",
+            "date": "2026-10-07",
+            "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000093/cost-20260830.htm"
+          },
+          "days_since_report": 4,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "10-K",
+              "date": "2026-10-07",
+              "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000093/cost-20260830.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-09-24",
+              "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000084/cost-20260924.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-08",
+              "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000060/cost-20260707.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-06-03",
+              "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-05-28",
+              "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000046/cost-20260528.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-04-15",
+              "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000041/cost-20260415.htm"
+            }
+          ],
+          "company": "COSTCO WHOLESALE CORP /NEW",
+          "report_dates": [
+            "2026-10-07",
+            "2026-06-03",
+            "2026-03-11",
+            "2025-12-17"
+          ]
+        },
+        "news": [
+          "History Says This Is the Amount of Yearly Dividend Income a $10,000 Investment in Costco Stock Could Generate by 2031 (Without Even Considering Special Dividends)",
+          "Costco Stock Is 14% Below Its Record. History Says Buyers Have Usually Been Rewarded.",
+          "Costco is booming as Americans rethink where every dollar goes",
+          "Costco is winning at weight loss, but members are paying for it",
+          "Walmart vs. Costco: Why the Cheaper Earnings Stock Costs More for Cash Flow"
+        ],
+        "backtest": {
+          "signals": 13,
+          "win_rate": 53.8,
+          "expectancy_r": 0.4,
+          "max_dd_r": -4.0,
+          "avg_days": 5.8
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            938.65,
+            911.86,
+            884.3
+          ],
+          "resistances": [
+            969.81,
+            992.36,
+            1016.6
+          ],
+          "divergence": "bullish",
+          "divergence_note": "ціна оновила мінімум (898.43 → 885.50), а RSI вищий (34.3 → 38.1) — продавці видихаються"
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-05-10) — 70.53 млрд$, зростає на 11.6% рік до року. Прибуток на акцію +15.2% рік до року. Чиста маржа 3.1%. Емітент: COSTCO WHOLESALE CORP /NEW.\n\n**Подія.** Найближча звітність — 2026-12-30 (через 80 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 53.8% прибуткових, очікування +0.40R, середній утримування 5.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.8 п.п.\n\n**Новини.** History Says This Is the Amount of Yearly Dividend Income a $10,000 Investment in Costco Stock Could Generate by 2031 (Without Even Considering Special Dividends); Costco Stock Is 14% Below Its Record. History Says Buyers Have Usually Been Rewarded.; Costco is booming as Americans rethink where every dollar goes.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 90,
+      "ticker": "CRM",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 3.69,
+      "last_close": 229.13,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної) Спостерігаємо: ключова підтримка 220.29, опір 262.34.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.39,
+      "page": "proposal-90.html",
+      "depth": {
+        "sector": "software",
+        "sector_label": "ПЗ",
+        "rs_20_pct": -9.37,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 10.83,
+        "eps_yoy_pct": 118.88,
+        "net_margin_pct": 31.08,
+        "earnings": {
+          "date": "2026-11-26",
+          "days_to": 46,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-08-27",
+            "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000190/crm-20260731.htm"
+          },
+          "days_since_report": 45,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-17",
+              "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000210/crm-20260916.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-09-04",
+              "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000197/crm-20260902.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-08-27",
+              "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000190/crm-20260731.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-26",
+              "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000187/crm-20260826.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-05",
+              "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000160/crm-20260805.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-02",
+              "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000138/crm-20260527.htm"
+            }
+          ],
+          "company": "Salesforce, Inc.",
+          "report_dates": [
+            "2026-08-27",
+            "2026-05-28"
+          ]
+        },
+        "news": [
+          "The SaaSpocalypse is dead: Software stocks make a comeback",
+          "Brokers Suggest Investing in Salesforce (CRM): Read This Before Placing a Bet",
+          "Wall Street Left Software for Dead: 4 Stocks Institutions Are Buying Back",
+          "How Salesforce’s New Missionforce CMO Hire (CRM) Shapes Its Public-Sector AI Ambitions",
+          "Salesforce (CRM) Advances While Market Declines: Some Information for Investors"
+        ],
+        "backtest": {
+          "signals": 10,
+          "win_rate": 50.0,
+          "expectancy_r": 0.185,
+          "max_dd_r": -4.0,
+          "avg_days": 6.0
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            221.18,
+            198.95,
+            189.91
+          ],
+          "resistances": [
+            239.45,
+            262.93,
+            268.27
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.04,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-31) — 11.35 млрд$, зростає на 10.8% рік до року. Прибуток на акцію +118.9% рік до року. Чиста маржа 31.1%. Емітент: Salesforce, Inc.\n\n**Подія.** Найближча звітність — 2026-11-26 (через 46 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 50.0% прибуткових, очікування +0.18R, середній утримування 6.0 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 9.4 п.п.\n\n**Новини.** The SaaSpocalypse is dead: Software stocks make a comeback; Brokers Suggest Investing in Salesforce (CRM): Read This Before Placing a Bet; Wall Street Left Software for Dead: 4 Stocks Institutions Are Buying Back.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 91,
+      "ticker": "GOOGL",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 2.44,
+      "last_close": 351.66,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 335.51, опір 364.17.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.45,
+      "page": "proposal-91.html",
+      "depth": {
+        "sector": "internet",
+        "sector_label": "інтернет",
+        "rs_20_pct": 2.02,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 24.23,
+        "eps_yoy_pct": 294.37,
+        "net_margin_pct": 93.65,
+        "earnings": {
+          "date": "2026-10-22",
+          "days_to": 11,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-23",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm"
+          },
+          "days_since_report": 80,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-08-10",
+              "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526342390/d171253d8k.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-07-23",
+              "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-22",
+              "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/goog-20260722.htm"
+            }
+          ],
+          "company": "Alphabet Inc.",
+          "report_dates": [
+            "2026-07-23"
+          ]
+        },
+        "news": [
+          "Constellation’s $4.3 Billion Nuclear Upgrade Could Be Its Smartest Move Yet",
+          "Not Alphabet. Not Amazon. Microsoft Trades at Big Tech's Cheapest Valuation.",
+          "Michael Moritz Says Most Investors Can’t Do the One Thing That Actually Makes Money",
+          "Warren Buffett's Successor Has Billions in This Cloud Titan",
+          "Amazon and Alphabet Just Committed $420 Billion to Data Centers. 1 Stock Is the Better Buy."
+        ],
+        "backtest": {
+          "signals": 4,
+          "win_rate": 50.0,
+          "expectancy_r": 0.557,
+          "max_dd_r": -2.0,
+          "avg_days": 6.8
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            346.36,
+            340.36,
+            335.76
+          ],
+          "resistances": [
+            364.17,
+            374.13,
+            384.48
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 119.80 млрд$, зростає на 24.2% рік до року. Прибуток на акцію +294.4% рік до року. Чиста маржа 93.7%. Емітент: Alphabet Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 4 сигналів: 50.0% прибуткових, очікування +0.56R, середній утримування 6.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.0 п.п.\n\n**Новини.** Constellation’s $4.3 Billion Nuclear Upgrade Could Be Its Smartest Move Yet; Not Alphabet. Not Amazon. Microsoft Trades at Big Tech's Cheapest Valuation.; Michael Moritz Says Most Investors Can’t Do the One Thing That Actually Makes Money.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 92,
+      "ticker": "JPM",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 1.78,
+      "last_close": 332.99,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20); RSI 38.3 поза робочим діапазоном 42-72; імпульс негативний (MACD нижче сигнальної)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20); RSI 38.3 поза робочим діапазоном 42-72; імпульс негативний (MACD нижче сигнальної) Спостерігаємо: ключова підтримка 325.07, опір 355.60.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:45+00:00",
+      "confidence": 0.37,
+      "page": "proposal-92.html",
+      "depth": {
+        "sector": "finance",
+        "sector_label": "фінанси",
+        "rs_20_pct": -8.39,
+        "fundamentals_score": 1,
+        "revenue_yoy_pct": 4.88,
+        "eps_yoy_pct": 46.95,
+        "net_margin_pct": 22.95,
+        "earnings": null,
+        "filings": {
+          "last_report": null,
+          "days_since_report": null,
+          "eight_k_30d": 0,
+          "recent": [],
+          "company": "JPMORGAN CHASE & CO",
+          "report_dates": []
+        },
+        "news": [
+          "What To Expect From JPMorgan Chase’s (JPM) Q3 Earnings",
+          "Ford and JPMorgan Back Michigan Factories in Attempt to Bring US Manufacturing Home",
+          "JPMorgan's CEO sends a stern warning to corporate America",
+          "Savara Has Lost 30% Since December: JPMorgan Sees 146% Upside",
+          "In 2000, A 62-Year-Old Texas Man Retired After Working 33 Years With $1.3 Million In Company Stock. Twenty Months Later, He Said It Was Worth About $8,000. The Unlucky Story Of Charles Prestwood Holds An Important Lesson For Every Investor"
+        ],
+        "backtest": {
+          "signals": 18,
+          "win_rate": 50.0,
+          "expectancy_r": 0.18,
+          "max_dd_r": -7.42,
+          "avg_days": 8.2
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            330.13,
+            325.43,
+            307.42
+          ],
+          "resistances": [
+            338.09,
+            342.72,
+            351.24
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.02,
+        "digest": "**Бізнес.** Виручка за останній квартал (2014-09-30) — 24.25 млрд$, зростає на 4.9% рік до року. Прибуток на акцію +47.0% рік до року. Чиста маржа 22.9%. Емітент: JPMORGAN CHASE & CO.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 18 сигналів: 50.0% прибуткових, очікування +0.18R, середній утримування 8.2 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 8.4 п.п.\n\n**Новини.** What To Expect From JPMorgan Chase’s (JPM) Q3 Earnings; Ford and JPMorgan Back Michigan Factories in Attempt to Bring US Manufacturing Home; JPMorgan's CEO sends a stern warning to corporate America.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 93,
+      "ticker": "LLY",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 3.01,
+      "last_close": 1179.27,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 1130.50, опір 1215.00.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:46+00:00",
+      "confidence": 0.45,
+      "page": "proposal-93.html",
+      "depth": {
+        "sector": "health",
+        "sector_label": "охорона здоров'я",
+        "rs_20_pct": 3.83,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 47.67,
+        "eps_yoy_pct": 26.23,
+        "net_margin_pct": 30.88,
+        "earnings": {
+          "date": "2026-11-10",
+          "days_to": 30,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (97 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-08-05",
+            "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000081/lly-20260630.htm"
+          },
+          "days_since_report": 67,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "10-Q",
+              "date": "2026-08-05",
+              "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000081/lly-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-05",
+              "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000077/lly-20260805.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-05-20",
+              "url": "https://www.sec.gov/Archives/edgar/data/59478/000119312526232707/d148580d8k.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-05-07",
+              "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000048/lly-20260504.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-04-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000045/lly-20260331.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-04-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000043/lly-20260430.htm"
+            }
+          ],
+          "company": "ELI LILLY & Co",
+          "report_dates": [
+            "2026-08-05",
+            "2026-04-30"
+          ]
+        },
+        "news": [
+          "SLS Stock Jumps Overnight: Retail Sees Big Pharma Buyout Clues In 'M&A Negotiation Lounge' Booth At ASH",
+          "Eli Lilly (LLY) Posted 48% Revenue Growth. Why Does the Stock Trade Below Its Average Multiple?",
+          "Eli Lilly (LLY) As Zepbound And Retatrutide Updates Test Whether More Upside Is Priced In",
+          "Eli Lilly’s Biggest Shareholder Just Filed to Sell $347 Million of Stock",
+          "Cantor Fitzgerald Lifts Price Targets on Four Pharma Giants Amid Mixed Growth Outlooks"
+        ],
+        "backtest": {
+          "signals": 5,
+          "win_rate": 40.0,
+          "expectancy_r": 0.2,
+          "max_dd_r": -2.0,
+          "avg_days": 4.6
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            1173.93,
+            1163.5,
+            1138.29
+          ],
+          "resistances": [
+            1196.59,
+            1239.89,
+            1292.65
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 22.97 млрд$, зростає на 47.7% рік до року. Прибуток на акцію +26.2% рік до року. Чиста маржа 30.9%. Емітент: ELI LILLY & Co.\n\n**Подія.** Найближча звітність — 2026-11-10 (через 30 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 5 сигналів: 40.0% прибуткових, очікування +0.20R, середній утримування 4.6 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.8 п.п.\n\n**Новини.** SLS Stock Jumps Overnight: Retail Sees Big Pharma Buyout Clues In 'M&A Negotiation Lounge' Booth At ASH; Eli Lilly (LLY) Posted 48% Revenue Growth. Why Does the Stock Trade Below Its Average Multiple?; Eli Lilly (LLY) As Zepbound And Retatrutide Updates Test Whether More Upside Is Priced In.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 94,
+      "ticker": "META",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 3.17,
+      "last_close": 718.67,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: імпульс негативний (MACD нижче сигнальної) Спостерігаємо: ключова підтримка 649.22, опір 779.82.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:46+00:00",
+      "confidence": 0.41,
+      "page": "proposal-94.html",
+      "depth": {
+        "sector": "internet",
+        "sector_label": "інтернет",
+        "rs_20_pct": 9.03,
+        "fundamentals_score": 0,
+        "revenue_yoy_pct": 27.96,
+        "eps_yoy_pct": -13.45,
+        "net_margin_pct": 26.07,
+        "earnings": {
+          "date": "2026-10-29",
+          "days_to": 18,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-30",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm"
+          },
+          "days_since_report": 73,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "10-Q",
+              "date": "2026-07-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-29",
+              "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-20260729.htm"
+            }
+          ],
+          "company": "Meta Platforms, Inc.",
+          "report_dates": [
+            "2026-07-30"
+          ]
+        },
+        "news": [
+          "Meta Stock Warning? Zuckerberg Sells $21 Million as Insiders Exit",
+          "Prediction: Meta Platforms Stock Will Drop After Earnings, and That Could Be an Incredible Buying Opportunity",
+          "We gave Meta's new Muse tool 3 money chores — what it saved us (and what went wrong)",
+          "“Just Do the Math”: Meta’s Muse Needs $2.8 Billion Compute to Serve 100 Million Users. Facebook Has 3 Billion",
+          "1 Reason the Meta Muse AI Agent Has the Upper Hand"
+        ],
+        "backtest": {
+          "signals": 11,
+          "win_rate": 0.0,
+          "expectancy_r": -0.916,
+          "max_dd_r": -10.08,
+          "avg_days": 6.1
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            713.19,
+            660.8,
+            651.05
+          ],
+          "resistances": [
+            747.6,
+            779.82
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.06,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 60.80 млрд$, зростає на 28.0% рік до року. Прибуток на акцію -13.4% рік до року. Чиста маржа 26.1%. Емітент: Meta Platforms, Inc.\n\n**Подія.** Найближча звітність — 2026-10-29 (через 18 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 11 сигналів: 0.0% прибуткових, очікування -0.92R, середній утримування 6.1 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 9.0 п.п.\n\n**Новини.** Meta Stock Warning? Zuckerberg Sells $21 Million as Insiders Exit; Prediction: Meta Platforms Stock Will Drop After Earnings, and That Could Be an Incredible Buying Opportunity; We gave Meta's new Muse tool 3 money chores — what it saved us (and what went wrong).",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 95,
+      "ticker": "MSFT",
+      "for_session": "2026-10-12",
+      "bias": "BUY",
+      "approved": true,
+      "entry_type": "limit",
+      "entry_price": 517.47,
+      "stop_price": 499.71,
+      "target_price": 552.99,
+      "rr": 2.0,
+      "qty": 4,
+      "notional": 2069.88,
+      "risk_usd": 71.04,
+      "risk_pct_of_equity": 0.14,
+      "atr_pct": 2.26,
+      "last_close": 535.07,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "розмір: 4 шт. ≈ $2,069.88 (4.14% капіталу)"
+      ],
+      "reasons": [
+        "тренд висхідний: ціна над SMA50 і SMA20 > SMA50",
+        "ціна над SMA200 — довгострокова структура бичача",
+        "MACD-гістограма додатна і зростає",
+        "RSI 67.5 — у робочому діапазоні (без перекупленості)",
+        "ціна за -0.40% від максимуму 20 сесій — близько до пробою",
+        "лімітна заявка на відкат: 517.47 (закриття 535.07, стоп під мінімумом 10 сесій 502.22)"
+      ],
+      "invalidation": "Скасування: ґеп нижче 499.71 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (510.10) — сценарій зламано; закриття нижче 502.22 (мінімум 10 сесій) — виходимо з угоди.",
+      "order_template": "КУПІВЛЯ 4 × MSFT  —  LIMIT 517.47 (GTC)\nSTOP-LOSS: 499.71  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 552.99\nЯкщо на відкритті ціна вище 522.64 — заявку скасувати.",
+      "note": "Сценарій висхідний: тренд up, RSI 67.5, ATR 2.26% (≈11.84 пункту). План: вхід 517.47 (ліміт), стоп 499.71 (ризик 0.14% капіталу на 4 шт.), ціль 552.99 (R:R 2.0). Опір 537.22, підтримка 487.23.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:46+00:00",
+      "confidence": 0.95,
+      "page": "proposal-95.html",
+      "depth": {
+        "sector": "tech",
+        "sector_label": "технології",
+        "rs_20_pct": 6.09,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 18.3,
+        "eps_yoy_pct": 23.41,
+        "net_margin_pct": 38.34,
+        "earnings": {
+          "date": "2026-10-28",
+          "days_to": 17,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-K",
+            "date": "2026-07-29",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
+          },
+          "days_since_report": 74,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-02",
+              "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm"
+            },
+            {
+              "form": "10-K",
+              "date": "2026-07-29",
+              "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-29",
+              "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm"
+            }
+          ],
+          "company": "MICROSOFT CORP",
+          "report_dates": [
+            "2026-07-29"
+          ]
+        },
+        "news": [
+          "3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First",
+          "Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28",
+          "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
+          "Microsoft CEO wants AI treated like a risky insider at work",
+          "Microsoft Is Taking AI Beyond the Data Center, But Its Surface Business Is Just a Small Piece of the Pie"
+        ],
+        "backtest": {
+          "signals": 9,
+          "win_rate": 44.4,
+          "expectancy_r": -0.092,
+          "max_dd_r": -3.0,
+          "avg_days": 7.0
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            492.18,
+            486.62,
+            477.84
+          ],
+          "resistances": [],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": [
+            "мало історичних сигналів (9 < 12) — оцінка ненадійна",
+            "сильніша за SPY на +6.1 п.п. за 20 сесій"
+          ]
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-03-31) — 82.89 млрд$, зростає на 18.3% рік до року. Прибуток на акцію +23.4% рік до року. Чиста маржа 38.3%. Емітент: MICROSOFT CORP.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 44.4% прибуткових, очікування -0.09R, середній утримування 7.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 6.1 п.п.\n\n**Новини.** 3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First; Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28; Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years..",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 96,
+      "ticker": "NFLX",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 2.7,
+      "last_close": 70.3,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 66.54, опір 81.02.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:46+00:00",
+      "confidence": 0.39,
+      "page": "proposal-96.html",
+      "depth": {
+        "sector": "media",
+        "sector_label": "медіа",
+        "rs_20_pct": -11.04,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 13.37,
+        "eps_yoy_pct": 11.11,
+        "net_margin_pct": 27.08,
+        "earnings": {
+          "date": "2026-10-16",
+          "days_to": 5,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-17",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000212/nflx-20260630.htm"
+          },
+          "days_since_report": 86,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-07-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000214/nflx-20260726.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-22",
+              "url": "https://www.sec.gov/Archives/edgar/data/1065280/000119312526312575/d171951d8k.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-07-17",
+              "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000212/nflx-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-16",
+              "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000211/nflx-20260716.htm"
+            }
+          ],
+          "company": "NETFLIX INC",
+          "report_dates": [
+            "2026-07-17"
+          ]
+        },
+        "news": [
+          "Why Goldman Sachs still backs Netflix despite falling viewership",
+          "What Is Netflix (NFLX) Signaling With Its New Content Acquisition Chief?",
+          "Paramount and Warner Bros. Discovery Are Now Skydance. Here's Why I'd Rather Own Netflix.",
+          "Dear Netflix Stock Fans, Mark Your Calendars for October 20",
+          "Netflix Plans 5% Workforce Reduction Starting Next Week"
+        ],
+        "backtest": {
+          "signals": 9,
+          "win_rate": 22.2,
+          "expectancy_r": -0.615,
+          "max_dd_r": -5.54,
+          "avg_days": 5.3
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            68.88,
+            66.54,
+            65.08
+          ],
+          "resistances": [
+            73.76,
+            75.3,
+            76.07
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.04,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 12.56 млрд$, зростає на 13.4% рік до року. Прибуток на акцію +11.1% рік до року. Чиста маржа 27.1%. Емітент: NETFLIX INC.\n\n**Подія.** Найближча звітність — 2026-10-16 (через 5 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 22.2% прибуткових, очікування -0.61R, середній утримування 5.3 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 11.0 п.п.\n\n**Новини.** Why Goldman Sachs still backs Netflix despite falling viewership; What Is Netflix (NFLX) Signaling With Its New Content Acquisition Chief?; Paramount and Warner Bros. Discovery Are Now Skydance. Here's Why I'd Rather Own Netflix..",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 97,
+      "ticker": "NVDA",
+      "for_session": "2026-10-12",
+      "bias": "BUY",
+      "approved": true,
+      "entry_type": "market",
+      "entry_price": 229.28,
+      "stop_price": 220.75,
+      "target_price": 246.34,
+      "rr": 2.0,
+      "qty": 10,
+      "notional": 2292.8,
+      "risk_usd": 85.3,
+      "risk_pct_of_equity": 0.17,
+      "atr_pct": 2.54,
+      "last_close": 229.28,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "розмір: 10 шт. ≈ $2,292.80 (4.59% капіталу)"
+      ],
+      "reasons": [
+        "тренд висхідний: ціна над SMA50 і SMA20 > SMA50",
+        "ціна над SMA200 — довгострокова структура бичача",
+        "MACD-гістограма додатна (але сповільнюється)",
+        "RSI 53.0 — у робочому діапазоні (без перекупленості)",
+        "відкату немає — план передбачає вхід за ринком на відкритті"
+      ],
+      "invalidation": "Скасування: ґеп нижче 220.75 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (226.73) — сценарій зламано; закриття нижче 227.03 (мінімум 10 сесій) — виходимо з угоди.",
+      "order_template": "КУПІВЛЯ 10 × NVDA  —  MARKET (на відкритті)\nSTOP-LOSS: 220.75  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 246.34",
+      "note": "Сценарій висхідний: тренд up, RSI 53.0, ATR 2.54% (≈5.69 пункту). План: вхід 229.28 (за ринком), стоп 220.75 (ризик 0.17% капіталу на 10 шт.), ціль 246.34 (R:R 2.0). Опір 243.37, підтримка 208.93.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:46+00:00",
+      "confidence": 0.9,
+      "page": "proposal-97.html",
+      "depth": {
+        "sector": "semis",
+        "sector_label": "напівпровідники",
+        "rs_20_pct": 3.17,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 105.85,
+        "eps_yoy_pct": 127.78,
+        "net_margin_pct": 62.03,
+        "earnings": {
+          "date": "2026-11-25",
+          "days_to": 45,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-08-26",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"
+          },
+          "days_since_report": 46,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-03",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-08-26",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-26",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-17",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-02",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000060/nvda-20260628.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-30",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000056/nvda-20260624.htm"
+            }
+          ],
+          "company": "NVIDIA CORP",
+          "report_dates": [
+            "2026-08-26"
+          ]
+        },
+        "news": [
+          "Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.",
+          "Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret.",
+          "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
+          "Following OpenAI’s Revenue Report, Should You Really Buy AI Stocks Right Now?",
+          "Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play"
+        ],
+        "backtest": {
+          "signals": 10,
+          "win_rate": 40.0,
+          "expectancy_r": -0.057,
+          "max_dd_r": -3.0,
+          "avg_days": 4.7
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            221.09,
+            217.91,
+            215.65
+          ],
+          "resistances": [
+            230.22,
+            233.42,
+            236.54
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": [
+            "мало історичних сигналів (10 < 12) — оцінка ненадійна",
+            "сильніша за SPY на +3.2 п.п. за 20 сесій"
+          ]
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-26) — 96.22 млрд$, зростає на 105.8% рік до року. Прибуток на акцію +127.8% рік до року. Чиста маржа 62.0%. Емітент: NVIDIA CORP.\n\n**Подія.** Найближча звітність — 2026-11-25 (через 45 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 40.0% прибуткових, очікування -0.06R, середній утримування 4.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.; Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret.; Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years..",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 98,
+      "ticker": "ORCL",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 4.85,
+      "last_close": 141.4,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 131.58, опір 153.60.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:46+00:00",
+      "confidence": 0.39,
+      "page": "proposal-98.html",
+      "depth": {
+        "sector": "software",
+        "sector_label": "ПЗ",
+        "rs_20_pct": -7.78,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 29.61,
+        "eps_yoy_pct": 54.46,
+        "net_margin_pct": 24.61,
+        "earnings": {
+          "date": "2026-12-23",
+          "days_to": 73,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (103 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-09-11",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm"
+          },
+          "days_since_report": 30,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-14",
+              "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389753/d20034d8k.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-09-11",
+              "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-09-10",
+              "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-20260910.htm"
+            },
+            {
+              "form": "10-K",
+              "date": "2026-06-22",
+              "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-10",
+              "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526265848/orcl-20260610.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-05-12",
+              "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526219708/d76569d8k.htm"
+            }
+          ],
+          "company": "ORACLE CORP",
+          "report_dates": [
+            "2026-09-11",
+            "2026-06-22",
+            "2026-03-11"
+          ]
+        },
+        "news": [
+          "Oracle’s ‘force majeure’ warning lands as AI power gets scarce",
+          "Why Nvidia’s stock is dodging the AI credit scare that is crushing Broadcom and Oracle",
+          "How much ORCL stock does Oracle founder & CTO Larry Ellison actually own?",
+          "CPI FIM (BDL:ORCL) Slides to €0.73 As Fair Value Questions Come Into Focus",
+          "Oracle vs. Cisco: The Dividend Battle Wall Street Didn’t See Coming"
+        ],
+        "backtest": {
+          "signals": 9,
+          "win_rate": 88.9,
+          "expectancy_r": 3.547,
+          "max_dd_r": -1.0,
+          "avg_days": 6.3
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            139.15,
+            137.51,
+            131.58
+          ],
+          "resistances": [
+            143.67,
+            146.94,
+            148.71
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.04,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-08-31) — 19.34 млрд$, зростає на 29.6% рік до року. Прибуток на акцію +54.5% рік до року. Чиста маржа 24.6%. Емітент: ORACLE CORP.\n\n**Подія.** Найближча звітність — 2026-12-23 (через 73 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 88.9% прибуткових, очікування +3.55R, середній утримування 6.3 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 7.8 п.п.\n\n**Новини.** Oracle’s ‘force majeure’ warning lands as AI power gets scarce; Why Nvidia’s stock is dodging the AI credit scare that is crushing Broadcom and Oracle; How much ORCL stock does Oracle founder & CTO Larry Ellison actually own?.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 99,
+      "ticker": "QQQ",
+      "for_session": "2026-10-12",
+      "bias": "BUY",
+      "approved": false,
+      "entry_type": "limit",
+      "entry_price": 741.71,
+      "stop_price": 727.97,
+      "target_price": 769.19,
+      "rr": 2.0,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 1.23,
+      "last_close": 751.27,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "ліміт дій на добу вичерпано (3/3)"
+      ],
+      "reasons": [
+        "тренд висхідний: ціна над SMA50 і SMA20 > SMA50",
+        "ціна над SMA200 — довгострокова структура бичача",
+        "MACD-гістограма додатна (але сповільнюється)",
+        "RSI 60.9 — у робочому діапазоні (без перекупленості)",
+        "лімітна заявка на відкат: 741.71 (закриття 751.27, стоп під мінімумом 10 сесій 731.63)"
+      ],
+      "invalidation": "Скасування: ґеп нижче 727.97 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (737.54) — сценарій зламано; закриття нижче 731.63 (мінімум 10 сесій) — виходимо з угоди.",
+      "order_template": "",
+      "note": "Сценарій висхідний: тренд up, RSI 60.9, ATR 1.23% (≈9.16 пункту). План: вхід 741.71 (ліміт), стоп 727.97 (ризик 0.00% капіталу на 0 шт.), ціль 769.19 (R:R 2.0). Опір 762.86, підтримка 700.00.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:47+00:00",
+      "confidence": 0.86,
+      "page": "proposal-99.html",
+      "depth": {
+        "sector": "index",
+        "sector_label": "індексний ETF",
+        "rs_20_pct": 3.22,
+        "fundamentals_score": null,
+        "revenue_yoy_pct": null,
+        "eps_yoy_pct": null,
+        "net_margin_pct": null,
+        "earnings": null,
+        "filings": null,
+        "news": [
+          "Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist",
+          "Exchange-Traded Funds Rise as US Equities Advance After Midday",
+          "$10,000 in VGT the Day ChatGPT Launched Is Now $30,500. QQQ Turned the Same Money Into $26,100",
+          "Stocktwits Passport Portfolio: Wall Street Outpaces Asia As AI Trade Wobbles And Bond Yields Climb",
+          "Why Buy-and-Hold Investors Are Switching From QQQ to This Lower-Fee Alternative"
+        ],
+        "backtest": {
+          "signals": 7,
+          "win_rate": 0.0,
+          "expectancy_r": -1.0,
+          "max_dd_r": -7.0,
+          "avg_days": 4.0
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            731.63,
+            718.17,
+            710.08
+          ],
+          "resistances": [
+            762.86
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": [
+            "мало історичних сигналів (7 < 12) — оцінка ненадійна",
+            "сильніша за SPY на +3.2 п.п. за 20 сесій"
+          ]
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.06,
+        "digest": "**Бізнес.** Фундаментальних даних SEC для цього тікера немає (ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 7 сигналів: 0.0% прибуткових, очікування -1.00R, середній утримування 4.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist; Exchange-Traded Funds Rise as US Equities Advance After Midday; $10,000 in VGT the Day ChatGPT Launched Is Now $30,500. QQQ Turned the Same Money Into $26,100.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 100,
+      "ticker": "SPY",
+      "for_session": "2026-10-12",
+      "bias": "BUY",
+      "approved": true,
+      "entry_type": "limit",
+      "entry_price": 764.92,
+      "stop_price": 755.0,
+      "target_price": 785.53,
+      "rr": 2.08,
+      "qty": 3,
+      "notional": 2294.76,
+      "risk_usd": 29.76,
+      "risk_pct_of_equity": 0.06,
+      "atr_pct": 0.86,
+      "last_close": 778.57,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "розмір: 3 шт. ≈ $2,294.76 (4.59% капіталу)"
+      ],
+      "reasons": [
+        "тренд висхідний: ціна над SMA50 і SMA20 > SMA50",
+        "ціна над SMA200 — довгострокова структура бичача",
+        "MACD-гістограма додатна і зростає",
+        "RSI 59.9 — у робочому діапазоні (без перекупленості)",
+        "ціна за -0.39% від максимуму 20 сесій — близько до пробою",
+        "лімітна заявка на відкат: 764.92 (закриття 778.57, стоп під мінімумом 10 сесій 758.79)"
+      ],
+      "invalidation": "Скасування: ґеп нижче 755.00 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (767.98) — сценарій зламано; закриття нижче 758.79 (мінімум 10 сесій) — виходимо з угоди.",
+      "order_template": "КУПІВЛЯ 3 × SPY  —  LIMIT 764.92 (GTC)\nSTOP-LOSS: 755.00  (GTC, або перевіряйте вручну щодня)\nTAKE-PROFIT: 785.53\nЯкщо на відкритті ціна вище 772.57 — заявку скасувати.",
+      "note": "Сценарій висхідний: тренд up, RSI 59.9, ATR 0.86% (≈6.61 пункту). План: вхід 764.92 (ліміт), стоп 755.00 (ризик 0.06% капіталу на 3 шт.), ціль 785.53 (R:R 2.08). Опір 781.62, підтримка 749.60.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:47+00:00",
+      "confidence": 0.9,
+      "page": "proposal-100.html",
+      "depth": {
+        "sector": "index",
+        "sector_label": "індексний ETF",
+        "rs_20_pct": 0.0,
+        "fundamentals_score": 0,
+        "revenue_yoy_pct": null,
+        "eps_yoy_pct": null,
+        "net_margin_pct": null,
+        "earnings": null,
+        "filings": {
+          "last_report": null,
+          "days_since_report": null,
+          "eight_k_30d": 0,
+          "recent": [],
+          "company": "SPDR S&P 500 ETF TRUST",
+          "report_dates": []
+        },
+        "news": [
+          "Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist",
+          "Is Walt Disney (DIS) a Good or Bad Investment at Today’s Price?",
+          "What is SBA Communications’ (SBAC) Economic Moat, and is it Widening or Narrowing?",
+          "What is Copart’s (CPRT) Economic Moat, and is it Widening or Narrowing?",
+          "What is Domino’s (DPZ) Economic Moat, and is it Widening or Narrowing?"
+        ],
+        "backtest": {
+          "signals": 11,
+          "win_rate": 18.2,
+          "expectancy_r": -0.531,
+          "max_dd_r": -5.84,
+          "avg_days": 6.9
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            769.2,
+            760.04,
+            749.6
+          ],
+          "resistances": [],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": [
+            "мало історичних сигналів (11 < 12) — оцінка ненадійна"
+          ]
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.03,
+        "digest": "**Бізнес.** Фундаментальних даних SEC для цього тікера немає (ETF, іноземний емітент або тимчасова недоступність) — оцінюємо лише графік і режим ринку.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 11 сигналів: 18.2% прибуткових, очікування -0.53R, середній утримування 6.9 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.0 п.п.\n\n**Новини.** Stocktwits Pharma Pulse: JNJ Earnings, Cancer Updates And Two FDA Target Dates — The Week’s Biotech Watchlist; Is Walt Disney (DIS) a Good or Bad Investment at Today’s Price?; What is SBA Communications’ (SBAC) Economic Moat, and is it Widening or Narrowing?.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 101,
+      "ticker": "TSLA",
+      "for_session": "2026-10-12",
+      "bias": "BUY",
+      "approved": false,
+      "entry_type": "limit",
+      "entry_price": 361.93,
+      "stop_price": 344.15,
+      "target_price": 397.5,
+      "rr": 2.0,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 3.2,
+      "last_close": 382.7,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "правило на цьому тікері історично слабке: 13 сигналів, очікування -0.30R < -0.10R",
+        "ліміт дій на добу вичерпано (3/3)"
+      ],
+      "reasons": [
+        "тренд висхідний: ціна над SMA50 і SMA20 > SMA50",
+        "MACD-гістограма додатна і зростає",
+        "RSI 59.7 — у робочому діапазоні (без перекупленості)",
+        "лімітна заявка на відкат: 361.93 (закриття 382.70, стоп під мінімумом 10 сесій 345.88)"
+      ],
+      "invalidation": "Скасування: ґеп нижче 344.15 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (368.66) — сценарій зламано; закриття нижче 345.88 (мінімум 10 сесій) — виходимо з угоди.",
+      "order_template": "",
+      "note": "Сценарій висхідний: тренд up, RSI 59.7, ATR 3.20% (≈11.86 пункту). План: вхід 361.93 (ліміт), стоп 344.15 (ризик 0.00% капіталу на 0 шт.), ціль 397.50 (R:R 2.0). Опір 388.56, підтримка 345.88.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:47+00:00",
+      "confidence": 0.74,
+      "page": "proposal-101.html",
+      "depth": {
+        "sector": "auto",
+        "sector_label": "автовиробники",
+        "rs_20_pct": 2.85,
+        "fundamentals_score": 0,
+        "revenue_yoy_pct": 25.52,
+        "eps_yoy_pct": -3.03,
+        "net_margin_pct": 3.95,
+        "earnings": {
+          "date": "2026-10-22",
+          "days_to": 11,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-23",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049270/tsla-20260630.htm"
+          },
+          "days_since_report": 80,
+          "eight_k_30d": 2,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-10-02",
+              "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026064366/tsla-20261002.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-09-29",
+              "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026063820/tsla-20260929.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-07-23",
+              "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049270/tsla-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-22",
+              "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/tsla-20260722.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-02",
+              "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-04-23",
+              "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm"
+            }
+          ],
+          "company": "Tesla, Inc.",
+          "report_dates": [
+            "2026-07-23",
+            "2026-04-23",
+            "2026-01-29"
+          ]
+        },
+        "news": [
+          "Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas",
+          "SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week",
+          "Elon Musk’s 250,000 Cybertruck Goal Falls Well Short: New Data Shows Only 13% of Goal Sold Annually",
+          "Forget the Recent Delivery Beat: Here's the Key Number That Will Decide Investors' Reaction to Tesla's Earnings",
+          "Does Tesla (TSLA) Gain More From Megachargers Or Tokenized Stock Trading?"
+        ],
+        "backtest": {
+          "signals": 13,
+          "win_rate": 30.8,
+          "expectancy_r": -0.303,
+          "max_dd_r": -3.94,
+          "avg_days": 7.9
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            380.15,
+            368.73,
+            364.02
+          ],
+          "resistances": [
+            384.73,
+            406.59,
+            414.64
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": false,
+          "blocks": [
+            "правило на цьому тікері історично слабке: 13 сигналів, очікування -0.30R < -0.10R"
+          ],
+          "notes": [
+            "сильніша за SPY на +2.9 п.п. за 20 сесій"
+          ]
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.01,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 28.24 млрд$, зростає на 25.5% рік до року. Прибуток на акцію -3.0% рік до року. Чиста маржа 4.0%. Емітент: Tesla, Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 30.8% прибуткових, очікування -0.30R, середній утримування 7.9 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.9 п.п.\n\n**Новини.** Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas; SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week; Elon Musk’s 250,000 Cybertruck Goal Falls Well Short: New Data Shows Only 13% of Goal Sold Annually.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 102,
+      "ticker": "UNH",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 2.52,
+      "last_close": 379.3,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 362.60, опір 387.52.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:47+00:00",
+      "confidence": 0.4,
+      "page": "proposal-102.html",
+      "depth": {
+        "sector": "health",
+        "sector_label": "охорона здоров'я",
+        "rs_20_pct": -1.81,
+        "fundamentals_score": 1,
+        "revenue_yoy_pct": 0.37,
+        "eps_yoy_pct": 61.5,
+        "net_margin_pct": 4.9,
+        "earnings": {
+          "date": "2026-11-09",
+          "days_to": 29,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-08-10",
+            "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000197/unh-20260630.htm"
+          },
+          "days_since_report": 62,
+          "eight_k_30d": 0,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-08",
+              "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000205/unh-20260908.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-08-10",
+              "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000197/unh-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-16",
+              "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000191/unh-20260716.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-05",
+              "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000138/unh-20260601.htm"
+            }
+          ],
+          "company": "UNITEDHEALTH GROUP INC",
+          "report_dates": [
+            "2026-08-10"
+          ]
+        },
+        "news": [
+          "UnitedHealth (UNH) Reports Earnings Tomorrow: What To Expect",
+          "Suze Orman warns 390,000 seniors on Medicare plan exit",
+          "UnitedHealth’s 4-Star Medicare Enrollment Share Falls to 67%, J.P. Morgan Estimates: What It Means Before Earnings",
+          "UnitedHealth Group (UNH) Beats Stock Market Upswing: What Investors Need to Know",
+          "UnitedHealth vs. Humana: Which Healthcare Giant Has the Edge?"
+        ],
+        "backtest": {
+          "signals": 6,
+          "win_rate": 16.7,
+          "expectancy_r": -0.641,
+          "max_dd_r": -5.0,
+          "avg_days": 7.5
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            375.57,
+            366.0,
+            362.6
+          ],
+          "resistances": [
+            381.19,
+            389.26,
+            405.52
+          ],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.05,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 112.03 млрд$, зростає на 0.4% рік до року. Прибуток на акцію +61.5% рік до року. Чиста маржа 4.9%. Емітент: UNITEDHEALTH GROUP INC.\n\n**Подія.** Найближча звітність — 2026-11-09 (через 29 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 16.7% прибуткових, очікування -0.64R, середній утримування 7.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 1.8 п.п.\n\n**Новини.** UnitedHealth (UNH) Reports Earnings Tomorrow: What To Expect; Suze Orman warns 390,000 seniors on Medicare plan exit; UnitedHealth’s 4-Star Medicare Enrollment Share Falls to 67%, J.P. Morgan Estimates: What It Means Before Earnings.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 103,
+      "ticker": "V",
+      "for_session": "2026-10-12",
+      "bias": "WAIT",
+      "approved": false,
+      "entry_type": "none",
+      "entry_price": null,
+      "stop_price": null,
+      "target_price": null,
+      "rr": null,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 1.73,
+      "last_close": 385.45,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "немає сетапу — ризик-гейт не застосовується"
+      ],
+      "reasons": [
+        "немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20)"
+      ],
+      "invalidation": "",
+      "order_template": "",
+      "note": "Сетапу на найближчу сесію немає. немає сетапу на найближчу сесію: немає висхідної структури (ціна/SMA50/SMA20) Спостерігаємо: ключова підтримка 356.75, опір 386.84.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:47+00:00",
+      "confidence": 0.43,
+      "page": "proposal-103.html",
+      "depth": {
+        "sector": "finance",
+        "sector_label": "фінанси",
+        "rs_20_pct": 2.18,
+        "fundamentals_score": 1,
+        "revenue_yoy_pct": 11.45,
+        "eps_yoy_pct": null,
+        "net_margin_pct": null,
+        "earnings": {
+          "date": "2026-10-28",
+          "days_to": 17,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-07-29",
+            "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000104/v-20260630.htm"
+          },
+          "days_since_report": 74,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-23",
+              "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000121/v-20260918.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-07-29",
+              "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000104/v-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-28",
+              "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/v-20260728.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-15",
+              "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000096/v-20260714.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-06-26",
+              "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000086/v-20260624.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-05-12",
+              "url": "https://www.sec.gov/Archives/edgar/data/1403161/000119312526219432/d64238d8k.htm"
+            }
+          ],
+          "company": "VISA INC.",
+          "report_dates": [
+            "2026-07-29",
+            "2026-04-29"
+          ]
+        },
+        "news": [
+          "Visa (V): Are Bigger Client Rebates Worth the Valuation?",
+          "Visa (V) Beats Stock Market Upswing: What Investors Need to Know",
+          "Gate and Visa roll out crypto payment card across 40 markets",
+          "Visa (V) Stock May Be 13% Undervalued On Stablecoin Settlement Push",
+          "Visa to Announce Fiscal Fourth Quarter and Full-Year 2026 Financial Results on October 27, 2026"
+        ],
+        "backtest": {
+          "signals": 14,
+          "win_rate": 42.9,
+          "expectancy_r": -0.179,
+          "max_dd_r": -5.4,
+          "avg_days": 7.8
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            378.5,
+            372.22,
+            365.52
+          ],
+          "resistances": [],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": []
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.08,
+        "digest": "**Бізнес.** Виручка за останній квартал (2019-06-30) — 5.84 млрд$, зростає на 11.4% рік до року. Емітент: VISA INC.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 14 сигналів: 42.9% прибуткових, очікування -0.18R, середній утримування 7.8 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.2 п.п.\n\n**Новини.** Visa (V): Are Bigger Client Rebates Worth the Valuation?; Visa (V) Beats Stock Market Upswing: What Investors Need to Know; Gate and Visa roll out crypto payment card across 40 markets.",
+        "digest_source": "rules"
+      }
+    },
+    {
+      "id": 104,
+      "ticker": "XOM",
+      "for_session": "2026-10-12",
+      "bias": "BUY",
+      "approved": false,
+      "entry_type": "limit",
+      "entry_price": 163.74,
+      "stop_price": 158.47,
+      "target_price": 174.28,
+      "rr": 2.0,
+      "qty": 0,
+      "notional": null,
+      "risk_usd": null,
+      "risk_pct_of_equity": null,
+      "atr_pct": 2.12,
+      "last_close": 168.94,
+      "last_bar_date": "2026-10-09",
+      "premarket_price": null,
+      "premarket_gap_pct": null,
+      "premarket_note": "",
+      "gate_reasons": [
+        "ліміт дій на добу вичерпано (3/3)"
+      ],
+      "reasons": [
+        "тренд висхідний: ціна над SMA50 і SMA20 > SMA50",
+        "ціна над SMA200 — довгострокова структура бичача",
+        "MACD-гістограма додатна і зростає",
+        "RSI 64.2 — у робочому діапазоні (без перекупленості)",
+        "ціна за -0.79% від максимуму 20 сесій — близько до пробою",
+        "лімітна заявка на відкат: 163.74 (закриття 168.94, стоп під мінімумом 10 сесій 159.27)"
+      ],
+      "invalidation": "Скасування: ґеп нижче 158.47 на відкритті — вхід не виконуємо; закриття денної свічки нижче SMA20 (163.50) — сценарій зламано; закриття нижче 159.27 (мінімум 10 сесій) — виходимо з угоди.",
+      "order_template": "",
+      "note": "Сценарій висхідний: тренд up, RSI 64.2, ATR 2.12% (≈3.51 пункту). План: вхід 163.74 (ліміт), стоп 158.47 (ризик 0.00% капіталу на 0 шт.), ціль 174.28 (R:R 2.0). Опір 170.29, підтримка 155.85.",
+      "note_source": "rules",
+      "data_source": "yahoo",
+      "synthetic": false,
+      "created_at": "2026-10-12T05:58:48+00:00",
+      "confidence": 0.95,
+      "page": "proposal-104.html",
+      "depth": {
+        "sector": "energy",
+        "sector_label": "енергетика",
+        "rs_20_pct": -0.09,
+        "fundamentals_score": 2,
+        "revenue_yoy_pct": 42.34,
+        "eps_yoy_pct": 112.2,
+        "net_margin_pct": 12.52,
+        "earnings": {
+          "date": "2026-11-02",
+          "days_to": 22,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "filings": {
+          "last_report": {
+            "form": "10-Q",
+            "date": "2026-08-03",
+            "url": "https://www.sec.gov/Archives/edgar/data/2115436/000003408826000093/xom-20260630.htm"
+          },
+          "days_since_report": 69,
+          "eight_k_30d": 1,
+          "recent": [
+            {
+              "form": "8-K",
+              "date": "2026-09-25",
+              "url": "https://www.sec.gov/Archives/edgar/data/2115436/000119312526402986/d15072d8k.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-08-28",
+              "url": "https://www.sec.gov/Archives/edgar/data/2115436/000119312526373026/d82162d8k.htm"
+            },
+            {
+              "form": "10-Q",
+              "date": "2026-08-03",
+              "url": "https://www.sec.gov/Archives/edgar/data/2115436/000003408826000093/xom-20260630.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-31",
+              "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000006/xom-20260731.htm"
+            },
+            {
+              "form": "8-K",
+              "date": "2026-07-07",
+              "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000003/xom-20260707.htm"
+            }
+          ],
+          "company": "ExxonMobil Holdings Corp",
+          "report_dates": [
+            "2026-08-03"
+          ]
+        },
+        "news": [
+          "BP (BP) vs Exxon Mobil (XOM): Which Oil Major is a Better Buy?",
+          "Why ExxonMobil's Venezuela Warning Could Matter for Energy Investors Right Now",
+          "Forget Chasing the Biggest Yield. These 5 Dividend Stocks Have Something Better",
+          "ExxonMobil blocked $5B Kashagan environmental fine settlement",
+          "Here's What $1,000 in These 6 Energy Dividend Stocks Could Pay You in a Year"
+        ],
+        "backtest": {
+          "signals": 15,
+          "win_rate": 66.7,
+          "expectancy_r": 0.688,
+          "max_dd_r": -2.0,
+          "avg_days": 6.6
+        },
+        "macro_state": "risk_on",
+        "levels": {
+          "supports": [
+            159.01,
+            157.43,
+            155.59
+          ],
+          "resistances": [],
+          "divergence": "none",
+          "divergence_note": ""
+        },
+        "verdict": {
+          "allowed": true,
+          "blocks": [],
+          "notes": [
+            "правило підтверджене історією: 15 сигналів, 66.7% успішних, очікування +0.69R"
+          ]
+        },
+        "risk_factor": 1.0,
+        "confidence_delta": 0.1,
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 116.02 млрд$, зростає на 42.3% рік до року. Прибуток на акцію +112.2% рік до року. Чиста маржа 12.5%. Емітент: ExxonMobil Holdings Corp.\n\n**Подія.** Найближча звітність — 2026-11-02 (через 22 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 15.1, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 15 сигналів: 66.7% прибуткових, очікування +0.69R, середній утримування 6.6 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.1 п.п.\n\n**Новини.** BP (BP) vs Exxon Mobil (XOM): Which Oil Major is a Better Buy?; Why ExxonMobil's Venezuela Warning Could Matter for Energy Investors Right Now; Forget Chasing the Biggest Yield. These 5 Dividend Stocks Have Something Better.",
+        "digest_source": "rules"
+      }
+    }
+  ],
+  "runs": [],
+  "journal": {
+    "runs_total": 0,
+    "runs_ok": 0,
+    "runs_error": 0,
+    "approved": 0,
+    "settled": 0,
+    "avg_alpha_pct": null
+  },
+  "depth": {
+    "macro": {
+      "state": "risk_on",
+      "score": 3,
+      "reasons": [
+        "VIX 15.1 — спокійно",
+        "індекс (SPY) над SMA200 — довгостроковий тренд бичачий",
+        "ширина: 75% тікерів списку над своїми SMA50"
+      ],
+      "inputs": {
+        "vix": 15.079999923706055,
+        "vix_prev": 15.010000228881836,
+        "spy_close": 778.5700073242188,
+        "spy_sma50": 767.5743981933593,
+        "spy_sma200": 722.9283996582031,
+        "ten_year": 5.2769999504089355,
+        "ten_year_prev": 5.269000053405762,
+        "breadth_pct": 75.0,
+        "dollar": 102.23500061035156
+      },
+      "as_of": "2026-10-12T05:58"
+    },
+    "breadth_pct": 75.0,
+    "calendar": {},
+    "tickers": {
+      "AAPL": {
+        "sector": "tech",
+        "sector_label": "технології",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": -0.55,
+        "expectancy_r": -0.234,
+        "signals": 8,
+        "earnings": {
+          "date": "2026-10-30",
+          "days_to": 19,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "AMD": {
+        "sector": "semis",
+        "sector_label": "напівпровідники",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": 15.95,
+        "expectancy_r": -0.765,
+        "signals": 6,
+        "earnings": {
+          "date": "2026-11-04",
+          "days_to": 24,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "AMZN": {
+        "sector": "consumer",
+        "sector_label": "споживчий сектор",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": 0.33,
+        "expectancy_r": -0.105,
+        "signals": 4,
+        "earnings": {
+          "date": "2026-10-30",
+          "days_to": 19,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "AVGO": {
+        "sector": "semis",
+        "sector_label": "напівпровідники",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": -1.99,
+        "expectancy_r": -0.369,
+        "signals": 7,
+        "earnings": {
+          "date": "2026-12-12",
+          "days_to": 62,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (93 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "COST": {
+        "sector": "consumer",
+        "sector_label": "споживчий сектор",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": 2.79,
+        "expectancy_r": 0.4,
+        "signals": 13,
+        "earnings": {
+          "date": "2026-12-30",
+          "days_to": 80,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (84 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "CRM": {
+        "sector": "software",
+        "sector_label": "ПЗ",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": -9.37,
+        "expectancy_r": 0.185,
+        "signals": 10,
+        "earnings": {
+          "date": "2026-11-26",
+          "days_to": 46,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "GOOGL": {
+        "sector": "internet",
+        "sector_label": "інтернет",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": 2.02,
+        "expectancy_r": 0.557,
+        "signals": 4,
+        "earnings": {
+          "date": "2026-10-22",
+          "days_to": 11,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "JPM": {
+        "sector": "finance",
+        "sector_label": "фінанси",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 1,
+        "rs_20_pct": -8.39,
+        "expectancy_r": 0.18,
+        "signals": 18,
+        "earnings": null,
+        "blocks": []
+      },
+      "LLY": {
+        "sector": "health",
+        "sector_label": "охорона здоров'я",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": 3.83,
+        "expectancy_r": 0.2,
+        "signals": 5,
+        "earnings": {
+          "date": "2026-11-10",
+          "days_to": 30,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (97 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "META": {
+        "sector": "internet",
+        "sector_label": "інтернет",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 0,
+        "rs_20_pct": 9.03,
+        "expectancy_r": -0.916,
+        "signals": 11,
+        "earnings": {
+          "date": "2026-10-29",
+          "days_to": 18,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "MSFT": {
+        "sector": "tech",
+        "sector_label": "технології",
+        "bias": "BUY",
+        "approved": true,
+        "score": 2,
+        "rs_20_pct": 6.09,
+        "expectancy_r": -0.092,
+        "signals": 9,
+        "earnings": {
+          "date": "2026-10-28",
+          "days_to": 17,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "NFLX": {
+        "sector": "media",
+        "sector_label": "медіа",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": -11.04,
+        "expectancy_r": -0.615,
+        "signals": 9,
+        "earnings": {
+          "date": "2026-10-16",
+          "days_to": 5,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "NVDA": {
+        "sector": "semis",
+        "sector_label": "напівпровідники",
+        "bias": "BUY",
+        "approved": true,
+        "score": 2,
+        "rs_20_pct": 3.17,
+        "expectancy_r": -0.057,
+        "signals": 10,
+        "earnings": {
+          "date": "2026-11-25",
+          "days_to": 45,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "ORCL": {
+        "sector": "software",
+        "sector_label": "ПЗ",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": -7.78,
+        "expectancy_r": 3.547,
+        "signals": 9,
+        "earnings": {
+          "date": "2026-12-23",
+          "days_to": 73,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (103 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "QQQ": {
+        "sector": "index",
+        "sector_label": "індексний ETF",
+        "bias": "BUY",
+        "approved": false,
+        "score": null,
+        "rs_20_pct": 3.22,
+        "expectancy_r": -1.0,
+        "signals": 7,
+        "earnings": null,
+        "blocks": []
+      },
+      "SPY": {
+        "sector": "index",
+        "sector_label": "індексний ETF",
+        "bias": "BUY",
+        "approved": true,
+        "score": 0,
+        "rs_20_pct": 0.0,
+        "expectancy_r": -0.531,
+        "signals": 11,
+        "earnings": null,
+        "blocks": []
+      },
+      "TSLA": {
+        "sector": "auto",
+        "sector_label": "автовиробники",
+        "bias": "BUY",
+        "approved": false,
+        "score": 0,
+        "rs_20_pct": 2.85,
+        "expectancy_r": -0.303,
+        "signals": 13,
+        "earnings": {
+          "date": "2026-10-22",
+          "days_to": 11,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": [
+          "правило на цьому тікері історично слабке: 13 сигналів, очікування -0.30R < -0.10R"
+        ]
+      },
+      "UNH": {
+        "sector": "health",
+        "sector_label": "охорона здоров'я",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 1,
+        "rs_20_pct": -1.81,
+        "expectancy_r": -0.641,
+        "signals": 6,
+        "earnings": {
+          "date": "2026-11-09",
+          "days_to": 29,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "V": {
+        "sector": "finance",
+        "sector_label": "фінанси",
+        "bias": "WAIT",
+        "approved": false,
+        "score": 1,
+        "rs_20_pct": 2.18,
+        "expectancy_r": -0.179,
+        "signals": 14,
+        "earnings": {
+          "date": "2026-10-28",
+          "days_to": 17,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      },
+      "XOM": {
+        "sector": "energy",
+        "sector_label": "енергетика",
+        "bias": "BUY",
+        "approved": false,
+        "score": 2,
+        "rs_20_pct": -0.09,
+        "expectancy_r": 0.688,
+        "signals": 15,
+        "earnings": {
+          "date": "2026-11-02",
+          "days_to": 22,
+          "timing": "",
+          "source": "sec_estimate",
+          "note": "оцінка за каденцією звітів SEC (91 дн. між подачами), не підтверджена біржа"
+        },
+        "blocks": []
+      }
+    }
+  }
+}
