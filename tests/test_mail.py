@@ -315,6 +315,20 @@ def test_results_hint_builds_cdn_link_from_github_repo(settings, monkeypatch):
     monkeypatch.setenv("GITHUB_REPOSITORY", "someone/other-repo")
     assert "someone/other-repo@main" in mail_module.results_hint(settings)   # як у CI
 
+
+def test_trade_card_shows_stop_target_risk_and_gate(settings):
+    subject, html, text = mail_module.build_plan_email(
+        [make_proposal(confidence=0.87, atr_pct=2.1)], settings, "2026-10-12")
+    for probe in ("517.47", "499.71", "552.99", "2 шт."[:1], "0.87", "2.10%", "Ризик-гейт і глибина"):
+        assert probe in html, probe
+
+
+def test_dashboard_endpoint_reports_missing_config(settings, monkeypatch):
+    """Кнопка «Надіслати тестовий лист» має чесно казати, чого не хватає."""
+    from fastapi.testclient import TestClient
+
+    import app.web as web
+
     settings.env = {}
     monkeypatch.setattr(web, "load_settings", lambda: settings)
     with TestClient(web.app) as client:
