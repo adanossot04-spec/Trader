@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-12T07:18:51+00:00",
+  "generated_at": "2026-10-12T07:31:33+00:00",
   "session": "2026-10-12",
   "schedule": "За годину до відкриття US-ринку: cron «30 8 * * 1-5» (America/New_York)",
   "sessions": [
     {
       "session": "2026-10-12",
-      "total": 124,
-      "buy": 39,
-      "wait": 85,
-      "approved": 21,
-      "last_at": "12.10.2026 10:18 Kyiv"
+      "total": 144,
+      "buy": 45,
+      "wait": 99,
+      "approved": 24,
+      "last_at": "12.10.2026 10:31 Kyiv"
     }
   ],
   "proposals": [
     {
-      "id": 105,
+      "id": 125,
       "ticker": "AAPL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -46,9 +46,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:48+00:00",
+      "created_at": "2026-10-12T07:31:27+00:00",
       "confidence": 0.42,
-      "page": "proposal-105.html",
+      "page": "proposal-125.html",
       "depth": {
         "sector": "tech",
         "sector_label": "технології",
@@ -106,11 +106,11 @@
           ]
         },
         "news": [
+          "New Apple TV and HomePod Mini Expected: What Matters for AAPL Stock",
           "Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play",
           "Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat",
           "Elon Musk Will ‘Eventually’ Make a Phone, Says Gene Munster: Starlink Device Will Be a ‘Bigger Problem’ for Apple, Samsung",
-          "Apple Has Consistently Lost the Smart-Home Race. A New Partnership With LG Could Change That.",
-          "Tim Cook Told Apple CEO John Ternus ‘Don’t Mimic Me’ Before Stepping Aside Ahead of Apple’s Big iPhone Launch: 'I’m Not a Meddler'"
+          "Apple Has Consistently Lost the Smart-Home Race. A New Partnership With LG Could Change That."
         ],
         "backtest": {
           "signals": 8,
@@ -139,12 +139,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.07,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 109.42 млрд$, зростає на 16.4% рік до року. Прибуток на акцію +28.7% рік до року. Чиста маржа 27.2%. Емітент: Apple Inc.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 8 сигналів: 37.5% прибуткових, очікування -0.23R, середній утримування 4.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.6 п.п.\n\n**Новини.** Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play; Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat; Elon Musk Will ‘Eventually’ Make a Phone, Says Gene Munster: Starlink Device Will Be a ‘Bigger Problem’ for Apple, Samsung.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 109.42 млрд$, зростає на 16.4% рік до року. Прибуток на акцію +28.7% рік до року. Чиста маржа 27.2%. Емітент: Apple Inc.\n\n**Подія.** Найближча звітність — 2026-10-30 (через 19 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 8 сигналів: 37.5% прибуткових, очікування -0.23R, середній утримування 4.5 сесій.\n\n**Сила.** За 20 сесій тікер відстає від SPY на 0.6 п.п.\n\n**Новини.** New Apple TV and HomePod Mini Expected: What Matters for AAPL Stock; Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play; Apple (AAPL) Resets With New CEO, Podcast Deal And A Fresh Phone Threat.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 106,
+      "id": 126,
       "ticker": "AMD",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -176,9 +176,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:48+00:00",
+      "created_at": "2026-10-12T07:31:27+00:00",
       "confidence": 0.45,
-      "page": "proposal-106.html",
+      "page": "proposal-126.html",
       "depth": {
         "sector": "semis",
         "sector_label": "напівпровідники",
@@ -240,11 +240,11 @@
           ]
         },
         "news": [
+          "AMD Stock And Two AI Infrastructure Names Facing A Big Margin Test",
           "Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook",
           "History Says This Will Happen to AMD Stock in 2027",
           "AMD Stock Fell 6% in Three Sessions After Its Record Close. Here’s What OpenAI’s $20 Billion Revenue Gap Means for the Stock",
-          "Not Anthropic. Not AMD. Here's My Top AI Stock for 2027.",
-          "AMD’s Biggest Problem Is No Longer Demand. Lisa Su Is in Asia to Fix the Real One"
+          "Not Anthropic. Not AMD. Here's My Top AI Stock for 2027."
         ],
         "backtest": {
           "signals": 6,
@@ -274,12 +274,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 11.54 млрд$, зростає на 50.1% рік до року. Прибуток на акцію +155.6% рік до року. Чиста маржа 19.9%. Емітент: ADVANCED MICRO DEVICES INC.\n\n**Подія.** Найближча звітність — 2026-11-04 (через 24 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 0.0% прибуткових, очікування -0.77R, середній утримування 2.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 15.9 п.п.\n\n**Новини.** Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook; History Says This Will Happen to AMD Stock in 2027; AMD Stock Fell 6% in Three Sessions After Its Record Close. Here’s What OpenAI’s $20 Billion Revenue Gap Means for the Stock.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-27) — 11.54 млрд$, зростає на 50.1% рік до року. Прибуток на акцію +155.6% рік до року. Чиста маржа 19.9%. Емітент: ADVANCED MICRO DEVICES INC.\n\n**Подія.** Найближча звітність — 2026-11-04 (через 24 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 6 сигналів: 0.0% прибуткових, очікування -0.77R, середній утримування 2.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 15.9 п.п.\n\n**Новини.** AMD Stock And Two AI Infrastructure Names Facing A Big Margin Test; Advanced Micro Devices (AMD) Stock Falls After AI Revenue Reset Shakes Demand Outlook; History Says This Will Happen to AMD Stock in 2027.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 107,
+      "id": 127,
       "ticker": "AMZN",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -311,9 +311,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:27+00:00",
       "confidence": 0.42,
-      "page": "proposal-107.html",
+      "page": "proposal-127.html",
       "depth": {
         "sector": "consumer",
         "sector_label": "споживчий сектор",
@@ -415,7 +415,7 @@
       }
     },
     {
-      "id": 108,
+      "id": 128,
       "ticker": "AVGO",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -447,9 +447,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:28+00:00",
       "confidence": 0.42,
-      "page": "proposal-108.html",
+      "page": "proposal-128.html",
       "depth": {
         "sector": "semis",
         "sector_label": "напівпровідники",
@@ -552,7 +552,7 @@
       }
     },
     {
-      "id": 109,
+      "id": 129,
       "ticker": "COST",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -584,9 +584,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:28+00:00",
       "confidence": 0.45,
-      "page": "proposal-109.html",
+      "page": "proposal-129.html",
       "depth": {
         "sector": "consumer",
         "sector_label": "споживчий сектор",
@@ -691,7 +691,7 @@
       }
     },
     {
-      "id": 110,
+      "id": 130,
       "ticker": "CRM",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -723,9 +723,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:28+00:00",
       "confidence": 0.39,
-      "page": "proposal-110.html",
+      "page": "proposal-130.html",
       "depth": {
         "sector": "software",
         "sector_label": "ПЗ",
@@ -828,7 +828,7 @@
       }
     },
     {
-      "id": 111,
+      "id": 131,
       "ticker": "GOOGL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -860,9 +860,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:28+00:00",
       "confidence": 0.45,
-      "page": "proposal-111.html",
+      "page": "proposal-131.html",
       "depth": {
         "sector": "internet",
         "sector_label": "інтернет",
@@ -949,7 +949,7 @@
       }
     },
     {
-      "id": 112,
+      "id": 132,
       "ticker": "JPM",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -981,9 +981,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:28+00:00",
       "confidence": 0.37,
-      "page": "proposal-112.html",
+      "page": "proposal-132.html",
       "depth": {
         "sector": "finance",
         "sector_label": "фінанси",
@@ -1042,7 +1042,7 @@
       }
     },
     {
-      "id": 113,
+      "id": 133,
       "ticker": "LLY",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1074,9 +1074,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:28+00:00",
       "confidence": 0.45,
-      "page": "proposal-113.html",
+      "page": "proposal-133.html",
       "depth": {
         "sector": "health",
         "sector_label": "охорона здоров'я",
@@ -1179,7 +1179,7 @@
       }
     },
     {
-      "id": 114,
+      "id": 134,
       "ticker": "META",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1211,9 +1211,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:29+00:00",
       "confidence": 0.41,
-      "page": "proposal-114.html",
+      "page": "proposal-134.html",
       "depth": {
         "sector": "internet",
         "sector_label": "інтернет",
@@ -1294,7 +1294,7 @@
       }
     },
     {
-      "id": 115,
+      "id": 135,
       "ticker": "MSFT",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1331,9 +1331,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:49+00:00",
+      "created_at": "2026-10-12T07:31:30+00:00",
       "confidence": 0.95,
-      "page": "proposal-115.html",
+      "page": "proposal-135.html",
       "depth": {
         "sector": "tech",
         "sector_label": "технології",
@@ -1380,11 +1380,11 @@
           ]
         },
         "news": [
+          "Microsoft Is Down 4%. Here's Why I'm Buying More.",
           "3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First",
           "Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28",
           "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
-          "Microsoft CEO wants AI treated like a risky insider at work",
-          "Microsoft Is Taking AI Beyond the Data Center, But Its Surface Business Is Just a Small Piece of the Pie"
+          "Microsoft CEO wants AI treated like a risky insider at work"
         ],
         "backtest": {
           "signals": 9,
@@ -1414,12 +1414,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-03-31) — 82.89 млрд$, зростає на 18.3% рік до року. Прибуток на акцію +23.4% рік до року. Чиста маржа 38.3%. Емітент: MICROSOFT CORP.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 44.4% прибуткових, очікування -0.09R, середній утримування 7.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 6.1 п.п.\n\n**Новини.** 3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First; Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28; Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years..",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-03-31) — 82.89 млрд$, зростає на 18.3% рік до року. Прибуток на акцію +23.4% рік до року. Чиста маржа 38.3%. Емітент: MICROSOFT CORP.\n\n**Подія.** Найближча звітність — 2026-10-28 (через 17 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 9 сигналів: 44.4% прибуткових, очікування -0.09R, середній утримування 7.0 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 6.1 п.п.\n\n**Новини.** Microsoft Is Down 4%. Here's Why I'm Buying More.; 3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First; Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 116,
+      "id": 136,
       "ticker": "NFLX",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1451,9 +1451,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:50+00:00",
+      "created_at": "2026-10-12T07:31:30+00:00",
       "confidence": 0.39,
-      "page": "proposal-116.html",
+      "page": "proposal-136.html",
       "depth": {
         "sector": "media",
         "sector_label": "медіа",
@@ -1545,7 +1545,7 @@
       }
     },
     {
-      "id": 117,
+      "id": 137,
       "ticker": "NVDA",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1581,9 +1581,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:50+00:00",
+      "created_at": "2026-10-12T07:31:30+00:00",
       "confidence": 0.9,
-      "page": "proposal-117.html",
+      "page": "proposal-137.html",
       "depth": {
         "sector": "semis",
         "sector_label": "напівпровідники",
@@ -1645,11 +1645,11 @@
           ]
         },
         "news": [
+          "Prediction: This Will Be Nvidia's Next Stock Split",
           "Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.",
           "Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret.",
           "Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years.",
-          "Following OpenAI’s Revenue Report, Should You Really Buy AI Stocks Right Now?",
-          "Stocktwits Tech Watch: ASML, TSMC Earnings This Week And Apple’s Next Home Play"
+          "Following OpenAI’s Revenue Report, Should You Really Buy AI Stocks Right Now?"
         ],
         "backtest": {
           "signals": 10,
@@ -1683,12 +1683,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.1,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-26) — 96.22 млрд$, зростає на 105.8% рік до року. Прибуток на акцію +127.8% рік до року. Чиста маржа 62.0%. Емітент: NVIDIA CORP.\n\n**Подія.** Найближча звітність — 2026-11-25 (через 45 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 40.0% прибуткових, очікування -0.06R, середній утримування 4.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.; Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret.; Forget Chasing Volume. Here's the Most Active Stock I'd Actually Hold for 5 Years..",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-07-26) — 96.22 млрд$, зростає на 105.8% рік до року. Прибуток на акцію +127.8% рік до року. Чиста маржа 62.0%. Емітент: NVIDIA CORP.\n\n**Подія.** Найближча звітність — 2026-11-25 (через 45 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 10 сигналів: 40.0% прибуткових, очікування -0.06R, середній утримування 4.7 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 3.2 п.п.\n\n**Новини.** Prediction: This Will Be Nvidia's Next Stock Split; Humanoid Robots Could Be a $5 Trillion Market. Here Are 3 Stocks Positioned to Win.; Not Nvidia. Not Broadcom. This Little-Known Chip Supplier Could Be the AI Boom's Best-Kept Secret..",
         "digest_source": "rules"
       }
     },
     {
-      "id": 118,
+      "id": 138,
       "ticker": "ORCL",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -1720,9 +1720,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:50+00:00",
+      "created_at": "2026-10-12T07:31:31+00:00",
       "confidence": 0.39,
-      "page": "proposal-118.html",
+      "page": "proposal-138.html",
       "depth": {
         "sector": "software",
         "sector_label": "ПЗ",
@@ -1826,7 +1826,7 @@
       }
     },
     {
-      "id": 119,
+      "id": 139,
       "ticker": "QQQ",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1862,9 +1862,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:50+00:00",
+      "created_at": "2026-10-12T07:31:31+00:00",
       "confidence": 0.86,
-      "page": "proposal-119.html",
+      "page": "proposal-139.html",
       "depth": {
         "sector": "index",
         "sector_label": "індексний ETF",
@@ -1917,7 +1917,7 @@
       }
     },
     {
-      "id": 120,
+      "id": 140,
       "ticker": "SPY",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -1954,9 +1954,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:50+00:00",
+      "created_at": "2026-10-12T07:31:31+00:00",
       "confidence": 0.9,
-      "page": "proposal-120.html",
+      "page": "proposal-140.html",
       "depth": {
         "sector": "index",
         "sector_label": "індексний ETF",
@@ -2013,7 +2013,7 @@
       }
     },
     {
-      "id": 121,
+      "id": 141,
       "ticker": "TSLA",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -2049,9 +2049,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:50+00:00",
+      "created_at": "2026-10-12T07:31:31+00:00",
       "confidence": 0.74,
-      "page": "proposal-121.html",
+      "page": "proposal-141.html",
       "depth": {
         "sector": "auto",
         "sector_label": "автовиробники",
@@ -2115,11 +2115,11 @@
           ]
         },
         "news": [
+          "TSLA Stock Climbs Overnight As Cybercab Eyes Dallas — Musk Recalls When Shorts Had Tesla In ‘Checkmate’",
           "Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas",
           "SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week",
           "Elon Musk’s 250,000 Cybertruck Goal Falls Well Short: New Data Shows Only 13% of Goal Sold Annually",
-          "Forget the Recent Delivery Beat: Here's the Key Number That Will Decide Investors' Reaction to Tesla's Earnings",
-          "Does Tesla (TSLA) Gain More From Megachargers Or Tokenized Stock Trading?"
+          "Forget the Recent Delivery Beat: Here's the Key Number That Will Decide Investors' Reaction to Tesla's Earnings"
         ],
         "backtest": {
           "signals": 13,
@@ -2154,12 +2154,12 @@
         },
         "risk_factor": 1.0,
         "confidence_delta": 0.01,
-        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 28.24 млрд$, зростає на 25.5% рік до року. Прибуток на акцію -3.0% рік до року. Чиста маржа 4.0%. Емітент: Tesla, Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 30.8% прибуткових, очікування -0.30R, середній утримування 7.9 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.9 п.п.\n\n**Новини.** Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas; SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week; Elon Musk’s 250,000 Cybertruck Goal Falls Well Short: New Data Shows Only 13% of Goal Sold Annually.",
+        "digest": "**Бізнес.** Виручка за останній квартал (2026-06-30) — 28.24 млрд$, зростає на 25.5% рік до року. Прибуток на акцію -3.0% рік до року. Чиста маржа 4.0%. Емітент: Tesla, Inc.\n\n**Подія.** Найближча звітність — 2026-10-22 (через 11 дн.). Нові входи перед звітом не плануємо.\n\n**Режим ринку.** сприятливий (risk-on): VIX 14.8, 10-річна ставка 5.28%, S&P 500 вище SMA200, ширина ринку 75%.\n\n**Історія правила.** За 2 роки на цьому тікері правило BUY давало 13 сигналів: 30.8% прибуткових, очікування -0.30R, середній утримування 7.9 сесій.\n\n**Сила.** За 20 сесій тікер випереджає SPY на 2.9 п.п.\n\n**Новини.** TSLA Stock Climbs Overnight As Cybercab Eyes Dallas — Musk Recalls When Shorts Had Tesla In ‘Checkmate’; Elon Musk Wants Tesla, SpaceX To Test 10 Chip Designs A Year At Terafab As TSMC Reportedly Eyes Texas; SPCX, TSM,  APLD, AMZN, TSLA: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week.",
         "digest_source": "rules"
       }
     },
     {
-      "id": 122,
+      "id": 142,
       "ticker": "UNH",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -2191,9 +2191,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:51+00:00",
+      "created_at": "2026-10-12T07:31:32+00:00",
       "confidence": 0.4,
-      "page": "proposal-122.html",
+      "page": "proposal-142.html",
       "depth": {
         "sector": "health",
         "sector_label": "охорона здоров'я",
@@ -2285,7 +2285,7 @@
       }
     },
     {
-      "id": 123,
+      "id": 143,
       "ticker": "V",
       "for_session": "2026-10-12",
       "bias": "WAIT",
@@ -2317,9 +2317,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:51+00:00",
+      "created_at": "2026-10-12T07:31:32+00:00",
       "confidence": 0.43,
-      "page": "proposal-123.html",
+      "page": "proposal-143.html",
       "depth": {
         "sector": "finance",
         "sector_label": "фінанси",
@@ -2418,7 +2418,7 @@
       }
     },
     {
-      "id": 124,
+      "id": 144,
       "ticker": "XOM",
       "for_session": "2026-10-12",
       "bias": "BUY",
@@ -2455,9 +2455,9 @@
       "note_source": "rules",
       "data_source": "yahoo",
       "synthetic": false,
-      "created_at": "2026-10-12T07:18:51+00:00",
+      "created_at": "2026-10-12T07:31:32+00:00",
       "confidence": 0.95,
-      "page": "proposal-124.html",
+      "page": "proposal-144.html",
       "depth": {
         "sector": "energy",
         "sector_label": "енергетика",
@@ -2581,7 +2581,7 @@
         "breadth_pct": 75.0,
         "dollar": 102.23400115966797
       },
-      "as_of": "2026-10-12T07:18"
+      "as_of": "2026-10-12T07:31"
     },
     "breadth_pct": 75.0,
     "calendar": {},
