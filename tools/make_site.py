@@ -89,6 +89,25 @@ def _gate(proposal) -> str:
     return f'<span class="tag sell">⛔</span> <span class="sub">{escape(str(reason))[:70]}</span>'
 
 
+def _live_cell(proposal) -> str:
+    """Ціна на момент перевірки — показується для КОЖНОГО тікера, навіть «без сетапу»."""
+    if getattr(proposal, "live_price", None) is None:
+        return '<span class="sub">немає даних</span>'
+    delta = ""
+    if proposal.live_vs_close_pct is not None and abs(proposal.live_vs_close_pct) >= 0.005:
+        tone = "#047857" if proposal.live_vs_close_pct >= 0 else "#b91c1c"
+        delta = (f'<div class="sub" style="color:{tone}">'
+                 f'{proposal.live_vs_close_pct:+.2f}% до закриття</div>')
+    to_entry = ""
+    if proposal.live_vs_entry_pct is not None and proposal.bias == "BUY":
+        tone = "#6b7280"
+        to_entry = (f'<div class="sub" style="color:{tone}">'
+                    f'до входу {proposal.live_vs_entry_pct:+.2f}%</div>')
+    label = getattr(proposal, "live_label", "") or ""
+    return (f'{_num(proposal.live_price, 2, "$")}'
+            f'<div class="sub">{escape(str(label))}</div>{delta}{to_entry}')
+
+
 def _entry_label(proposal) -> str:
     if proposal.entry_price is None:
         return "—"
@@ -277,7 +296,9 @@ def _proposals_table(proposals: list, *, with_links: bool = True) -> str:
     for p in proposals:
         chart_link = f'<a href="proposal-{p.id}.html">розбір</a>' if with_links and p.id else "—"
         rows += (
-            f'<tr><td><b>{escape(p.ticker)}</b><div class="sub">закриття {_num(p.last_close, 2, "$")}</div></td>'
+            f'<tr><td><b>{escape(p.ticker)}</b><div class="sub">закриття {_num(p.last_close, 2, "$")} '
+            f'<span title="остання закрита сесія">{escape(str(p.last_bar_date)[5:])}</span></div></td>'
+            f'<td class="num">{_live_cell(p)}</td>'
             f'<td>{_bias(p.bias)}</td>'
             f'<td class="num">{_entry_label(p)}</td>'
             f'<td class="num">{_num(p.stop_price, 2, "$")}</td>'
@@ -289,8 +310,12 @@ def _proposals_table(proposals: list, *, with_links: bool = True) -> str:
             f'<td>{chart_link}</td></tr>'
         )
     return f'''<table><thead><tr>
-<th>Тікер</th><th>Вердикт</th><th>Вхід</th><th>Стоп</th><th>Ціль</th><th>R:R</th>
-<th>Шт.</th><th>Ризик</th><th>Гейт</th><th></th></tr></thead><tbody>{rows}</tbody></table>'''
+<th>Тікер</th><th>Ціна зараз</th><th>Вердикт</th><th>Вхід</th><th>Стоп</th><th>Ціль</th><th>R:R</th>
+<th>Шт.</th><th>Ризик</th><th>Гейт</th><th></th></tr></thead><tbody>{rows}</tbody></table>
+<div class="sub" style="margin-top:6px">«Ціна зараз» — остання відома ціна на момент прогону
+(премаркет / основна сесія / після закриття; якщо ринок ще не відкривався — закриття попередньої сесії).
+Рівні входу, стопу та цілі рахуються виключно з <b>закритих</b> добових свічок — тому вхід може
+стояти нижче або вище поточної ціни: це і є умова заявки, а не помилка даних.</div>'''
 
 
 def _order_block(proposals: list) -> str:
@@ -349,6 +374,24 @@ def proposal_page(proposal, settings, bars: list | None, *, back_link: str = "in
         ("Обсяг", _num(proposal.notional, 0, "$")),
         ("Ризик", f'{_num(proposal.risk_usd, 0, "$")} ({_num(proposal.risk_pct_of_equity, 2)}% капіталу)'),
         ("ATR", f"{_num(proposal.atr_pct, 2)}%"),
+        ("Ціна на момент перевірки",
+         (f'<b>{_num(proposal.live_price, 2, "$")}</b> <span class="sub">{escape(str(proposal.live_label or ""))}</span>'
+          + (f' <span class="sub">({proposal.live_vs_close_pct:+.2f}% до закриття)</span>'
+             if proposal.live_vs_close_pct is not None else ""))
+         if getattr(proposal, "live_price", None) is not None else "—"),
+        ("Відхилення від входу",
+         (f'{proposal.live_vs_entry_pct:+.2f}% — ціна зараз {"вища" if (proposal.live_vs_entry_pct or 0) > 0 else "нижча"} '
+          f'за рівень входу')
+         if getattr(proposal, "live_vs_entry_pct", None) is not None else "—"),
+        ("Ціна на момент перевірки",
+         (f'<b>{_num(proposal.live_price, 2, "$")}</b> <span class="sub">{escape(str(proposal.live_label or ""))}</span>'
+          + (f' <span class="sub">({proposal.live_vs_close_pct:+.2f}% до закриття)</span>'
+             if proposal.live_vs_close_pct is not None else ""))
+         if getattr(proposal, "live_price", None) is not None else "—"),
+        ("Відхилення від входу",
+         (f'{proposal.live_vs_entry_pct:+.2f}% — ціна зараз {"вища" if (proposal.live_vs_entry_pct or 0) > 0 else "нижча"} '
+          f'за рівень входу')
+         if getattr(proposal, "live_vs_entry_pct", None) is not None else "—"),
         ("Джерело даних", escape(str(proposal.data_source or "—"))),
         ("Остання закрита сесія", escape(str(proposal.last_bar_date or "—"))),
     )
@@ -652,6 +695,20 @@ def _proposal_json(p) -> dict[str, Any]:
         "atr_pct": p.atr_pct,
         "last_close": p.last_close,
         "last_bar_date": p.last_bar_date,
+        "live_price": p.live_price,
+        "live_label": p.live_label,
+        "live_session": p.live_session,
+        "live_as_of": p.live_as_of,
+        "live_source": p.live_source,
+        "live_vs_close_pct": p.live_vs_close_pct,
+        "live_vs_entry_pct": p.live_vs_entry_pct,
+        "live_price": p.live_price,
+        "live_label": p.live_label,
+        "live_session": p.live_session,
+        "live_as_of": p.live_as_of,
+        "live_source": p.live_source,
+        "live_vs_close_pct": p.live_vs_close_pct,
+        "live_vs_entry_pct": p.live_vs_entry_pct,
         "premarket_price": p.premarket_price,
         "premarket_gap_pct": p.premarket_gap_pct,
         "premarket_note": p.premarket_note,
@@ -706,8 +763,8 @@ def _results_md(payload: dict) -> str:
         "",
         f"Згенеровано: {payload['generated_at']} · розклад: {payload.get('schedule', '—')}",
         "",
-        "| Тікер | Вердикт | Вхід | Стоп | Ціль | R:R | Шт. | Ризик | Гейт |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| Тікер | Зараз | Вердикт | Вхід | Стоп | Ціль | R:R | Шт. | Ризик | Гейт |",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
     depth_payload = payload.get("depth") or {}
     macro = depth_payload.get("macro") or {}
@@ -726,8 +783,13 @@ def _results_md(payload: dict) -> str:
         target = "—" if p["target_price"] is None else f"{p['target_price']:.2f}"
         rr = "—" if p["rr"] is None else f"{p['rr']:.2f}"
         risk = "—" if p["risk_usd"] is None else f"${p['risk_usd']:.0f}"
+        live = "—"
+        if p.get("live_price") is not None:
+            live = f"{p['live_price']:.2f}"
+            if p.get("live_label"):
+                live += f" ({p['live_label']})"
         lines.append(
-            f"| {p['ticker']} | {p['bias']} | {entry} | {stop} | {target} | {rr} | "
+            f"| {p['ticker']} | {live} | {p['bias']} | {entry} | {stop} | {target} | {rr} | "
             f"{p['qty'] or '—'} | {risk} | {gate} |"
         )
     premiums = [
