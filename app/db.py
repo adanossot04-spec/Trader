@@ -57,7 +57,10 @@ CREATE TABLE IF NOT EXISTS proposals (
     data_source TEXT DEFAULT '', synthetic INTEGER DEFAULT 0, warnings TEXT DEFAULT '',
     premarket_price REAL, premarket_gap_pct REAL, premarket_as_of TEXT, premarket_note TEXT DEFAULT '',
     technical TEXT DEFAULT '{}',
-    depth TEXT DEFAULT '{}'
+    depth TEXT DEFAULT '{}',
+    live_price REAL, live_label TEXT DEFAULT '', live_session TEXT DEFAULT '',
+    live_as_of TEXT DEFAULT '', live_source TEXT DEFAULT '',
+    live_vs_close_pct REAL, live_vs_entry_pct REAL
 );
 CREATE INDEX IF NOT EXISTS idx_proposals_session ON proposals(for_session);
 CREATE INDEX IF NOT EXISTS idx_proposals_ticker ON proposals(ticker, for_session);
@@ -86,6 +89,13 @@ class Store:
             "premarket_as_of": "TEXT",
             "premarket_note": "TEXT DEFAULT ''",
             "depth": "TEXT DEFAULT '{}'",
+            "live_price": "REAL",
+            "live_label": "TEXT DEFAULT ''",
+            "live_session": "TEXT DEFAULT ''",
+            "live_as_of": "TEXT DEFAULT ''",
+            "live_source": "TEXT DEFAULT ''",
+            "live_vs_close_pct": "REAL",
+            "live_vs_entry_pct": "REAL",
         }
     }
 
@@ -241,6 +251,13 @@ class Store:
             "premarket_note": proposal.premarket_note,
             "technical": json.dumps(proposal.technical, ensure_ascii=False),
             "depth": json.dumps(getattr(proposal, "depth", {}) or {}, ensure_ascii=False),
+            "live_price": proposal.live_price,
+            "live_label": proposal.live_label,
+            "live_session": proposal.live_session,
+            "live_as_of": proposal.live_as_of,
+            "live_source": proposal.live_source,
+            "live_vs_close_pct": proposal.live_vs_close_pct,
+            "live_vs_entry_pct": proposal.live_vs_entry_pct,
         }
         cols = ", ".join(payload)
         marks = ", ".join("?" for _ in payload)

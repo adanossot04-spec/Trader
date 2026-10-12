@@ -160,6 +160,8 @@ class Settings:
             "backtest": True,
             "max_hold_days": 10,
             "calendar_days": 4,
+            "live_quote": True,
+            "live_quote_ttl_min": 5,
             "min_signals": 8,
             "min_expectancy_r": 0.0,
             "event_block_days": 3,

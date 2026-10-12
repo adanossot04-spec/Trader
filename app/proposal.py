@@ -20,6 +20,7 @@ from typing import Any
 from . import depth as depth_module
 from . import llm as llm_module
 from . import market as market_module
+from . import quote as quote_module
 from . import technical as tech_module
 from .db import Store
 from .models import Signal
@@ -59,6 +60,15 @@ class Proposal:
     premarket_gap_pct: float | None = None
     premarket_as_of: str | None = None
     premarket_note: str = ""
+    # Ціна НА МОМЕНТ ПЕРЕВІРКИ (премаркет / сесія / після закриття / остання сесія).
+    # План при цьому будується на закритих свічках — тому це окреме, інформаційне поле.
+    live_price: float | None = None
+    live_label: str = ""
+    live_session: str = ""
+    live_as_of: str = ""
+    live_source: str = ""
+    live_vs_close_pct: float | None = None
+    live_vs_entry_pct: float | None = None
     data_source: str = ""
     synthetic: bool = False
     warnings: list[str] = field(default_factory=list)
@@ -330,6 +340,13 @@ def build_proposal(
     book = book or (store_current_book(settings) if store is None else None) or Book.from_dict(settings.portfolio())
 
     plan = plan_from_technical(tech, settings, has_position=book.position(ticker) is not None)
+
+    # ── ціна на момент перевірки (для КОЖНОГО тікера, навіть якщо угоди немає) ──
+    live_quote = (
+        quote_module.live_quote(ticker, settings, force_refresh=force_refresh)
+        if settings.depth.get("live_quote", True) else None
+    )
+
     proposal = Proposal(
         ticker=ticker,
         for_session=market_module.next_session_date(market_data.bars).isoformat(),
@@ -350,6 +367,23 @@ def build_proposal(
         synthetic=market_data.synthetic,
         warnings=list(market_data.warnings),
     )
+
+    if live_quote:
+        proposal.live_price = live_quote["price"]
+        proposal.live_label = str(live_quote.get("label") or live_quote["session"])
+        proposal.live_session = live_quote["session"]
+        proposal.live_as_of = live_quote["as_of"]
+        proposal.live_source = live_quote["source"]
+        if proposal.last_close:
+            proposal.live_vs_close_pct = round(
+                (live_quote["price"] - proposal.last_close) / proposal.last_close * 100, 2)
+        elif tech.last_close:
+            proposal.live_vs_close_pct = round(
+                (live_quote["price"] - tech.last_close) / tech.last_close * 100, 2)
+    elif not live_quote:
+        proposal.warnings.append(
+            "ціну на момент перевірки отримати не вдалося (джерела недоступні) — план по закритих свічках"
+        )
 
     # ── шар глибини: фундаментал, подія, режим ринку, сектор, історія правила ──
     depth_cfg = settings.depth
@@ -450,6 +484,10 @@ def build_proposal(
             depth_info["digest_error"] = digest["error"]
         proposal.depth = depth_info
 
+    if proposal.entry_price and live_quote:
+        proposal.live_vs_entry_pct = round(
+            (live_quote["price"] - proposal.entry_price) / proposal.entry_price * 100, 2)
+
     proposal.invalidation = _invalidation(tech, proposal)
     # за годину до відкриття перевіряємо нічний ґеп (якщо премаркет-дані вже є)
     if str(getattr(settings, "schedule", {}).get("anchor", "pre_open")) in ("pre_open", "both"):
@@ -512,6 +550,8 @@ def _llm_payload(proposal: Proposal, tech: tech_module.Technical, book: Book) ->
         "сесія_пропозиції": proposal.for_session,
         "остання_сесія": proposal.last_bar_date,
         "закриття": proposal.last_close,
+        "ціна_на_момент_перевірки": proposal.live_price,
+        "що_це_за_ціна": proposal.live_label,
         "зміна_за_день_%": proposal.change_pct,
         "тренд": tech.trend,
         "sma20": tech.sma20,

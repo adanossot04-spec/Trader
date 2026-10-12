@@ -170,7 +170,17 @@ def _trade_card(proposal) -> str:
     eps = funda.get("eps") or {}
 
     kind = "за ринком" if proposal.entry_type == "market" else "лімітна заявка"
-    plan_rows = [
+    live_rows = []
+    if getattr(proposal, "live_price", None) is not None:
+        delta = ""
+        if proposal.live_vs_close_pct is not None and abs(proposal.live_vs_close_pct) >= 0.005:
+            delta = f' <span style="color:{_MUTED}">({proposal.live_vs_close_pct:+.2f}% до закриття)</span>'
+        live_rows.append(_row("Ціна зараз", f'<strong>{_money(proposal.live_price)}</strong>'
+                                             f' <span style="color:{_MUTED}">{escape(str(proposal.live_label or ""))}</span>'
+                                             f'{delta}'))
+        if proposal.live_vs_entry_pct is not None and proposal.bias == "BUY":
+            live_rows.append(_row("До входу", f'{proposal.live_vs_entry_pct:+.2f}%'))
+    plan_rows = live_rows + [
         _row("Вхід", f'{_money(proposal.entry_price)} <span style="color:{_MUTED}">({kind})</span>', strong=True),
         _row("Стоп", _money(proposal.stop_price)),
         _row("Ціль", _money(proposal.target_price)),
@@ -270,6 +280,8 @@ def _wait_table(waiting: Sequence[Any]) -> str:
     rows = "".join(
         f'<tr>'
         f'<td style="padding:6px 10px 6px 0;font-weight:600;color:{_INK};white-space:nowrap">{escape(str(p.ticker))}</td>'
+        f'<td style="padding:6px 10px 6px 0;color:{_INK};font-size:13px;white-space:nowrap">'
+        f'{_money(getattr(p, "live_price", None)) if getattr(p, "live_price", None) is not None else "—"}</td>'
         f'<td style="padding:6px 0;color:{_MUTED};font-size:13px">'
         f'{escape(str((p.reasons or ["без сетапу"])[0]).replace("немає сетапу на найближчу сесію: ", ""))[:120]}</td>'
         f'</tr>'
@@ -425,12 +437,23 @@ def build_plan_email(
             funda = _funda(p)
             stats = depth.get("backtest") or {}
             earnings = funda.get("earnings") or {}
+            live_text = ""
+            if getattr(p, "live_price", None) is not None:
+                live_text = (f"  ціна зараз {_money(p.live_price)}"
+                             + (f" ({p.live_label})" if p.live_label else "")
+                             + (f" · {p.live_vs_close_pct:+.2f}% до закриття"
+                                if p.live_vs_close_pct is not None
+                                and abs(p.live_vs_close_pct) >= 0.005 else "")
+                             + (f" · до входу {p.live_vs_entry_pct:+.2f}%"
+                                if p.live_vs_entry_pct is not None and p.bias == "BUY" else ""))
             text_lines += [
                 "",
                 f"{p.ticker} — {depth.get('sector_label') or '—'}",
                 f"  вхід {_money(p.entry_price)} · стоп {_money(p.stop_price)} · ціль {_money(p.target_price)} "
                 f"· R:R {_num(p.rr)} · {p.qty or 0} шт. · ризик {_money(p.risk_usd, 0)}",
             ]
+            if live_text:
+                text_lines.append(live_text)
             if (funda.get("revenue") or {}).get("yoy_pct") is not None:
                 text_lines.append(
                     f"  бізнес: виручка {_pct((funda.get('revenue') or {}).get('yoy_pct'))} YoY · "
@@ -455,11 +478,15 @@ def build_plan_email(
         text_lines += ["", "── ЗАБЛОКОВАНО " + "─" * 42]
         for p in blocked:
             text_lines.append(f"  ⛔ {p.ticker}: {(p.gate_reasons or p.reasons or ['—'])[0]}")
+            if getattr(p, "live_price", None) is not None:
+                text_lines.append(f"     ціна зараз {_money(p.live_price)}"
+                                  + (f" ({p.live_label})" if p.live_label else ""))
     if waiting:
         text_lines += ["", "── БЕЗ СЕТАПУ " + "─" * 43]
         for p in waiting:
             why = str((p.reasons or ["без сетапу"])[0]).replace("немає сетапу на найближчу сесію: ", "")
-            text_lines.append(f"  {p.ticker}: {why[:110]}")
+            price = f" — {_money(p.live_price)}" if getattr(p, "live_price", None) is not None else ""
+            text_lines.append(f"  {p.ticker}{price}: {why[:110]}")
     if results_url:
         text_lines += ["", f"Сторінка результатів: {results_url}"]
     text_lines += ["", "Бот лише готує план: рівні й розмір рахує код. Ордери не виконуються.", "Не є фінансовою порадою."]
