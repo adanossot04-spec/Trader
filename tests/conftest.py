@@ -24,7 +24,7 @@ def settings(tmp_path: Path) -> Settings:
     cfg["watchlist"] = ["NVDA", "AAPL"]
     # Глибина (SEC/Nasdaq/Yahoo) у тестах вимкнена: юніт-тести мають бути офлайнові
     # й швидкі. Логіку самого шару перевіряє tests/test_depth.py з підставними даними.
-    cfg["depth"] = {**(cfg.get("depth") or {}), "enabled": False}
+    cfg["depth"] = {**(cfg.get("depth") or {}), "enabled": False, "live_quote": False}
     return Settings(
         config=cfg,
         base_dir=tmp_path,

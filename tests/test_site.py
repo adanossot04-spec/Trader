@@ -157,7 +157,10 @@ def test_results_markdown_has_table_and_disclaimer(settings, tmp_path):
     markdown = (out / "results.md").read_text(encoding="utf-8")
     assert markdown.startswith("# Пропозиції на 12.10.2026 (пн)")
     assert "| Тікер |" in markdown
-    assert "| MSFT | BUY |" in markdown and "| NVDA | WAIT |" in markdown
+    # Колонка «Зараз» стоїть другою (ціна на момент перевірки), тому перевіряємо
+    # тікер + вердикт, не прив'язуючись до порядку колонок.
+    assert "| MSFT | " in markdown and "| BUY |" in markdown
+    assert "| NVDA | " in markdown and "| WAIT |" in markdown
     assert "Ордери не виконуються" in markdown
 
 
