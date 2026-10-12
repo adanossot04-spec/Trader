@@ -73,6 +73,15 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      # ── Пошта (Resend): один структурований лист на прогін ──
+      # RESEND_API_KEY — ключ із resend.com/api-keys (секрет)
+      # MAIL_TO        — кому слати; можна кілька адрес через кому
+      # MAIL_FROM      — від кого; без підтвердженого домену лишайте onboarding@resend.dev
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      MAIL_TO: ${{ secrets.MAIL_TO }}
+      MAIL_FROM: ${{ secrets.MAIL_FROM }}
+      # Посилання на сторінку результатів у листі (та сама тека results/site/).
+      RESULTS_URL: https://cdn.jsdelivr.net/gh/${{ github.repository }}@main/results/site/index.html
       # Контакт для SEC EDGAR (глибина: фундаментал). Не секрет і не ключ —
       # SEC просто вимагає, щоб у User-Agent був спосіб зв'язатися з вами.
       # Можна замінити на свій email через змінну репозиторію SEC_USER_AGENT.
@@ -145,9 +154,20 @@ jobs:
         if: steps.gate.outputs.run == 'yes'
         run: python3 run.py --propose --force
 
-      - name: Що пішло в Telegram
+      - name: Що пішло в Telegram і на пошту
         if: steps.gate.outputs.run == 'yes'
-        run: tail -60 data/outbox.log || true
+        run: |
+          tail -80 data/outbox.log || true
+          if grep -q "\[email\] ok" data/outbox.log 2>/dev/null; then
+            echo "📧 лист надіслано"
+          elif grep -q "\[email\]" data/outbox.log 2>/dev/null; then
+            echo "📧 лист не надіслано:"; grep "\[email\]" data/outbox.log | tail -2
+            {
+              echo "### 📧 Лист не надіслано"
+              grep "\[email\]" data/outbox.log | tail -3
+              echo "Перевірте секрети RESEND_API_KEY і MAIL_TO (Settings → Secrets and variables → Actions)."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Статичний сайт результатів
         if: steps.gate.outputs.run == 'yes'
